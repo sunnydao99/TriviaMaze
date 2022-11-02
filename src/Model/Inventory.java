@@ -6,12 +6,13 @@ public class Inventory {
     private Connection conn;
     private String myFileName;
 
-    public Inventory(){
+    public Inventory() {
         myUrl = "jdbc:sqlite:";
         conn = null;
         myFileName = "";
     }
-    public Inventory(String theFileName){
+
+    public Inventory(String theFileName) {
         try {
             // db parameters
             // create a connection to the database
@@ -30,8 +31,9 @@ public class Inventory {
             }
         }
     }
-    public void createNewDatabase(String thefileName) {
-        myFileName = myUrl + thefileName;
+
+    public void createDB(String theFileName) {
+        myFileName = myUrl + theFileName;
         try {
             conn = DriverManager.getConnection(myFileName);
             if (conn != null) {
@@ -46,4 +48,23 @@ public class Inventory {
         }
     }
 
+    public void createNewTable() {
+        // SQLite connection string
+
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS employees (\n"
+                + " id integer PRIMARY KEY,\n"
+                + " name text NOT NULL,\n"
+                + " capacity real\n"
+                + ");";
+
+        try {
+            Connection conn = DriverManager.getConnection(myFileName);
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
 }

@@ -1,5 +1,6 @@
 
 import Model.QA;
+import Model.QAMC;
 
 import java.io.FileNotFoundException;
 
@@ -18,6 +19,9 @@ public class Main {
        /* bankQA.insertTableMC();// completed tableMC
         bankQA.insertTableSA(); //completed tableSA
         bankQA.insertTableTF();*/
+        QAMC bankMC = new QAMC();
+        bankMC.connection();
+        //bankMC.selectAll();
 
 
     }

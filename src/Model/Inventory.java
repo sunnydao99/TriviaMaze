@@ -31,7 +31,6 @@ public abstract class Inventory {
         }
     }
 
-
     public abstract void connection();
     public void createDB(String theFileNameDB) {
         myFileName = myUrl + theFileNameDB;
@@ -39,7 +38,6 @@ public abstract class Inventory {
             conn = DriverManager.getConnection(myFileName);
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
                 System.out.println("A new database has been created.");
 
             }
@@ -59,9 +57,7 @@ public abstract class Inventory {
                 + " ChoiceB text NOT NULL,\n"
                 + " ChoiceC text NOT NULL,\n"
                 + " ChoiceD text NOT NULL,\n"
-                + " CorectAnswer text NOT NULL,\n"
-                + " ReduceChoice1 text NULL,\n"
-                + " ReduceChoice2 text  NULL,\n"
+                + " CorrectAnswer text NOT NULL,\n"
                 + " capacity real\n"
                 + ") ";
 
@@ -83,7 +79,7 @@ public abstract class Inventory {
                 + " Question text NOT NULL,\n"
                 + " ChoiceA text NOT NULL,\n"
                 + " ChoiceB text NOT NULL,\n"
-                + " CorectAnswer text NOT NULL,\n"
+                + " CorrectAnswer text NOT NULL,\n"
                 + " capacity real\n"
                 + ");";
 
@@ -103,7 +99,7 @@ public abstract class Inventory {
                 + " Category text NOT NULL,\n"
                 + " Question text NOT NULL,\n"
                 + " Choice text  NULL,\n"
-                + " CorectAnswer text NOT NULL,\n"
+                + " CorrectAnswer text NOT NULL,\n"
                 + " Hints text  NULL,\n"
                 + " capacity real\n"
                 + ");";

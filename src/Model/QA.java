@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class QA extends Inventory{
-    Inventory inv;
 
     File myFileCSV_QMC;
     File myFileCSV_QAS;
@@ -29,7 +28,6 @@ public class QA extends Inventory{
             // db parameters
             // create a connection to the database
             conn = DriverManager.getConnection(myFileName);
-            System.out.println("Connection: cnn from QA" + conn);
             System.out.println("Connection to SQLite has been established.");
 
         } catch (SQLException e) {
@@ -38,7 +36,8 @@ public class QA extends Inventory{
     }
 
     public  void insertTableMC(){
-        String sql = "INSERT INTO tableMC(IDQuest,Category, Question, ChoiceA, ChoiceB, ChoiceC, ChoiceD, CorectAnswer, ReduceChoice1, ReduceChoice2) VALUES(?, ?,?, ?, ?, ?, ? , ?, ?, ?)";
+        String sql = "INSERT INTO tableMC(IDQuest,Category, Question, ChoiceA, ChoiceB, ChoiceC, ChoiceD, CorrectAnswer)" +
+                " VALUES(?, ?,?, ?, ?, ?, ? , ?)";
 
         try{
 
@@ -54,9 +53,7 @@ public class QA extends Inventory{
             String choiceB = "";
             String choiceC = "";
             String choiceD = "";
-            String corectAnswer = "";
-            String reduceChoice1 = "";
-            String reduceChoice2 = "";
+            String correctAnswer = "";
 
             myScanMC.nextLine();
             while (myScanMC.hasNext())  //returns a boolean value
@@ -71,9 +68,7 @@ public class QA extends Inventory{
                 choiceB = data[4];
                 choiceC = data[5];
                 choiceD = data[6];
-                corectAnswer = data[7];
-                reduceChoice1 = data[8];
-                reduceChoice2 = data[9];
+                correctAnswer = data[7];
 
                 statement.setString(1,iDQuest);
                 statement.setString(2,category);
@@ -82,12 +77,10 @@ public class QA extends Inventory{
                 statement.setString(5,choiceB);
                 statement.setString(6,choiceC);
                 statement.setString(7,choiceD);
-                statement.setString(8,corectAnswer);
-                statement.setString(9,reduceChoice1);
-                statement.setString(10,reduceChoice2);
+                statement.setString(8,correctAnswer);
                 statement.executeUpdate();
             }
-
+            /*System.out.println("inserted data");*/
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -100,7 +93,8 @@ public class QA extends Inventory{
 
     @Override
     public void insertTableTF() {
-        String sql = "INSERT INTO tableTF(IDQuest,Category,Question,ChoiceA,ChoiceB,CorectAnswer) VALUES(?, ?,?, ?, ?, ?)";
+        String sql = "INSERT INTO tableTF(IDQuest,Category,Question,ChoiceA,ChoiceB,CorrectAnswer) " +
+                "VALUES(?, ?,?, ?, ?, ?)";
 
         try{
             myScanTF = new Scanner(myFileCSV_QTF);
@@ -114,7 +108,7 @@ public class QA extends Inventory{
             String question = "";
             String choiceA = "";
             String choiceB = "";
-            String corectAnswer = "";
+            String correctAnswer = "";
 
             myScanTF.nextLine();
             while (myScanTF.hasNext())  //returns a boolean value
@@ -127,14 +121,14 @@ public class QA extends Inventory{
                 question = data[2];
                 choiceA = data[3];
                 choiceB = data[4];
-                corectAnswer = data[5];
+                correctAnswer = data[5];
 
                 statement.setString(1,iDQuest);
                 statement.setString(2,category);
                 statement.setString(3,question);
                 statement.setString(4,choiceA);
                 statement.setString(5,choiceB);
-                statement.setString(6,corectAnswer);
+                statement.setString(6,correctAnswer);
 
                 statement.executeUpdate();
             }
@@ -150,7 +144,7 @@ public class QA extends Inventory{
 
     @Override
     public void insertTableSA() {
-        String sql = "INSERT INTO tableSA(IDQuest,Category, Question, Choice, CorectAnswer, Hints) VALUES(?, ?,?, ?, ?, ?)";
+        String sql = "INSERT INTO tableSA(IDQuest,Category, Question, Choice, CorrectAnswer, Hints) VALUES(?, ?,?, ?, ?, ?)";
 
         try{
 
@@ -164,7 +158,7 @@ public class QA extends Inventory{
             String category= "";
             String question = "";
             String choice = "";
-            String corectAnswer = "";
+            String correctAnswer = "";
             String hints = "";
 
             myScanQS.nextLine();
@@ -177,14 +171,14 @@ public class QA extends Inventory{
                 category = data[1];
                 question = data[2];
                 choice = data[3];
-                corectAnswer = data[4];
+                correctAnswer = data[4];
                 hints = data[5];
 
                 statement.setString(1,iDQuest);
                 statement.setString(2,category);
                 statement.setString(3,question);
                 statement.setString(4,choice);
-                statement.setString(5,corectAnswer);
+                statement.setString(5,correctAnswer);
                 statement.setString(6,hints);
                 statement.executeUpdate();
             }

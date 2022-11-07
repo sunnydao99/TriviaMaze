@@ -22,7 +22,7 @@ public class QA extends Inventory{
         myFileCSV_QTF = new File("Database/QATrueFalse.csv");
     }
 
-    @Override
+    /*@Override
     public void connection() {
         try {
             // db parameters
@@ -33,7 +33,7 @@ public class QA extends Inventory{
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
+    }*/
 
     public  void insertTableMC(){
         String sql = "INSERT INTO tableMC(IDQuest,Category, Question, ChoiceA, ChoiceB, ChoiceC, ChoiceD, CorrectAnswer)" +
@@ -80,7 +80,7 @@ public class QA extends Inventory{
                 statement.setString(8,correctAnswer);
                 statement.executeUpdate();
             }
-            /*System.out.println("inserted data");*/
+            System.out.println("Inserted tableMC");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -122,16 +122,15 @@ public class QA extends Inventory{
                 choiceA = data[3];
                 choiceB = data[4];
                 correctAnswer = data[5];
-
                 statement.setString(1,iDQuest);
                 statement.setString(2,category);
                 statement.setString(3,question);
                 statement.setString(4,choiceA);
                 statement.setString(5,choiceB);
                 statement.setString(6,correctAnswer);
-
                 statement.executeUpdate();
             }
+            System.out.println("Inserted tableTF");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -144,7 +143,7 @@ public class QA extends Inventory{
 
     @Override
     public void insertTableSA() {
-        String sql = "INSERT INTO tableSA(IDQuest,Category, Question, Choice, CorrectAnswer, Hints) VALUES(?, ?,?, ?, ?, ?)";
+        String sql = "INSERT INTO tableSA(IDQuest,Category, Question, CorrectAnswer, Hints ) VALUES(?, ?,?, ?, ?)";
 
         try{
 
@@ -157,7 +156,6 @@ public class QA extends Inventory{
             String iDQuest = "";
             String category= "";
             String question = "";
-            String choice = "";
             String correctAnswer = "";
             String hints = "";
 
@@ -170,19 +168,17 @@ public class QA extends Inventory{
                 iDQuest = data[0];
                 category = data[1];
                 question = data[2];
-                choice = data[3];
-                correctAnswer = data[4];
-                hints = data[5];
+                correctAnswer = data[3];
+                hints = data[4];
 
                 statement.setString(1,iDQuest);
                 statement.setString(2,category);
                 statement.setString(3,question);
-                statement.setString(4,choice);
-                statement.setString(5,correctAnswer);
-                statement.setString(6,hints);
+                statement.setString(4,correctAnswer);
+                statement.setString(5,hints);
                 statement.executeUpdate();
             }
-
+            System.out.println("Inserted tableSA");
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -191,5 +187,26 @@ public class QA extends Inventory{
         }  catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public String randomCategory(){
+        Random rand = new Random();
+        int temp = rand.nextInt(3);
+        String cate = "";
+        if (temp == 0) {
+            cate = "MC";
+        } else if (temp == 1) {
+            cate = "TF";
+        } else {
+            cate = "SA";
+        }
+        return cate;
+    }
+
+    public int randomID(){
+        Random rand = new Random();
+        int id = rand.nextInt(10);
+        return id;
     }
 }

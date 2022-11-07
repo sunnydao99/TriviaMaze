@@ -31,7 +31,6 @@ public abstract class Inventory {
         }
     }
 
-    public abstract void connection();
     public void createDB(String theFileNameDB) {
         myFileName = myUrl + theFileNameDB;
         try {
@@ -41,6 +40,19 @@ public abstract class Inventory {
                 System.out.println("A new database has been created.");
 
             }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void connection(){
+        try {
+            // db parameters
+            // create a connection to the database
+            myFileName = "jdbc:sqlite:Database_QA.db";
+            conn = DriverManager.getConnection(myFileName);
+            System.out.println("Connection to SQLite has been established.");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -65,7 +77,7 @@ public abstract class Inventory {
             /* Connection conn = DriverManager.getConnection(myFileName);*/
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
-
+            System.out.println("created tableMC");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -86,6 +98,7 @@ public abstract class Inventory {
         try {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
+            System.out.println("created tableTF");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -98,7 +111,6 @@ public abstract class Inventory {
                 + " IDQuest text PRIMARY KEY,\n"
                 + " Category text NOT NULL,\n"
                 + " Question text NOT NULL,\n"
-                + " Choice text  NULL,\n"
                 + " CorrectAnswer text NOT NULL,\n"
                 + " Hints text  NULL,\n"
                 + " capacity real\n"
@@ -107,7 +119,7 @@ public abstract class Inventory {
         try {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
-
+            System.out.println("created tableSA");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

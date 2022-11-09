@@ -30,7 +30,7 @@ public class QATF extends QA{
         return myConn;
     }
 
-    //get question from tableMC
+    //get question from tableTF
     public String  getQuestionTF(int theId, String theCategory) {
         String sql = "SELECT IDQuest, Category, Question "
                 + "FROM tableTF WHERE IDQuest = ? AND Category = ?";

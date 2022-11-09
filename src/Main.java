@@ -1,10 +1,10 @@
 
-import Model.QA;
-import Model.QAMC;
-import Model.QASA;
-import Model.QATF;
+import Model.*;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class Main {
 
@@ -19,43 +19,34 @@ public class Main {
       /*  bankQA.createTableSA();*/
 
         bankQA.connection();
-       /* bankQA.insertTableMC();*/// completed tableMC
-        /*bankQA.insertTableSA();*///completed tableSA
-       /* bankQA.insertTableTF();*/
-        int id;
-        String cate = bankQA.randomCategory();
+     /*   bankQA.insertTableMC();// completed tableMC
+        bankQA.insertTableSA();//completed tableSA
+        bankQA.insertTableTF();
+*/
 
-        System.out.println("before: "+ " - " + cate);
-        if (cate.equals("MC")){
-            QAMC testMC = new QAMC();
-            id = bankQA.randomID();
-            System.out.println(id + " - " + cate);
-            System.out.println("Question: ");
-            testMC.getQuestionMC(id, cate);
+
+
+
+       /* ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i=0; i<10; i++){
+            list.add(i);
         }
-        else if(cate.equals("TF")){
-            QATF testTF = new QATF();
-            id = bankQA.randomID();
-            System.out.println(id + " - " + cate);
-            System.out.println("Question: ");
-            testTF.getQuestionTF(id, cate);
-        }
-        else {
-            QASA testSA = new QASA();
-            id = bankQA.randomID();
-            System.out.println(id + " - " + cate);
-            System.out.println("Question: ");
-            testSA.getQuestionSA(id, cate);
-        }
+        Collections.shuffle(list);
+        for (int i=0; i<7; i++){
+            System.out.println("idx: "+ i + "-"+list.get(i));
+
+        }*/
+
+
 
 
         //Test QAMC
-        /*QAMC bankMC = new QAMC();
+       /* QAMC bankMC = new QAMC();
         System.out.println(bankMC.getQuestionMC(2, "MC"));
-        System.out.println(bankMC.getCorrAnsMC(2, "MC"));*/
-        /*bankMC.getArrChoicesMC(2, "MC");
+        System.out.println(bankMC.getCorrAnsMC(2, "MC"));
+        bankMC.getArrChoicesMC(2, "MC");
         System.out.println("print Array Choice:");
-        bankMC.printChoices();
+        bankMC.printChoicesMC();
         bankMC.getArrRedChoiceMC(2, "MC");
         System.out.println("print Array Reduce Choice:");
         bankMC.printRedChoiceMC();*/
@@ -69,10 +60,38 @@ public class Main {
         bankTF.printChoicesTF();*/
 
         //test QASA
-        QASA bankSA = new QASA();
+       /* QASA bankSA = new QASA();
         System.out.println(bankSA.getQuestionSA(2, "SA"));
         System.out.println(bankSA.getCorrAnsSA(2, "SA"));
-        System.out.println(bankSA.getHintSA(2, "SA"));
+        System.out.println(bankSA.getHintSA(2, "SA"));*/
+
+        //TestRoom
+
+        /*room.printCatelist();
+        room.printIDlist();*/
+
+        /*for(int i = 0; i < id_list.size(); i++){
+            System.out.print( id_list.get(i) + ", ");
+        }
+        System.out.println();*/
+        QA bank = new QA();
+        /*bank.getQues("MC", 2);
+        bank.getAns("MC", 2);
+        bank.getArrChoices("MC", 2);
+        bank.getArrRedChoice("MC", 2);*/
+
+        /*bank.getQues("TF", 2);
+        bank.getAns("TF", 2);
+        bank.getArrChoices("TF", 2);
+        bank.getArrRedChoice("MC", 2);*/
+
+        bank.getQues("SA", 2);
+        bank.getAns("SA", 2);
+        System.out.println(bank.getHintSA("SA", 2));
+        /*bank.getArrChoices("TF", 2);
+        bank.getArrRedChoice("MC", 2);*/
+
+
 
     }
 }

@@ -30,7 +30,7 @@ public class QASA extends QA{
         return myConn;
     }
 
-    //get question from tableMC
+    //get question from tableSA
     public String  getQuestionSA(int theId, String theCategory) {
         String sql = "SELECT IDQuest, Category, Question "
                 + "FROM tableSA WHERE IDQuest = ? AND Category = ?";
@@ -78,7 +78,7 @@ public class QASA extends QA{
         return corrAns;
     }
 
-    public String getHintSA(int theId, String theCategory){
+    public String getHintSA(String theCategory, int theId){
         String sql = "SELECT IDQuest,Category,Hints "
                 + "FROM tableSA WHERE IDQuest = ? AND Category = ?";
         String hint = "";

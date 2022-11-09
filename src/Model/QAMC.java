@@ -6,10 +6,22 @@ import java.util.Random;
 
 public class QAMC extends QA {
     Connection myConn;
-    private String myQuesMC;
-    private String myCorrAnsMC;
+    String myQuesMC;
+    String myCorrAnsMC;
     ArrayList<String> myArrChoiceMC;
     ArrayList<String> myArrRedChoiceMC;
+    String myCategory;
+    int myId;
+
+    public QAMC(String theCate, int theId) {
+        myQuesMC = "";
+        myCorrAnsMC = "";
+        myConn = null;
+        connect();
+        myCategory = theCate;
+        myId = theId;
+
+    }
 
     public void QAMC() {
         myQuesMC = "";
@@ -33,7 +45,12 @@ public class QAMC extends QA {
     }
 
     //get question from tableMC
-    public String  getQuestionMC(int theId, String theCategory) {
+    //get question from tableMC
+    @Override
+    public String getQuestion(String theCate, int theId) {
+        myCategory = theCate;
+        myId = theId;
+        System.out.println(theCate + " - " + theId);
         String sql = "SELECT IDQuest,Category,Question "
                 + "FROM tableMC WHERE IDQuest = ? AND Category = ?";
         String question = "";
@@ -42,22 +59,26 @@ public class QAMC extends QA {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             // set the value
             pstmt.setInt(1, theId);
-            pstmt.setString(2, theCategory);
+            pstmt.setString(2, theCate);
             ResultSet rs = pstmt.executeQuery();
             // loop through the result set
-
             while (rs.next()) {
                 question = rs.getString("Question");
+
             }
             myQuesMC = question;
+            System.out.println("from QAMC: "+ question);
             return question;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        System.out.println("from QAMC: not "+ question);
         return question;
     }
 
-    public String getCorrAnsMC(int theId, String theCategory){
+    public String getAnswer(String theCategory, int theId){
+        myCategory = theCategory;
+        myId = theId;
         String sql = "SELECT IDQuest,Category, CorrectAnswer "
                 + "FROM tableMC WHERE IDQuest = ? AND Category = ?";
         String corrAns = "";
@@ -70,9 +91,10 @@ public class QAMC extends QA {
 
             while (rs.next()) {
                 corrAns = rs.getString("CorrectAnswer");
-                myCorrAnsMC = corrAns;
-            }
 
+            }
+            myCorrAnsMC = corrAns;
+            System.out.println("from QAMC: " + corrAns);
             return corrAns;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -80,7 +102,8 @@ public class QAMC extends QA {
         return corrAns;
     }
 
-    public ArrayList<String> getArrChoicesMC(int theId, String theCategory){
+    public ArrayList<String> getChoices(String theCategory, int theId){
+
         String sql = "SELECT IDQuest,Category, ChoiceA, ChoiceB, ChoiceC, ChoiceD "
                 + "FROM tableMC WHERE IDQuest = ? AND Category = ?";
 
@@ -105,6 +128,7 @@ public class QAMC extends QA {
 
             }
             myArrChoiceMC.addAll(choices);
+            System.out.println("from QAMC: choices created");
             return choices;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -112,9 +136,7 @@ public class QAMC extends QA {
         return choices;
     }
 
-    public ArrayList<String> getArrRedChoiceMC(int theId, String theCategory) {
-        myCorrAnsMC = getCorrAnsMC(theId, theCategory);
-        myArrChoiceMC = getArrChoicesMC(theId, theCategory);
+    public ArrayList<String> getArrRedChoiceMC(String theCategory, int theId) {
         myArrRedChoiceMC = new ArrayList<String>();
         int corrAns;
         if (myCorrAnsMC.equals("A")) {

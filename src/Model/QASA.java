@@ -9,6 +9,14 @@ public class QASA extends QA{
     private String myCorrAnsSA;
     private String myHint;
 
+    String myCategory;
+    int myId;
+
+    public QASA(String theCate, int theId) {
+        myCategory = theCate;
+        myId = theId;
+    }
+
     public void QASA() {
         myQuesSA = "";
         myCorrAnsSA = "";
@@ -31,10 +39,14 @@ public class QASA extends QA{
     }
 
     //get question from tableSA
-    public String  getQuestionSA(int theId, String theCategory) {
+
+    public String getQuestion(String theCategory, int theId){
+        myCategory = theCategory;
+        myId = theId;
         String sql = "SELECT IDQuest, Category, Question "
                 + "FROM tableSA WHERE IDQuest = ? AND Category = ?";
         String question = "";
+        System.out.println(theCategory + " - " + theId);
         try {
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -48,6 +60,7 @@ public class QASA extends QA{
                 question = rs.getString("Question");
             }
             myQuesSA = question;
+            System.out.println("from SA: question " + question);
             return question;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -55,7 +68,9 @@ public class QASA extends QA{
         return question;
     }
 
-    public String getCorrAnsSA(int theId, String theCategory){
+    public String getAnswer(String theCategory, int theId){
+        myCategory = theCategory;
+        myId = theId;
         String sql = "SELECT IDQuest,Category, CorrectAnswer "
                 + "FROM tableSA WHERE IDQuest = ? AND Category = ?";
         String corrAns = "";
@@ -68,15 +83,17 @@ public class QASA extends QA{
 
             while (rs.next()) {
                 corrAns = rs.getString("CorrectAnswer");
-                myCorrAnsSA = corrAns;
-            }
 
+            }
+            myCorrAnsSA = corrAns;
+            System.out.println("from SA: ans " + corrAns);
             return corrAns;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return corrAns;
     }
+
 
     public String getHintSA(String theCategory, int theId){
         String sql = "SELECT IDQuest,Category,Hints "

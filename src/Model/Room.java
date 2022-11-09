@@ -6,19 +6,24 @@ import java.util.Random;
 
 public class Room {
     private int myId;
-    private String myCategory;
+    private String myCate;
     private  ArrayList<Integer> myIdList;
     private  ArrayList<String> myCategoryList;
+    private  ArrayList<String> myRooms;
 
     public Room(){
         QA bankQA = new QA();
         bankQA.connection();
     }
+
     public int randomID(){
         Random rand = new Random();
-        int id = rand.nextInt(10);
+        int max = 9;
+        int min = 1;
+        int id = rand.nextInt(max + 1 - min) + min;
         myId = id;
         return id;
+
     }
 
     public String randomCategory(){
@@ -32,9 +37,10 @@ public class Room {
         } else {
             cate = "SA";
         }
-        myCategory = cate;
+        myCate = cate;
         return cate;
     }
+
 
     public void randomIDCategory(){
         myIdList = new ArrayList<Integer>();
@@ -112,11 +118,60 @@ public class Room {
         System.out.println("]");
     }
 
+    public void randomQA(){
+        printIDlist();
+        QA bank;
+        String ques;
+        String ans;
+        ArrayList<String> choiceList = new ArrayList<String>();
+        ArrayList<String> redChoiceList = new ArrayList<String>();
+        ArrayList<String> room = new ArrayList<String>();
+        myRooms = new ArrayList<String>();
+        for(int i = 0; i < myCategoryList.size(); i++){
 
+            String cate = myCategoryList.get(i);
+            int id = myIdList.get(i);
+            System.out.println("Room: "+ i);
+            if(cate.equals("MC")){
+                bank = new QAMC(cate, id);
+                ques = bank.getQuestion(cate, id);
+                choiceList = bank.getChoices(cate, id);
+                /*  ((QAMC) bank).printChoicesMC();*/
+                ans = bank.getAnswer(cate, id);
+                redChoiceList = ((QAMC) bank).getArrRedChoiceMC(cate, id);
+                /* ((QAMC) bank).printRedChoiceMC();*/
+                room.add(ques);
+                room.add(String.valueOf(choiceList));
+                room.add(ans);
+                room.add(String.valueOf(redChoiceList));
+            }
+            else if(myCategoryList.get(i).equals("TF")){
+                bank = new QATF(cate, id);
+                bank.getQuestion(cate, id);
+                bank.getChoices(cate, id);
+                ((QATF) bank).printChoicesTF();
+                bank.getAnswer(cate, id);
+            }
+            else {
+                bank = new QASA(cate, id);
+                bank.getQuestion(cate, id);
+                bank.getAnswer(cate, id);
+                ((QASA) bank).getHintSA(cate, id);
+            }
 
+        }
+        System.out.print("[");
+        for (int i = 0; i < room.size(); i++) {
 
+            if (i == (room.size() - 1)) {
+                System.out.print(room.get(room.size() - 1));
+            } else {
+                System.out.print(room.get(i) + ", ");
+            }
+        }
+        System.out.println("]");
 
-
+    }
 
 
 }

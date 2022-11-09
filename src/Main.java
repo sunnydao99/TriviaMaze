@@ -6,39 +6,41 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import View.*;
+
 public class Main {
 
     public static void main(String[] args) {
 	// An Testing
-
         QA bankQA = new QA();
-       /* bankQA.createDB("Database_QA.db");*/
-      /*  bankQA.connection();*/
-      /*  bankQA.createTableMC();*/
-        /*bankQA.createTableTF();*/
-      /*  bankQA.createTableSA();*/
-
+        /*bankQA.createDB("Database_QA.db");*/
         bankQA.connection();
-     /*   bankQA.insertTableMC();// completed tableMC
+       /* bankQA.createTableMC();
+        bankQA.createTableTF();
+        bankQA.createTableSA();*/
+
+       /* bankQA.insertTableMC();// completed tableMC
         bankQA.insertTableSA();//completed tableSA
-        bankQA.insertTableTF();
+        bankQA.insertTableTF();*/
+
+
+       /* bankQA = new QAMC("MC", 1);
+        bankQA.getQuestion("MC", 1);
+        bankQA.getAnswer("MC", 1);
+        bankQA.getChoices("MC",1);
+        ((QAMC) bankQA).printChoicesMC();
+        ((QAMC) bankQA).getArrRedChoiceMC("MC", 1);
+        ((QAMC) bankQA).printRedChoiceMC();*/
+       /* bankQA = new QATF("TF", 2);
+        bankQA.getQuestion("TF", 2);
+        bankQA.getAnswer("TF", 2);
+        bankQA.getChoices("TF", 2);*/
+      /*  bankQA = new QASA();
+        bankQA.getQuestion("SA", 2);
+        bankQA.getAnswer("SA", 2);
+        bankQA.getChoices("SA", 2);
+        ((QASA) bankQA).getHintSA("SA", 2);
 */
-
-
-
-
-       /* ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i=0; i<10; i++){
-            list.add(i);
-        }
-        Collections.shuffle(list);
-        for (int i=0; i<7; i++){
-            System.out.println("idx: "+ i + "-"+list.get(i));
-
-        }*/
-
-
-
 
         //Test QAMC
        /* QAMC bankMC = new QAMC();
@@ -66,30 +68,16 @@ public class Main {
         System.out.println(bankSA.getHintSA(2, "SA"));*/
 
         //TestRoom
-
-        /*room.printCatelist();
-        room.printIDlist();*/
+        /*Room room = new Room();
+        room.randomIDCategory();
+        room.randomQA();*/
 
         /*for(int i = 0; i < id_list.size(); i++){
             System.out.print( id_list.get(i) + ", ");
         }
         System.out.println();*/
-        QA bank = new QA();
-        /*bank.getQues("MC", 2);
-        bank.getAns("MC", 2);
-        bank.getArrChoices("MC", 2);
-        bank.getArrRedChoice("MC", 2);*/
 
-        /*bank.getQues("TF", 2);
-        bank.getAns("TF", 2);
-        bank.getArrChoices("TF", 2);
-        bank.getArrRedChoice("MC", 2);*/
-
-        bank.getQues("SA", 2);
-        bank.getAns("SA", 2);
-        System.out.println(bank.getHintSA("SA", 2));
-        /*bank.getArrChoices("TF", 2);
-        bank.getArrRedChoice("MC", 2);*/
+        RoomView rw = new RoomView("Integer Calculator");
 
 
 

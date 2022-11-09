@@ -1,0 +1,10 @@
+IDQuest,Category,Question,CorrectAnswer,Hints
+1,SA,Which data type is used to create a variable that should store text?,String,Str
+2,SA,_______ is used to find and fix bugs in the Java programs,JDB,J
+3,SA,An interface with no fields or methods is known as a ______.,Marker Interface,Marker  ______
+4,SA,"In character stream I/O, a single read/write operation performs _____bytes read/write at a time.",Two,T
+5,SA,A _____ file is a text file in the Java language created by a programmer with a text editor,source code,_______ code
+6,SA,"Say that your program was compiled without problems, but when your run it something goes wrong. This is called a ______ ",bug,b
+7,SA,"A _____ error is a ""grammatical error"" in using the programming language.",syntax,s
+8,SA,A ______ is a note written to a human reader of a program.,comment,c
+9,SA,Which statement is used to stop a loop?,break,that is used to terminate the loop

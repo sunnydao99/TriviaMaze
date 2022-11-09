@@ -1,0 +1,10 @@
+IDQuest,Category ,Question,ChoiceA,ChoiceB,ChoiceC,ChoiceD,CorrectAnswer
+1,MC,int x= 1; int y = 2; int z= x+y; what print out of z?,2,3,4,5,B
+2,MC,what statement does print out ?,Sytem.in,print out,System.out.println() ,consle.out,C
+3,MC,Which of the following option leads to the portability and security of Java?,Bytecode is executed by JVM,The applet makes the Java code secure and portable,Use of exception handling,Dynamic binding between objects,A
+4,MC,Which of the following is not a Java features?,Dynamic,Architecture Neutral,Use of pointers,Object-oriented,C
+5,MC,Which of the following is a valid declaration of a char?,char ch = '\utea';,char ca = 'tea';,char cr = \u0223;,char cc = '\itea';,A
+6,MC,What is the return type of the hashCode() method in the Object class?,Object,int,long,void,B
+7,MC,"Evaluate the following Java expression, if x=3, y=5, and z=10: ++z + y - y + z + x++",24,23,20,25,D
+8,MC,Which of the following tool is used to generate API documentation in HTML format from doc comments in source code?,javap tool,javaw command,Javadoc tool,javah command,C
+9,MC,"In which process, a local variable has the same name as one of the instance variables?",Serialization,Variable Shadowing,Abstraction,Multi-threading,B

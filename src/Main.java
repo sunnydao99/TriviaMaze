@@ -1,11 +1,6 @@
 
 import Model.*;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
-
 import View.*;
 
 public class Main {
@@ -77,7 +72,14 @@ public class Main {
         }
         System.out.println();*/
 
-        RoomView rw = new RoomView("Integer Calculator");
+        /*RoomMCView rwMC = new RoomMCView();
+        rwMC.showEventDemo();*/
+
+        /*RoomTFView rwTF = new RoomTFView();
+        rwTF.showEventDemo();*/
+
+        RoomSAView rwSA = new RoomSAView();
+        rwSA.showEventDemo();
 
 
 

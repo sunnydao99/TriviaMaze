@@ -16,6 +16,7 @@ public class QA extends Inventory{
     Scanner myScanTF;
     String myCategory;
     ArrayList<Integer> myIdList;
+    String myCate;
     int myId;
 
     Connection myConn;
@@ -37,6 +38,18 @@ public class QA extends Inventory{
         myFileCSV_QAS = new File("Database/QAShort.csv");
         myFileCSV_QTF = new File("Database/QATrueFalse.csv");
         myCategory = "";
+
+    }
+
+    public QA(String theCate, int theId){
+        myCate = theCate;
+        myId = theId;
+        myFileCSV_QMC = new File("Database/QAMultiple.csv");
+        myFileCSV_QAS = new File("Database/QAShort.csv");
+        myFileCSV_QTF = new File("Database/QATrueFalse.csv");
+        myCategory = "";
+
+
 
     }
 
@@ -207,12 +220,18 @@ public class QA extends Inventory{
     }
 
     public  String getQuestion(String theCate, int theId){
+        myCate = theCate;
+        myId = theId;
         return null;
     }
     public String getAnswer(String theCate, int theId){
+        myCate = theCate;
+        myId = theId;
         return null;
     }
     public ArrayList<String> getChoices(String theCate, int theId){
+        myCate = theCate;
+        myId = theId;
         return null;
     }
 

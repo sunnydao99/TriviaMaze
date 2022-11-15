@@ -7,9 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
 	// An Testing
-        QA bankQA = new QA();
+       /* QA bankQA = new QA("MC", 1);*/
         /*bankQA.createDB("Database_QA.db");*/
-        bankQA.connection();
+      /*  bankQA.connection();*/
        /* bankQA.createTableMC();
         bankQA.createTableTF();
         bankQA.createTableSA();*/
@@ -19,13 +19,14 @@ public class Main {
         bankQA.insertTableTF();*/
 
 
-       /* bankQA = new QAMC("MC", 1);
+
+        /*bankQA = new QAMC("MC", 1);
         bankQA.getQuestion("MC", 1);
         bankQA.getAnswer("MC", 1);
         bankQA.getChoices("MC",1);
         ((QAMC) bankQA).printChoicesMC();
         ((QAMC) bankQA).getArrRedChoiceMC("MC", 1);
-        ((QAMC) bankQA).printRedChoiceMC();*/
+        ((QAMC) bankQA).printRedChoiceMC();
        /* bankQA = new QATF("TF", 2);
         bankQA.getQuestion("TF", 2);
         bankQA.getAnswer("TF", 2);
@@ -38,29 +39,18 @@ public class Main {
 */
 
         //Test QAMC
-       /* QAMC bankMC = new QAMC();
-        System.out.println(bankMC.getQuestionMC(2, "MC"));
-        System.out.println(bankMC.getCorrAnsMC(2, "MC"));
-        bankMC.getArrChoicesMC(2, "MC");
+       /* QAMC bankMC = new QAMC("MC", 2);*/
+        /*System.out.println(bankMC.getQuestion("MC", 2));
+        System.out.println(bankMC.getAnswer("MC", 2));
+        bankMC.getChoices("MC", 2);
         System.out.println("print Array Choice:");
         bankMC.printChoicesMC();
-        bankMC.getArrRedChoiceMC(2, "MC");
-        System.out.println("print Array Reduce Choice:");
-        bankMC.printRedChoiceMC();*/
+        bankMC.getArrRedChoiceMC("MC", 2);
+        System.out.println("print Array Reduce Choice:")
+        bankMC.printRedChoiceMC();;*/
+       /* bankMC.getOptionForRedChoice("MC", 2);*/
 
-        //testQATF
-        /*QATF bankTF = new QATF();
-        System.out.println(bankTF.getQuestionTF(3, "TF"));
-        System.out.println(bankTF.getCorrAnsTF(3, "TF"));
-        bankTF.getArrChoicesTF(3, "TF");
-        System.out.print("print Arr choices TF: ");
-        bankTF.printChoicesTF();*/
 
-        //test QASA
-       /* QASA bankSA = new QASA();
-        System.out.println(bankSA.getQuestionSA(2, "SA"));
-        System.out.println(bankSA.getCorrAnsSA(2, "SA"));
-        System.out.println(bankSA.getHintSA(2, "SA"));*/
 
         //TestRoom
         /*Room room = new Room();
@@ -72,16 +62,19 @@ public class Main {
         }
         System.out.println();*/
 
-        /*RoomMCView rwMC = new RoomMCView();
+       /* RoomMCView rwMC = new RoomMCView("MC", 8);
         rwMC.showEventDemo();*/
 
-        /*RoomTFView rwTF = new RoomTFView();
+
+
+        /*RoomTFView rwTF = new RoomTFView("TF", 3);
         rwTF.showEventDemo();*/
 
-        RoomSAView rwSA = new RoomSAView();
+        RoomSAView rwSA = new RoomSAView("SA", 3);
         rwSA.showEventDemo();
 
-
+        /*MainView mview = new MainView("SA", 1);
+        mview.showEventDemo();*/
 
     }
 }

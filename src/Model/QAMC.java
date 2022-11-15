@@ -20,7 +20,11 @@ public class QAMC extends QA {
         connect();
         myCategory = theCate;
         myId = theId;
-
+        /*getQuestion(theCate, theId);
+        getChoices(theCate, theId);
+        getAnswer(theCate, theId);
+        getArrRedChoiceMC(theCate, theId);
+        getOptionForRedChoice(theCate, theId);*/
     }
 
     public void QAMC() {
@@ -103,7 +107,8 @@ public class QAMC extends QA {
     }
 
     public ArrayList<String> getChoices(String theCategory, int theId){
-
+        myCategory = theCategory;
+        myId = theId;
         String sql = "SELECT IDQuest,Category, ChoiceA, ChoiceB, ChoiceC, ChoiceD "
                 + "FROM tableMC WHERE IDQuest = ? AND Category = ?";
 
@@ -137,7 +142,10 @@ public class QAMC extends QA {
     }
 
     public ArrayList<String> getArrRedChoiceMC(String theCategory, int theId) {
+        myCategory = theCategory;
+        myId = theId;
         myArrRedChoiceMC = new ArrayList<String>();
+        myCorrAnsMC = getAnswer(theCategory, theId);
         int corrAns;
         if (myCorrAnsMC.equals("A")) {
             corrAns = 0;
@@ -155,16 +163,39 @@ public class QAMC extends QA {
                 break;
             }
         }
+        System.out.println("corr Ans: " + corrAns);
         //Random reduce choices
         int temp1, temp2;
         Random rand = new Random();
         do{
             temp1 = rand.nextInt(4);
             temp2 = rand.nextInt(4);
-        }while (temp1 == temp2 || temp1 == corrAns || temp2 == corrAns);
+        }while (temp1 == temp2 || (temp1 == corrAns || temp2 == corrAns));
         myArrRedChoiceMC.add(myArrChoiceMC.get(temp1));
         myArrRedChoiceMC.add(myArrChoiceMC.get(temp2));
+        printChoicesMC();
         return myArrRedChoiceMC;
+    }
+
+    public ArrayList<Integer> getOptionForRedChoice(String theCate, int theId){
+        int temp1 = 0;
+        int temp2 = 0;
+        ArrayList<Integer> arrOpt = new ArrayList<Integer>();
+        myArrChoiceMC = getChoices(theCate, theId);
+        myArrRedChoiceMC = getArrRedChoiceMC(theCate, theId);
+        for(int i = 0; i < myArrChoiceMC.size(); i++){
+            if(myArrChoiceMC.get(i).equals(myArrRedChoiceMC.get(0))){
+                temp1 = i;
+            }
+            else if (myArrChoiceMC.get(i).equals(myArrRedChoiceMC.get(1))){
+                temp2 = i;
+            }
+        }
+        printRedChoiceMC();
+        arrOpt.add(temp1);
+        arrOpt.add(temp2);
+        return arrOpt;
+
     }
 
     public void printChoicesMC() {

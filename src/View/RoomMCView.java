@@ -21,8 +21,11 @@ public class RoomMCView extends JFrame {
     private JButton btnHelper50;
     private JButton btn;
 
+    public static int index;
+
     private String myCate;
     private int myId;
+    private boolean flag;
     private String myCorrAns;
     private ArrayList<String> arrChoice;
     private ArrayList<String> arrRedChoice;
@@ -34,6 +37,7 @@ public class RoomMCView extends JFrame {
         myCate = theCate;
         myId = theId;
         myBank = new QAMC(theCate, theId);
+        index = 0;
         prepareGUI(theCate, theId);
 
     }
@@ -93,6 +97,8 @@ public class RoomMCView extends JFrame {
         });
 
         mainFrame.setVisible(true);
+        showEventDemo();
+
     }
 
     public void showEventDemo() {
@@ -117,49 +123,42 @@ public class RoomMCView extends JFrame {
             }
         });
 
-        boolean pass = true;
+
         btn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String corrAns = displayAnswer(myCate, myId);
-                String text = "";
-                if (!(radioBtA.isSelected() || radioBtB.isSelected() || radioBtC.isSelected() || radioBtD.isSelected())) {
-                    JOptionPane.showMessageDialog(btn, "Please, select your answer!");
-                } else {
+                String userAns = "";
 
+                for (int i = 0; i < 4; i++) {
                     if (radioBtA.isSelected()) {
-                        if (corrAns.equals("A")) {
-                            text = "It's correct. You're pass!";
-                        } else {
-                            text = "It's not correct. Please, try other door!";
-                        }
+                        userAns = "A";
+                        break;
                     } else if (radioBtB.isSelected()) {
-                        if (corrAns.equals("B")) {
-                            text = "It's correct. You're pass!";
-                        } else {
-                            text = "It's not correct. Please, try other door!";
-                        }
+                        userAns = "B";
+                        break;
                     } else if (radioBtC.isSelected()) {
-                        if (corrAns.equals("C")) {
-                            text = "It's correct. You're pass!";
-                        } else {
-                            text = "It's not correct. Please, try other door!";
-                        }
-                    } else {
-                        if (corrAns.equals("D")) {
-                            text = "It's correct. You're pass!";
-                        } else {
-                            text = "It's not correct. Please, try other door!";
-                        }
+                        userAns = "C";
+                        break;
+                    } else if (radioBtD.isSelected()) {
+                        userAns = "D";
+                        break;
                     }
-
-                    JOptionPane.showMessageDialog(btn, text);
                 }
-
-
+                if(userAns.equals("")) {
+                    JOptionPane.showMessageDialog(btn, "Please, select your answer!");
+                }
+                else if(userAns.equals(corrAns)){
+                    JOptionPane.showMessageDialog(btn, "It's correct. You're pass!");
+                    index++;
+                }
+                else {
+                    JOptionPane.showMessageDialog(btn, "It's not correct. Please, try other door!");
+                }
+                System.out.println("index: " + index);
+                //System.exit(0);
             }
         });
-
 
     }
 

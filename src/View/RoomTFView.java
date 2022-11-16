@@ -18,8 +18,10 @@ public class RoomTFView extends JFrame {
     private JButton btnExtension;
     private JButton btnSubmit;
 
+
     private String myCate;
     private int myId;
+    private boolean flag;
     private String myCorrAns;
     private ArrayList<String> arrChoice;
     private ArrayList<String> arrRedChoice;
@@ -78,6 +80,7 @@ public class RoomTFView extends JFrame {
         });
 
         mainFrame.setVisible(true);
+        showEventDemo();
     }
     public void showEventDemo(){
 
@@ -92,26 +95,30 @@ public class RoomTFView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String corrAns = displayAnswer(myCate, myId);
-                String text = "";
-                if(!(radioBtA.isSelected() || radioBtB.isSelected())){
+                String userAns = "";
+
+                for (int i = 0; i < 4; i++) {
+                    if (radioBtA.isSelected()) {
+                        userAns = "TRUE";
+                        break;
+                    } else if (radioBtB.isSelected()) {
+                        userAns = "FALSE";
+                        break;
+                    }
+                }
+
+                if(userAns.equals("")) {
                     JOptionPane.showMessageDialog(btnSubmit, "Please, select your answer!");
                 }
-                else {
-                    if (radioBtA.isSelected()) {
-                        if (corrAns.equals("TRUE")) {
-                            text = "It's correct. You're pass!";
-                        } else {
-                            text = "It's not correct. Please, try other door!";
-                        }
-                    } else if (radioBtB.isSelected()) {
-                        if (corrAns.equals("FALSE")) {
-                            text = "It's correct. You're pass!";
-                        } else {
-                            text = "It's not correct. Please, try other door!";
-                        }
-                    }
-                    JOptionPane.showMessageDialog(btnSubmit,text);
+                else if(userAns.equals(corrAns)){
+                    JOptionPane.showMessageDialog(btnSubmit, "It's correct. You're pass!");
+                    RoomMCView.index++;
                 }
+                else {
+                    JOptionPane.showMessageDialog(btnSubmit, "It's not correct. Please, try other door!");
+                }
+                System.out.println("index: " + RoomMCView.index);
+                //System.exit(0);
 
             }
         });

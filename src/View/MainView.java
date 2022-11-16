@@ -54,12 +54,12 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(btnOpen,"Indirect to Challenge");
-                createRoom(myCate, myId);
+                goToDoor(myCate, myId);
             }
         });
 
     }
-    public void createRoom(String theCate, int theId){
+    public void goToDoor(String theCate, int theId){
         if(theCate.equals("MC")){
             RoomMCView viewMC = new RoomMCView(theCate, theId);
         }

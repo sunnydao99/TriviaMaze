@@ -18,8 +18,10 @@ public class RoomSAView extends JFrame {
     private JButton btnHints;
     private JButton btnSubmit;
 
+
     private String myCate;
     private int myId;
+    private boolean flag;
     private String myCorrAns;
     private String myHint;
     private ArrayList<String> arrRedChoice;
@@ -75,6 +77,7 @@ public class RoomSAView extends JFrame {
         });
 
         mainFrame.setVisible(true);
+        showEventDemo();
     }
     public void showEventDemo(){
 
@@ -92,7 +95,19 @@ public class RoomSAView extends JFrame {
         btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(btnSubmit,"Correct!^^");
+                String text = "";
+                String temp = tfInputAns.getText();
+                myCorrAns = displayAnswer(myCate, myId);
+                if(temp.toUpperCase().equals(myCorrAns.toUpperCase())){
+                    text = "It's correct. You're pass!";
+                    RoomMCView.index++;
+                }
+
+                else{
+                    text = "It's not correct. Please, try other door!";
+                }
+                JOptionPane.showMessageDialog(btnSubmit,text);
+                //System.exit(0);
             }
         });
     }
@@ -105,7 +120,6 @@ public class RoomSAView extends JFrame {
 
     public String displayAnswer(String theCate, int theId) {
         String ans = myBank.getAnswer(theCate, theId);
-        myCorrAns = ans;
         System.out.println(ans);
         return ans;
     }

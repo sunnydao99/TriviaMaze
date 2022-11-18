@@ -92,7 +92,8 @@ public class RoomMCView extends JFrame {
 
         mainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
-                System.exit(0);
+                mainFrame.dispose();
+                //System.exit(0);
             }
         });
 
@@ -156,6 +157,7 @@ public class RoomMCView extends JFrame {
                     JOptionPane.showMessageDialog(btn, "It's not correct. Please, try other door!");
                 }
                 System.out.println("index: " + index);
+                mainFrame.dispose();
                 //System.exit(0);
             }
         });

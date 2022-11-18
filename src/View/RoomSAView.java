@@ -107,7 +107,7 @@ public class RoomSAView extends JFrame {
                     text = "It's not correct. Please, try other door!";
                 }
                 JOptionPane.showMessageDialog(btnSubmit,text);
-                //System.exit(0);
+                System.exit(0);
             }
         });
     }

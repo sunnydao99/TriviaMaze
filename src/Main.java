@@ -3,6 +3,8 @@ import Model.*;
 
 import View.*;
 
+import javax.swing.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -53,24 +55,36 @@ public class Main {
 
 
         //TestRoom
-        Room room = new Room();
+       /* Room room = new Room();
         room.randomIDCategory();
-        room.randomQA();
+        room.randomQA();*/
 
         /*for(int i = 0; i < id_list.size(); i++){
             System.out.print( id_list.get(i) + ", ");
         }
         System.out.println();*/
+        /*QA bk = new QA();
+        bk.connection();
 
-        RoomMCView rwMC = new RoomMCView("MC", 8);
+        RoomMCView rwMC = new RoomMCView("MC", 8);*/
 
-        RoomTFView rwTF = new RoomTFView("TF", 3);
+        /*RoomTFView rwTF = new RoomTFView("TF", 3);
 
-        RoomSAView rwSA = new RoomSAView("SA", 1);
+        RoomSAView rwSA = new RoomSAView("SA", 1);*/
 
 
       /*  MainView mview = new MainView("SA", 1);
         mview.showEventDemo();*/
+
+        //Test MazeView
+
+        SwingUtilities.invokeLater(new Runnable(){
+            @Override
+            public void run() {
+                MazeView view = new MazeView();
+                view.setVisible(true);
+            }
+        });
 
     }
 }

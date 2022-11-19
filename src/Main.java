@@ -59,17 +59,17 @@ public class Main {
 
 
         //TestRoom
-       /* Room room = new Room();
-        room.randomIDCategory();
-        room.randomQA();*/
+        //Room room = new Room();
+        //room.randomIDCategory();
+        //room.randomQA();
 
         /*for(int i = 0; i < id_list.size(); i++){
             System.out.print( id_list.get(i) + ", ");
         }
         System.out.println();*/
 
-        QA bk = new QA();
-        bk.connection();
+       /* QA bk = new QA();
+        bk.connection();*/
 
         //RoomMCView rwMC = new RoomMCView("MC", 8);
         /*RoomTFView rwTF = new RoomTFView("TF", 3);
@@ -77,17 +77,17 @@ public class Main {
         RoomSAView rwSA = new RoomSAView("SA", 1);*/
 
         /*MainView mview = new MainView("SA", 1);
-        mview.showEventDemo();
+        mview.showEventDemo();*/
 
-        //Test MazeView
+        //Test PlayGameView
 
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run() {
-                MazeView view = new MazeView();
+                PlayGameView view = new PlayGameView();
                 view.setVisible(true);
             }
-        });*/
+        });
 
     }
 }

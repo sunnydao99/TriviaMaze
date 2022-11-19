@@ -61,7 +61,8 @@ public class QATF extends QA{
                 question = rs.getString("Question");
             }
             myQuesTF = question;
-            System.out.println("from QATF: " + question + "- " + theId);
+
+            //System.out.println("from QATF: " + question + "- " + theId);
             return question;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -87,8 +88,9 @@ public class QATF extends QA{
 
             }
             myCorrAnsTF = corrAns;
-            System.out.println("from QATF: " + corrAns);
+            //System.out.println("from QATF: " + corrAns);
             return corrAns;
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -118,7 +120,8 @@ public class QATF extends QA{
 
             }
             myArrChoiceTF.addAll(choices);
-            System.out.println("from QATF: choices created");
+            //System.out.println("from QATF: choices created");
+
             return choices;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

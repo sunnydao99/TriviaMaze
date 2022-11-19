@@ -59,8 +59,9 @@ public class QASA extends QA{
             while (rs.next()) {
                 question = rs.getString("Question");
             }
+
             myQuesSA = question;
-            System.out.println("from SA: question " + question);
+            //System.out.println("from SA: question " + question);
             return question;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -85,9 +86,11 @@ public class QASA extends QA{
                 corrAns = rs.getString("CorrectAnswer");
 
             }
+
             myCorrAnsSA = corrAns;
-            System.out.println("from SA: ans " + corrAns);
+            //System.out.println("from SA: ans " + corrAns);
             return corrAns;
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

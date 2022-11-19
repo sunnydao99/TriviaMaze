@@ -12,8 +12,14 @@ public class Room {
     private  ArrayList<String> myRooms;
 
     public Room(){
+        myIdList = new ArrayList<Integer>();
+        myCategoryList = new ArrayList<String>();
         QA bankQA = new QA();
         bankQA.connection();
+
+        randomIDCategory();
+        randomQA();
+
     }
 
     public int randomID(){
@@ -57,7 +63,8 @@ public class Room {
             myIdList.add(tempId);
 
         }
-        System.out.print("[");
+
+        /*System.out.print("[");
         for (int i = 0; i < myCategoryList.size(); i++) {
 
             if (i == (myCategoryList.size() - 1)) {
@@ -76,9 +83,10 @@ public class Room {
                 System.out.print(myIdList.get(i) + ",  ");
             }
         }
-        System.out.println("]");
+        System.out.println("]");*/
 
     }
+
     public boolean checkIDCate(String cate, int id){
         String mycate;
         int myid;
@@ -90,32 +98,6 @@ public class Room {
            }
         }
         return  false;
-    }
-
-    public void printIDlist(){
-        System.out.print("[");
-        for (int i = 0; i < myIdList.size(); i++) {
-
-            if (i == (myIdList.size() - 1)) {
-                System.out.print(myIdList.get(myIdList.size() - 1));
-            } else {
-                System.out.print(myIdList.get(i) + ", ");
-            }
-        }
-        System.out.println("]");
-    }
-
-    public void printCatelist(){
-        System.out.print("[");
-        for (int i = 0; i < myCategoryList.size(); i++) {
-
-            if (i == (myCategoryList.size() - 1)) {
-                System.out.print(myCategoryList.get(myCategoryList.size() - 1));
-            } else {
-                System.out.print(myCategoryList.get(i) + ", ");
-            }
-        }
-        System.out.println("]");
     }
 
     public void randomQA(){
@@ -160,7 +142,13 @@ public class Room {
             }
 
         }
-        System.out.print("[");
+
+        System.out.println("Print Catelist: ");
+        printCatelist();
+        System.out.println("Print IDlist: ");
+        printIDlist();
+
+        /*System.out.print("[");
         for (int i = 0; i < room.size(); i++) {
 
             if (i == (room.size() - 1)) {
@@ -169,8 +157,35 @@ public class Room {
                 System.out.print(room.get(i) + ", ");
             }
         }
-        System.out.println("]");
+        System.out.println("]");*/
 
+    }
+
+    public void printIDlist(){
+        System.out.print("[");
+        System.out.println("size: "+myIdList.size());
+        for (int i = 0; i < myIdList.size(); i++) {
+
+            if (i == (myIdList.size() - 1)) {
+                System.out.print(myIdList.get(myIdList.size() - 1));
+            } else {
+                System.out.print(myIdList.get(i) + ",  ");
+            }
+        }
+        System.out.println("]");
+    }
+
+    public void printCatelist(){
+        System.out.print("[");
+        for (int i = 0; i < myCategoryList.size(); i++) {
+
+            if (i == (myCategoryList.size() - 1)) {
+                System.out.print(myCategoryList.get(myCategoryList.size() - 1));
+            } else {
+                System.out.print(myCategoryList.get(i) + ", ");
+            }
+        }
+        System.out.println("]");
     }
 
 

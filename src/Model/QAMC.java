@@ -76,7 +76,8 @@ public class QAMC extends QA {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println("from QAMC: not "+ question);
+
+        //System.out.println("from QAMC: not "+ question);
         return question;
     }
 
@@ -98,7 +99,7 @@ public class QAMC extends QA {
 
             }
             myCorrAnsMC = corrAns;
-            System.out.println("from QAMC: " + corrAns);
+            //System.out.println("from QAMC: " + corrAns);
             return corrAns;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -133,7 +134,7 @@ public class QAMC extends QA {
 
             }
             myArrChoiceMC.addAll(choices);
-            System.out.println("from QAMC: choices created");
+            //System.out.println("from QAMC: choices created");
             return choices;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -163,7 +164,7 @@ public class QAMC extends QA {
                 break;
             }
         }
-        System.out.println("corr Ans: " + corrAns);
+        //System.out.println("corr Ans: " + corrAns);
         //Random reduce choices
         int temp1, temp2;
         Random rand = new Random();
@@ -173,7 +174,7 @@ public class QAMC extends QA {
         }while (temp1 == temp2 || (temp1 == corrAns || temp2 == corrAns));
         myArrRedChoiceMC.add(myArrChoiceMC.get(temp1));
         myArrRedChoiceMC.add(myArrChoiceMC.get(temp2));
-        printChoicesMC();
+        //printChoicesMC();
         return myArrRedChoiceMC;
     }
 
@@ -191,7 +192,7 @@ public class QAMC extends QA {
                 temp2 = i;
             }
         }
-        printRedChoiceMC();
+        //printRedChoiceMC();
         arrOpt.add(temp1);
         arrOpt.add(temp2);
         return arrOpt;

@@ -1,15 +1,14 @@
 package View;
 
-import Model.*;
+import Model.Room;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MazeView extends JFrame {
+public class PlayGameView extends JFrame {
     /*Value 0: not visited node
             1: wall (blocked)
             2: visited node
@@ -39,7 +38,7 @@ public class MazeView extends JFrame {
     private int currentX;
     private int currentY;
     private int pathIndex;
-    public MazeView(){
+    public PlayGameView(){
         setTitle("Simple Maze");
         setSize(640, 480);
         setLocationRelativeTo(null);
@@ -69,8 +68,11 @@ public class MazeView extends JFrame {
                 g.drawRect(70* col, 70*row, 70, 70);
             }
         }
-        goToDoor("MC", 1);
-        //goToDoor(Room.myCategoryList.get(currentX*currentY), Room.myIdList.get(currentX*currentY));
+        //goToDoor("MC", 1);
+        Room rm = new Room();
+        goToDoor(rm.myCategoryList.get(currentX*currentY), rm.myIdList.get(currentX*currentY));
+
+
 
         // draw the path list
         /*for(int p = 0; p < path.size(); p +=2){

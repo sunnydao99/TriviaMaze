@@ -9,6 +9,10 @@ public class Main {
 
     public static void main(String[] args) {
 	// An Testing
+        //Test InventoryTemp
+       /* InventoryTemp temp = new InventoryTemp("Database_QA.db");
+        temp.connection();*/
+
        /* QA bankQA = new QA("MC", 1);*/
         /*bankQA.createDB("Database_QA.db");*/
       /*  bankQA.connection();*/
@@ -63,18 +67,17 @@ public class Main {
             System.out.print( id_list.get(i) + ", ");
         }
         System.out.println();*/
-        /*QA bk = new QA();
+
+        QA bk = new QA();
         bk.connection();
 
-        RoomMCView rwMC = new RoomMCView("MC", 8);*/
-
+        //RoomMCView rwMC = new RoomMCView("MC", 8);
         /*RoomTFView rwTF = new RoomTFView("TF", 3);
 
         RoomSAView rwSA = new RoomSAView("SA", 1);*/
 
-
-      /*  MainView mview = new MainView("SA", 1);
-        mview.showEventDemo();*/
+        /*MainView mview = new MainView("SA", 1);
+        mview.showEventDemo();
 
         //Test MazeView
 
@@ -84,7 +87,7 @@ public class Main {
                 MazeView view = new MazeView();
                 view.setVisible(true);
             }
-        });
+        });*/
 
     }
 }

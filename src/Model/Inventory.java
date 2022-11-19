@@ -1,40 +1,43 @@
 package Model;
+import org.sqlite.SQLiteDataSource;
+
 import java.sql.*;
 
 public abstract class Inventory {
     public String myUrl;
     public Connection conn;
     public String myFileName;
+    public SQLiteDataSource ds = null;
 
     public Inventory() {
         myUrl = "jdbc:sqlite:";
         conn = null;
-        myFileName = "";
+        myFileName = "jdbc:sqlite:Database_QA.db";
     }
 
     public Inventory(String theFileName) {
         try {
             // create a connection to the database
-            conn = DriverManager.getConnection(myUrl);
-            System.out.println("Connection to SQLite has been established.");
+           /* conn = DriverManager.getConnection(myUrl);
+            System.out.println("Connection to SQLite has been established.");*/
 
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
+            ds = new SQLiteDataSource();
+            ds.setUrl(myFileName);
+
+        }  catch ( Exception e ) {
+            e.printStackTrace();
+            System.exit(0);
         }
+
+        System.out.println( "Opened database successfully" );
     }
 
-    public void createDB(String theFileNameDB) {
-        myFileName = myUrl + theFileNameDB;
+    public void createDB() {
         try {
-            conn = DriverManager.getConnection(myFileName);
+            ds = new SQLiteDataSource();
+            ds.setUrl(myFileName);
+            //conn = DriverManager.getConnection(myFileName);
+            conn = ds.getConnection();
             if (conn != null) {
                 DatabaseMetaData meta = conn.getMetaData();
                 System.out.println("A new database has been created.");
@@ -48,11 +51,14 @@ public abstract class Inventory {
 
     public void connection(){
         try {
-            // db parameters
             // create a connection to the database
-            myFileName = "jdbc:sqlite:Database_QA.db";
-            conn = DriverManager.getConnection(myFileName);
-            System.out.println("Connection to SQLite has been established.");
+            //conn = DriverManager.getConnection(myFileName);
+            ds = new SQLiteDataSource();
+            ds.setUrl(myFileName);
+            System.out.println("ds "+ ds);
+            conn = ds.getConnection();
+            System.out.println("from Inventoyr: " + conn);
+            System.out.println( "Connected database successfully" );
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -125,8 +131,32 @@ public abstract class Inventory {
         }
     }
 
+    public void createTableTFExtra() {
+        // SQL statement for creating a new table
+        String sql = "CREATE TABLE IF NOT EXISTS tableTFExtra (\n"
+                + " IDQuest text PRIMARY KEY,\n"
+                + " Category text NOT NULL,\n"
+                + " Question text NOT NULL,\n"
+                + " ChoiceA text NOT NULL,\n"
+                + " ChoiceB text NOT NULL,\n"
+                + " CorrectAnswer text NOT NULL,\n"
+                + " capacity real\n"
+                + ");";
+
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.execute(sql);
+            System.out.println("created tableTFExtra");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     public abstract void insertTableMC();
     public abstract void insertTableTF();
     public abstract void insertTableSA();
+    //public abstract void insertTableTFExtra();
+
 
 }

@@ -20,25 +20,14 @@ public class QA extends Inventory{
     int myId;
 
     Connection myConn;
-    private String myQuesMC;
-    private String myCorrAnsMC;
-    ArrayList<String> myArrChoiceMC;
-    ArrayList<String> myArrRedChoiceMC;
-
-    private String myQuesTF;
-    private String myCorrAnsTF;
-    ArrayList<String> myArrChoiceTF;
-
-    private String myQuesSA;
-    private String myCorrAnsSA;
-    private String myHint;
 
     public QA(){
         myFileCSV_QMC = new File("Database/QAMultiple.csv");
         myFileCSV_QAS = new File("Database/QAShort.csv");
         myFileCSV_QTF = new File("Database/QATrueFalse.csv");
         myCategory = "";
-
+        myConn = null;
+        //connect();
     }
 
     public QA(String theCate, int theId){
@@ -49,8 +38,6 @@ public class QA extends Inventory{
         myFileCSV_QTF = new File("Database/QATrueFalse.csv");
         myCategory = "";
 
-
-
     }
 
     private Connection connect() {
@@ -59,9 +46,12 @@ public class QA extends Inventory{
 
         try {
             myConn = DriverManager.getConnection(url);
+            //myConn = ds.getConnection();
+            System.out.println("myConn: " + myConn);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        System.out.println( "Connected database successfully" );
         return myConn;
     }
 

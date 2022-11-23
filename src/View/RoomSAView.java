@@ -18,10 +18,9 @@ public class RoomSAView extends JFrame {
     private JButton btnHints;
     private JButton btnSubmit;
 
-
+    public boolean checkAns;
     private String myCate;
     private int myId;
-    private boolean flag;
     private String myCorrAns;
     private String myHint;
     private ArrayList<String> arrRedChoice;
@@ -35,6 +34,7 @@ public class RoomSAView extends JFrame {
         myBank = new QASA(theCate, theId);
         myHint = "";
         prepareGUI(theCate, theId);
+        checkAns = false;
     }
     public RoomSAView(){
 
@@ -77,9 +77,14 @@ public class RoomSAView extends JFrame {
             }
         });
 
-        mainFrame.setVisible(true);
+
         showEventDemo();
     }
+
+    public void roomShow(){
+        mainFrame.setVisible(true);
+    }
+
     public void showEventDemo(){
 
         btnHints.addActionListener(new ActionListener() {
@@ -102,10 +107,11 @@ public class RoomSAView extends JFrame {
                 if(temp.toUpperCase().equals(myCorrAns.toUpperCase())){
                     text = "It's correct. You're pass!";
                     RoomMCView.index++;
+                    checkAns = true;
                 }
-
                 else{
                     text = "It's not correct. Please, try other door!";
+                    checkAns = false;
                 }
                 JOptionPane.showMessageDialog(btnSubmit,text);
                 mainFrame.dispose();
@@ -113,15 +119,16 @@ public class RoomSAView extends JFrame {
         });
     }
 
+
     public String displayQuestion(String theCate, int theId) {
         String ques = myBank.getQuestion(theCate, theId);
-        System.out.println(ques);
+        //System.out.println(ques);
         return ques;
     }
 
     public String displayAnswer(String theCate, int theId) {
         String ans = myBank.getAnswer(theCate, theId);
-        System.out.println(ans);
+        //System.out.println(ans);
         return ans;
     }
 

@@ -18,14 +18,12 @@ public class RoomTFView extends JFrame {
     private JButton btnExtension;
     private JButton btnSubmit;
 
-
+    public boolean checkAns;
     private String myCate;
     private int myId;
-    private boolean flag;
+
     private String myCorrAns;
     private ArrayList<String> arrChoice;
-    private ArrayList<String> arrRedChoice;
-    private ArrayList<String> arrOpt50;
     private QA myBank;
 
     // Constructor to setup GUI components and event handlers
@@ -34,6 +32,7 @@ public class RoomTFView extends JFrame {
         myId = theId;
         myBank = new QATF(theCate, theId);
         prepareGUI(theCate, theId);
+        checkAns = false;
     }
     public RoomTFView(){
 
@@ -80,9 +79,13 @@ public class RoomTFView extends JFrame {
             }
         });
 
-        mainFrame.setVisible(true);
         showEventDemo();
     }
+
+    public void roomShow(){
+        mainFrame.setVisible(true);
+    }
+
     public void showEventDemo(){
 
         btnExtension.addActionListener(new ActionListener() {
@@ -114,11 +117,14 @@ public class RoomTFView extends JFrame {
                 else if(userAns.equals(corrAns)){
                     JOptionPane.showMessageDialog(btnSubmit, "It's correct. You're pass!");
                     RoomMCView.index++;
+                    checkAns = true;
                 }
                 else {
                     JOptionPane.showMessageDialog(btnSubmit, "It's not correct. Please, try other door!");
+                    checkAns = false;
                 }
-                System.out.println("index: " + RoomMCView.index);
+                //System.out.println("index: " + RoomMCView.index);
+                mainFrame.dispose();
                 //System.exit(0);
 
             }
@@ -127,7 +133,7 @@ public class RoomTFView extends JFrame {
 
     public String displayQuestion(String theCate, int theId) {
         String ques = myBank.getQuestion(theCate, theId);
-        System.out.println(ques);
+        //System.out.println(ques);
         return ques;
     }
 
@@ -142,7 +148,7 @@ public class RoomTFView extends JFrame {
     public String displayAnswer(String theCate, int theId) {
         String ans = myBank.getAnswer(theCate, theId);
         myCorrAns = ans;
-        System.out.println(ans);
+        //System.out.println(ans);
         return ans;
     }
 

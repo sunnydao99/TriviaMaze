@@ -9,9 +9,6 @@ public class Main {
 
     public static void main(String[] args) {
 	// An Testing
-        //Test InventoryTemp
-       /* InventoryTemp temp = new InventoryTemp("Database_QA.db");
-        temp.connection();*/
 
        /* QA bankQA = new QA("MC", 1);*/
         /*bankQA.createDB("Database_QA.db");*/
@@ -63,14 +60,11 @@ public class Main {
         //room.randomIDCategory();
         //room.randomQA();
 
-        /*for(int i = 0; i < id_list.size(); i++){
-            System.out.print( id_list.get(i) + ", ");
-        }
-        System.out.println();*/
 
        /* QA bk = new QA();
         bk.connection();*/
 
+        //Test View
         //RoomMCView rwMC = new RoomMCView("MC", 8);
         /*RoomTFView rwTF = new RoomTFView("TF", 3);
 
@@ -84,10 +78,16 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run() {
+
                 PlayGameView view = new PlayGameView();
-                view.setVisible(true);
+
             }
         });
+
+        //PlayGameView pView = new PlayGameView();
+        //MazeViewTemp temp = new MazeViewTemp();
+
+
 
     }
 }

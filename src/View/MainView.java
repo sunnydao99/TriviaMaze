@@ -36,7 +36,6 @@ public class MainView {
         panelRoom.setBounds(40,80, 400,130);
         panelRoom.setBackground(Color.PINK);
 
-
         mainFrame.add(panelRoom);
 
         mainFrame.addWindowListener(new WindowAdapter() {

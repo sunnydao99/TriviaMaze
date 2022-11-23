@@ -22,10 +22,11 @@ public class RoomMCView extends JFrame {
     private JButton btn;
 
     public static int index;
+    public boolean checkAns;
 
     private String myCate;
     private int myId;
-    private boolean flag;
+
     private String myCorrAns;
     private ArrayList<String> arrChoice;
     private ArrayList<String> arrRedChoice;
@@ -39,7 +40,7 @@ public class RoomMCView extends JFrame {
         myBank = new QAMC(theCate, theId);
         index = 0;
         prepareGUI(theCate, theId);
-
+        checkAns = false;
     }
 
     public RoomMCView() {
@@ -97,9 +98,13 @@ public class RoomMCView extends JFrame {
             }
         });
 
-        mainFrame.setVisible(true);
+
         showEventDemo();
 
+    }
+
+    public void roomShow(){
+        mainFrame.setVisible(true);
     }
 
     public void showEventDemo() {
@@ -151,12 +156,14 @@ public class RoomMCView extends JFrame {
                 }
                 else if(userAns.equals(corrAns)){
                     JOptionPane.showMessageDialog(btn, "It's correct. You're pass!");
+                    checkAns = true;
                     index++;
                 }
                 else {
                     JOptionPane.showMessageDialog(btn, "It's not correct. Please, try other door!");
+                    checkAns = false;
                 }
-                System.out.println("index: " + index);
+                //System.out.println("index: " + index);
                 mainFrame.dispose();
                 //System.exit(0);
             }
@@ -166,7 +173,7 @@ public class RoomMCView extends JFrame {
 
     public String displayQuestion(String theCate, int theId) {
         String ques = myBank.getQuestion(theCate, theId);
-        System.out.println(ques);
+        //System.out.println(ques);
         return ques;
     }
 
@@ -181,7 +188,7 @@ public class RoomMCView extends JFrame {
     public String displayAnswer(String theCate, int theId) {
         String ans = myBank.getAnswer(theCate, theId);
         myCorrAns = ans;
-        System.out.println(ans);
+        //System.out.println(ans);
         return ans;
     }
 
@@ -190,7 +197,7 @@ public class RoomMCView extends JFrame {
         ArrayList<Integer> temp = new ArrayList<Integer>();
         ArrayList<String> optList = new ArrayList<String>();
         temp = ((QAMC) myBank).getOptionForRedChoice(theCate, theId);
-        System.out.println("option list: " + temp.get(0) + "-" + temp.get(1));
+
 
         String st = "";
         for (int i = 0; i < temp.size(); i++) {

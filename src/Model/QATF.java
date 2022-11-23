@@ -47,7 +47,7 @@ public class QATF extends QA{
         String sql = "SELECT IDQuest, Category, Question "
                 + "FROM tableTF WHERE IDQuest = ? AND Category = ?";
         String question = "";
-        System.out.println(theCategory + " - " + theId);
+
         try {
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);

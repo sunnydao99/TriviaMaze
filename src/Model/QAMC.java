@@ -54,7 +54,7 @@ public class QAMC extends QA {
     public String getQuestion(String theCate, int theId) {
         myCategory = theCate;
         myId = theId;
-        System.out.println(theCate + " - " + theId);
+        //System.out.println(theCate + " - " + theId);
         String sql = "SELECT IDQuest,Category,Question "
                 + "FROM tableMC WHERE IDQuest = ? AND Category = ?";
         String question = "";
@@ -71,7 +71,7 @@ public class QAMC extends QA {
 
             }
             myQuesMC = question;
-            System.out.println("from QAMC: "+ question);
+            //System.out.println("from QAMC: "+ question);
             return question;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

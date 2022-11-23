@@ -46,7 +46,7 @@ public class QASA extends QA{
         String sql = "SELECT IDQuest, Category, Question "
                 + "FROM tableSA WHERE IDQuest = ? AND Category = ?";
         String question = "";
-        System.out.println(theCategory + " - " + theId);
+
         try {
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);

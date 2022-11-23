@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Room {
-    private int myId;
-    private String myCate;
-    public static   ArrayList<Integer> myIdList;
+    //private int myId;
+    //private String myCate;
+    public static  ArrayList<Integer> myIdList;
     public static  ArrayList<String> myCategoryList;
     private  ArrayList<String> myRooms;
 
@@ -17,22 +17,22 @@ public class Room {
         QA bankQA = new QA();
         bankQA.connection();
 
-        randomIDCategory();
-        randomQA();
+        /*randomIDCategory();
+        randomQA();*/
 
     }
 
-    public int randomID(){
+    public static int randomID(){
         Random rand = new Random();
         int max = 9;
         int min = 1;
         int id = rand.nextInt(max + 1 - min) + min;
-        myId = id;
+        //myId = id;
         return id;
 
     }
 
-    public String randomCategory(){
+    public static String randomCategory(){
         Random rand = new Random();
         int temp = rand.nextInt(3);
         String cate = "";
@@ -43,12 +43,12 @@ public class Room {
         } else {
             cate = "SA";
         }
-        myCate = cate;
+        //myCate = cate;
         return cate;
     }
 
 
-    public void randomIDCategory(){
+    public static void randomIDCategory(){
         myIdList = new ArrayList<Integer>();
         myCategoryList = new ArrayList<String>();
         String tempCate;
@@ -87,7 +87,7 @@ public class Room {
 
     }
 
-    public boolean checkIDCate(String cate, int id){
+    public static boolean checkIDCate(String cate, int id){
         String mycate;
         int myid;
         for(int i = 0; i < myCategoryList.size(); i++){
@@ -100,15 +100,14 @@ public class Room {
         return  false;
     }
 
-    public void randomQA(){
-        printIDlist();
+    public static void randomQA(){
         QA bank;
         String ques;
         String ans;
         ArrayList<String> choiceList = new ArrayList<String>();
         ArrayList<String> redChoiceList = new ArrayList<String>();
         ArrayList<String> room = new ArrayList<String>();
-        myRooms = new ArrayList<String>();
+        //myRooms = new ArrayList<String>();
         for(int i = 0; i < myCategoryList.size(); i++){
 
             String cate = myCategoryList.get(i);
@@ -143,10 +142,10 @@ public class Room {
 
         }
 
-        System.out.println("Print Catelist: ");
+        /*System.out.println("Print Catelist: ");
         printCatelist();
         System.out.println("Print IDlist: ");
-        printIDlist();
+        printIDlist();*/
 
         /*System.out.print("[");
         for (int i = 0; i < room.size(); i++) {
@@ -161,7 +160,7 @@ public class Room {
 
     }
 
-    public void printIDlist(){
+    public static void printIDlist(){
         System.out.print("[");
         System.out.println("size: "+myIdList.size());
         for (int i = 0; i < myIdList.size(); i++) {

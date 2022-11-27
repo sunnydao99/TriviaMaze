@@ -84,6 +84,13 @@ public class Main {
             }
         });
 
+       /* SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new DrawingRectangle().setVisible(true);
+            }
+        });*/
+
         //PlayGameView pView = new PlayGameView();
         //MazeViewTemp temp = new MazeViewTemp();
 

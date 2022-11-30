@@ -156,7 +156,8 @@ public abstract class Inventory {
     public abstract void insertTableMC();
     public abstract void insertTableTF();
     public abstract void insertTableSA();
-    //public abstract void insertTableTFExtra();
+    public abstract void insertTableTFExtra();
+
 
 
 }

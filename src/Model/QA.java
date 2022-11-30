@@ -11,9 +11,11 @@ public class QA extends Inventory{
     File myFileCSV_QMC;
     File myFileCSV_QAS;
     File myFileCSV_QTF;
+    File myFileCSV_QTFE;
     Scanner myScanMC;
     Scanner myScanQS;
     Scanner myScanTF;
+    Scanner myScanTFE;
     String myCategory;
     ArrayList<Integer> myIdList;
     String myCate;
@@ -25,6 +27,7 @@ public class QA extends Inventory{
         myFileCSV_QMC = new File("Database/QAMultiple.csv");
         myFileCSV_QAS = new File("Database/QAShort.csv");
         myFileCSV_QTF = new File("Database/QATrueFalse.csv");
+        myFileCSV_QTFE = new File("Database/QATrueFalseExtra.csv");
         myCategory = "";
         myConn = null;
         //connect();
@@ -36,6 +39,7 @@ public class QA extends Inventory{
         myFileCSV_QMC = new File("Database/QAMultiple.csv");
         myFileCSV_QAS = new File("Database/QAShort.csv");
         myFileCSV_QTF = new File("Database/QATrueFalse.csv");
+        myFileCSV_QTFE = new File("Database/QATrueFalseExtra.csv");
         myCategory = "";
 
     }
@@ -199,6 +203,56 @@ public class QA extends Inventory{
                 statement.executeUpdate();
             }
             System.out.println("Inserted tableSA");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }  catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void insertTableTFExtra() {
+        String sql = "INSERT INTO tableTFExtra(IDQuest,Category,Question,ChoiceA,ChoiceB,CorrectAnswer) " +
+                "VALUES(?, ?,?, ?, ?, ?)";
+
+        try{
+            myScanTFE = new Scanner(myFileCSV_QTFE);
+            myScanTFE.useDelimiter(",\n");   //sets the delimiter pattern
+
+            String line =  "";
+            System.out.println("conn from QA: "+ conn);
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            String iDQuest = "";
+            String category= "";
+            String question = "";
+            String choiceA = "";
+            String choiceB = "";
+            String correctAnswer = "";
+
+            myScanTFE.nextLine();
+            while (myScanTFE.hasNext())  //returns a boolean value
+            {
+                line = myScanTFE.nextLine();
+                String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+
+                iDQuest = data[0];
+                category = data[1];
+                question = data[2];
+                choiceA = data[3];
+                choiceB = data[4];
+                correctAnswer = data[5];
+                statement.setString(1,iDQuest);
+                statement.setString(2,category);
+                statement.setString(3,question);
+                statement.setString(4,choiceA);
+                statement.setString(5,choiceB);
+                statement.setString(6,correctAnswer);
+                statement.executeUpdate();
+            }
+            System.out.println("Inserted tableTFE");
         }
         catch (SQLException e) {
             e.printStackTrace();

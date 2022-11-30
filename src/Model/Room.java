@@ -17,8 +17,6 @@ public class Room {
         QA bankQA = new QA();
         bankQA.connection();
 
-        /*randomIDCategory();
-        randomQA();*/
 
     }
 
@@ -46,7 +44,6 @@ public class Room {
         //myCate = cate;
         return cate;
     }
-
 
     public static void randomIDCategory() {
         int tempId;
@@ -97,7 +94,7 @@ public class Room {
         ArrayList<String> choiceList = new ArrayList<String>();
         ArrayList<String> redChoiceList = new ArrayList<String>();
         ArrayList<String> room = new ArrayList<String>();
-        //myRooms = new ArrayList<String>();
+
         for (int i = 0; i < myCategoryList.size(); i++) {
 
             String cate = myCategoryList.get(i);
@@ -129,22 +126,6 @@ public class Room {
             }
 
         }
-
-        /*System.out.println("Print Catelist: ");
-        printCatelist();
-        System.out.println("Print IDlist: ");
-        printIDlist();*/
-
-        /*System.out.print("[");
-        for (int i = 0; i < room.size(); i++) {
-
-            if (i == (room.size() - 1)) {
-                System.out.print(room.get(room.size() - 1));
-            } else {
-                System.out.print(room.get(i) + ", ");
-            }
-        }
-        System.out.println("]");*/
 
     }
 

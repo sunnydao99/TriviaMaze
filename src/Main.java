@@ -54,6 +54,9 @@ public class Main {
        /* bankMC.getOptionForRedChoice("MC", 2);*/
 
 
+        //Test for RoomSAView
+        //RoomSAView rmSA = new RoomSAView("SA", 6);
+
 
         //TestRoom
         //Room room = new Room();
@@ -74,7 +77,7 @@ public class Main {
         mview.showEventDemo();*/
 
         //Test PlayGameView
-
+/*
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run() {
@@ -82,17 +85,20 @@ public class Main {
                 PlayGameView view = new PlayGameView();
 
             }
-        });
-
-       /* SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new DrawingRectangle().setVisible(true);
-            }
         });*/
 
-        //PlayGameView pView = new PlayGameView();
-        //MazeViewTemp temp = new MazeViewTemp();
+        //testing for counter timer
+        //CountdownTimer cnttimer = new CountdownTimer();
+
+        //testing for QATFE
+        QA bankExtra = new QA();
+        //bankExtra.connection();
+        //bankExtra.insertTableTFExtra();
+        //QATFExtra extra = new QATFExtra();
+        QATFExtra tfExtra = new QATFExtra("TFE", 3);
+        tfExtra.getQuestion("TFE", 3);
+        tfExtra.getAnswer("TFE", 3);
+        tfExtra.getChoices("TFE", 3);
 
 
 

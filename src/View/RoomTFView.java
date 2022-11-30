@@ -1,6 +1,7 @@
 package View;
 import Model.QA;
 import Model.QATF;
+import Model.QATFExtra;
 
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class RoomTFView extends JFrame {
     private JRadioButton radioBtA;
     private JRadioButton radioBtB;
     private ButtonGroup groupRadio;
-    private JButton btnExtension;
+    private JButton btnSwitch;
     private JButton btnSubmit;
 
     public boolean checkAns;
@@ -46,9 +47,9 @@ public class RoomTFView extends JFrame {
         taQuestion = new JTextArea();
         taQuestion.setBounds(17,33,450,90);
         taQuestion.setText(displayQuestion(theCate, theId));
-        btnExtension = new JButton("Extension");
-        btnExtension.setBackground(BLUE);
-        btnExtension.setBounds(17, 8, 80,20);
+        btnSwitch = new JButton("Switch Question");
+        btnSwitch.setBackground(BLUE);
+        btnSwitch.setBounds(17, 8, 80,20);
         btnSubmit = new JButton("Submit");
         btnSubmit.setBounds(230, 330, 80, 30);
         btnSubmit.setBackground(RED);
@@ -65,7 +66,7 @@ public class RoomTFView extends JFrame {
         mainFrame.add(taQuestion);
         mainFrame.add(radioBtA);
         mainFrame.add(radioBtB);
-        mainFrame.add(btnExtension);
+        mainFrame.add(btnSwitch);
         mainFrame.add(btnSubmit);
 
         groupRadio.add(radioBtA);
@@ -88,10 +89,11 @@ public class RoomTFView extends JFrame {
 
     public void showEventDemo(){
 
-        btnExtension.addActionListener(new ActionListener() {
+        btnSwitch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(btnExtension,"Give 60 seconds!");
+                JOptionPane.showMessageDialog(btnSwitch,"Your question is going to switch!");
+
             }
         });
 
@@ -123,7 +125,6 @@ public class RoomTFView extends JFrame {
                     JOptionPane.showMessageDialog(btnSubmit, "It's not correct. Please, try other door!");
                     checkAns = false;
                 }
-                //System.out.println("index: " + RoomMCView.index);
                 mainFrame.dispose();
                 //System.exit(0);
 
@@ -146,6 +147,29 @@ public class RoomTFView extends JFrame {
     }
 
     public String displayAnswer(String theCate, int theId) {
+        String ans = myBank.getAnswer(theCate, theId);
+        myCorrAns = ans;
+        //System.out.println(ans);
+        return ans;
+    }
+
+    public String displayQuestionExtra(String theCate, int theId){
+        myBank = new QATFExtra(theCate, theId);
+        String quesE = myBank.getQuestion(theCate, theId);
+        return quesE;
+
+    }
+    public ArrayList<String> displayChoicesExtra (String theCate, int theId) {
+        myBank = new QATFExtra(theCate, theId);
+        arrChoice = new ArrayList<String>();
+        ArrayList<String> temp = new ArrayList<String>();
+        temp = myBank.getChoices(theCate, theId);
+        arrChoice.addAll(temp);
+        return arrChoice;
+    }
+
+    public String displayAnswerExtra (String theCate, int theId) {
+        myBank = new QATFExtra(theCate, theId);
         String ans = myBank.getAnswer(theCate, theId);
         myCorrAns = ans;
         //System.out.println(ans);

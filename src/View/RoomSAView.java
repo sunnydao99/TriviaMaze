@@ -3,6 +3,7 @@ import Model.QA;
 import Model.QAMC;
 import Model.QASA;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -35,6 +36,7 @@ public class RoomSAView extends JFrame {
         myHint = "";
         prepareGUI(theCate, theId);
         checkAns = false;
+        roomShow();
     }
     public RoomSAView(){
 
@@ -46,6 +48,10 @@ public class RoomSAView extends JFrame {
         mainFrame.setLayout(null);
 
         taQuestion = new JTextArea();
+        JScrollPane talkPane = new JScrollPane (taQuestion);
+        talkPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        talkPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
         taQuestion.setBounds(17,33,400,90);
         taQuestion.setText(displayQuestion(theCate, theId));
 
@@ -65,6 +71,8 @@ public class RoomSAView extends JFrame {
 
 
         mainFrame.add(taQuestion);
+        mainFrame.add(talkPane, BorderLayout. CENTER );
+        mainFrame.getContentPane().add(talkPane);
         mainFrame.add(btnHints);
         mainFrame.add(tfInputAns);
         mainFrame.add(btnSubmit);

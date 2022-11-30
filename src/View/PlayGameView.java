@@ -2,7 +2,6 @@ package View;
 
 import Model.Room;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -131,25 +130,10 @@ public class PlayGameView extends JFrame {
                     g.fillOval(RECT_SIZE * col, RECT_SIZE * row, RECT_SIZE, RECT_SIZE);
                 }
 
-                /*g.fillOval(60*col,85*row,30, 40);
 
-                g.drawRect(60* col, 85*row, 30, 40);*/
             }
         }
 
-        // draw the path list
-        /*for(int p = 0; p < path.size(); p +=2){
-            int pathX = path.get(p);
-            int pathY = path.get(p+1);
-            g.setColor(Color.GREEN);
-            g.fillRect(pathX*30, pathY*30, 30 , 30 );
-        }
-
-        //draw the ball on path
-        int pathX = path.get(pathIndex);
-        int pathY = path.get(pathIndex + 1);
-        g.setColor(Color.RED);
-        g.fillOval(pathX * 30, pathY *30, 30, 30);*/
 
     }
 

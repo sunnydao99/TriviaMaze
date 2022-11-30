@@ -1,0 +1,13 @@
+IDQuest,Category,Question ,ChoiceA,ChoiceB,CorrectAnswer
+1,TFE,Classes in the same package are implicitly imported into the main ,TRUE,FALSE,FALSE 
+2,TFE,Instance variable can be declared anywhere inside the class ,TRUE,FALSE,FALSE 
+3,TFE,Void methods must have at least one parameter.,TRUE,FALSE,FALSE 
+4,TFE,Parentheses () would not be used to clarify a dangling-else.,TRUE,FALSE,TRUE
+5,TFE,next is not a Java keyword.,TRUE,FALSE,TRUE
+6,TFE,Dividing two integers results in integer division.,TRUE,FALSE,TRUE
+7,TFE,An if statement cannot be nested inside another if statement.,TRUE,FALSE,FALSE 
+8,TFE,Pseudocode is used to describe an algorithm.,TRUE,FALSE,TRUE
+9,TFE,A while statement cannot be nested inside an if statement.,TRUE,FALSE,FALSE 
+10,TFE,A class is an instance of its object.,TRUE,FALSE,FALSE 
+11,TFE,Attributes are specified by the class's methods.,TRUE,FALSE,FALSE 
+12,TFE,A textbook index is not an algorithm.,TRUE,FALSE,TRUE

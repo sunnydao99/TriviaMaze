@@ -1,9 +1,4 @@
-
-import Model.*;
-
 import View.*;
-
-import javax.swing.*;
 
 public class Main {
 
@@ -76,13 +71,16 @@ public class Main {
         /*MainView mview = new MainView("SA", 1);
         mview.showEventDemo();*/
 
-        //Test PlayGameView
-/*
-        SwingUtilities.invokeLater(new Runnable(){
+        //Test for PlayGameView
+        PlayGameView lv = new PlayGameView();
+
+
+        //Test LvEasyView
+        /*SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run() {
 
-                PlayGameView view = new PlayGameView();
+                LvEasyView view = new LvEasyView();
 
             }
         });*/
@@ -91,15 +89,15 @@ public class Main {
         //CountdownTimer cnttimer = new CountdownTimer();
 
         //testing for QATFE
-        QA bankExtra = new QA();
-        //bankExtra.connection();
+       /* QA bankExtra = new QA();
+        bankExtra.connection();*/
         //bankExtra.insertTableTFExtra();
         //QATFExtra extra = new QATFExtra();
-        QATFExtra tfExtra = new QATFExtra("TFE", 3);
+       /* QATFExtra tfExtra = new QATFExtra("TFE", 3);
         tfExtra.getQuestion("TFE", 3);
         tfExtra.getAnswer("TFE", 3);
         tfExtra.getChoices("TFE", 3);
-
+*/
 
 
     }

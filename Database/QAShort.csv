@@ -1,0 +1,13 @@
+IDQuest,Category,Question,CorrectAnswer,Hints
+1,SA,Which data type is used to create a variable that should store text?,String,Str
+2,SA,Data type of ,Complie Time,When a class have multiple methods by same name but different parameters
+3,SA,How do you create a variable with the true value?,boolean,Using to compare values or variables
+4,SA,Another word for ‘looping’ is:,iteration,it
+5,SA,The result of the following expression: -32/6,5,5
+6,SA,How many bit patterns can a single bit represent?,2,2
+7,SA,"A _____ error is a ""grammatical error"" in using the programming language.",syntax,s
+8,SA,A ______ is a note written to a human reader of a program.,comment,c
+9,SA,Which statement is used to stop a loop?,break,use to terminate the loop
+10,SA,Compiled Java program,.class,.cl
+11,SA,Lets users input values,Scanner,____ner
+12,SA,What is the default value of long variable?,0L,_L

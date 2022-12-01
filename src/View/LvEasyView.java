@@ -18,17 +18,17 @@ public class LvEasyView extends JFrame {
     private final int E_PATH = 8;
 
 
-    private final int[][] maze =
-            {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-             {1, 8, 1, 8, 1, 8, 1, 8, 8, 8, 4, 8, 1},
-             {1, 8, 1, 8, 8, 8, 1, 8, 1, 1, 1, 8, 1},
-             {1, 8, 4, 8, 1, 1, 1, 8, 8, 8, 8, 8, 1},
-             {1, 8, 1, 8, 8, 8, 4, 8, 1, 1, 1, 8, 1},
-             {1, 8, 1, 8, 1, 1, 1, 8, 1, 8, 8, 4, 1},
-             {1, 8, 1, 8, 1, 8, 8, 8, 1, 1, 1, 8, 1},
-             {1, 8, 1, 4, 1, 1, 1, 4, 1, 4, 8, 8, 1}, // 10x13
-             {1, 8, 8, 8, 8, 4, 8, 8, 8, 8, 1, 5, 1}, // at position 11,8
-             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+    private final int[][] MAZE =
+            {       {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {1, 8, 1, 8, 4, 8, 8, 8, 8, 8, 4, 8, 1},
+                    {1, 8, 1, 8, 8, 8, 8, 4, 1, 1, 1, 8, 1},
+                    {1, 8, 4, 8, 1, 1, 8, 8, 8, 8, 4, 8, 1},
+                    {1, 8, 1, 8, 8, 8, 4, 8, 1, 1, 1, 8, 1},
+                    {1, 8, 1, 8, 1, 1, 1, 8, 4, 8, 8, 4, 1},
+                    {1, 8, 1, 8, 1, 8, 8, 8, 1, 8, 1, 8, 1},
+                    {1, 8, 1, 4, 1, 1, 1, 4, 1, 4, 8, 8, 1}, // 10x13
+                    {1, 4, 8, 8, 8, 4, 8, 8, 8, 8, 1, 5, 1}, // at position 11,8
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
             };
 
 
@@ -93,10 +93,10 @@ public class LvEasyView extends JFrame {
         int check = 0;
 
 
-        for (int row = 0; row < maze.length; row++) {
-            for (int col = 0; col < maze[0].length; col++) {
+        for (int row = 0; row < MAZE.length; row++) {
+            for (int col = 0; col < MAZE[0].length; col++) {
                 Color color;
-                switch (maze[row][col]) {
+                switch (MAZE[row][col]) {
                     case E_WALL:
                         color = Color.GRAY;
                         break;
@@ -143,36 +143,36 @@ public class LvEasyView extends JFrame {
 
         if (cate.equals("MC")) {
             if (viewMC.checkAns == false) {
-                maze[currentY][currentX] = E_FAIL;
+                MAZE[currentY][currentX] = E_FAIL;
                 currentX = preX;
                 currentY = preY;
             }
             else {
-                maze[currentY][currentX] = E_PASS;
+                MAZE[currentY][currentX] = E_PASS;
             }
 
             reDraw = true;
             cate = "";
         } else if (cate.equals("TF")) {
             if (viewTF.checkAns == false) {
-                maze[currentY][currentX] = E_FAIL;
+                MAZE[currentY][currentX] = E_FAIL;
                 currentX = preX;
                 currentY = preY;
             }
             else {
-                maze[currentY][currentX] = E_PASS;
+                MAZE[currentY][currentX] = E_PASS;
             }
 
             reDraw = true;
             cate = "";
         } else if (cate.equals("SA")) {
             if (viewSA.checkAns == false) {
-                maze[currentY][currentX] = E_FAIL;
+                MAZE[currentY][currentX] = E_FAIL;
                 currentX = preX;
                 currentY = preY;
             }
             else {
-                maze[currentY][currentX] = E_PASS;
+                MAZE[currentY][currentX] = E_PASS;
             }
 
             reDraw = true;
@@ -181,7 +181,7 @@ public class LvEasyView extends JFrame {
 
         if (ke.getKeyCode() == KeyEvent.VK_UP) {
             if (currentY > 0) {
-                if(maze[currentY - 1][currentX] > E_FAIL) {
+                if(MAZE[currentY - 1][currentX] > E_FAIL) {
                     preX = currentX;
                     preY = currentY;
                     currentY -= 1;
@@ -189,8 +189,8 @@ public class LvEasyView extends JFrame {
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (currentY < maze.length - 1) {
-                if(maze[currentY + 1][currentX] > E_FAIL) {
+            if (currentY < MAZE.length - 1) {
+                if(MAZE[currentY + 1][currentX] > E_FAIL) {
                     preX = currentX;
                     preY = currentY;
                     currentY += 1;
@@ -199,7 +199,7 @@ public class LvEasyView extends JFrame {
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             if (currentX > 0) {
-                if(maze[currentY][currentX - 1] > E_FAIL) {
+                if(MAZE[currentY][currentX - 1] > E_FAIL) {
                     preX = currentX;
                     preY = currentY;
                     currentX -= 1;
@@ -207,8 +207,8 @@ public class LvEasyView extends JFrame {
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (currentX < maze[0].length - 1) {
-                if(maze[currentY][currentX + 1] > E_FAIL) {
+            if (currentX < MAZE[0].length - 1) {
+                if(MAZE[currentY][currentX + 1] > E_FAIL) {
                     preX = currentX;
                     preY = currentY;
                     currentX += 1;
@@ -219,7 +219,7 @@ public class LvEasyView extends JFrame {
 
         if (reDraw) {
             repaint();
-            if(maze[currentY][currentX] == E_DOOR) {
+            if(MAZE[currentY][currentX] == E_DOOR) {
                 displayQuestion();
             }
         }

@@ -6,6 +6,7 @@ import Model.QATFExtra;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.text.DefaultCaret;
 
 import static java.awt.Color.BLUE;
 import static java.awt.Color.RED;
@@ -47,6 +48,7 @@ public class RoomTFView extends JFrame {
         taQuestion = new JTextArea();
         taQuestion.setBounds(17,33,450,90);
         taQuestion.setText(displayQuestion(theCate, theId));
+
         btnSwitch = new JButton("Switch Question");
         btnSwitch.setBackground(BLUE);
         btnSwitch.setBounds(17, 8, 80,20);

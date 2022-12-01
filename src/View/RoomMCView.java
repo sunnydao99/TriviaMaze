@@ -1,14 +1,16 @@
 package View;
 
+import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.*;
-
-import static java.awt.Color.BLUE;
-import static java.awt.Color.RED;
+import javax.swing.text.DefaultCaret;
 
 import Model.QA;
 import Model.QAMC;
+
+import static java.awt.Color.*;
 
 public class RoomMCView extends JFrame {
     private JFrame mainFrame;
@@ -19,7 +21,14 @@ public class RoomMCView extends JFrame {
     private JRadioButton radioBtD;
     private ButtonGroup groupRadio;
     private JButton btnHelper50;
-    private JButton btn;
+    private JButton btnSubmit;
+
+    private  JTextField tfTimer;
+    private  Font font1;
+    Timer timer ;
+    int second, minute;
+    String ddSecond, ddMinute;
+    DecimalFormat dFormat = new DecimalFormat("00");
 
     public static int index;
     public boolean checkAns;
@@ -41,6 +50,7 @@ public class RoomMCView extends JFrame {
         index = 0;
         prepareGUI(theCate, theId);
         checkAns = false;
+
     }
 
     public RoomMCView() {
@@ -52,16 +62,20 @@ public class RoomMCView extends JFrame {
         mainFrame.setSize(500, 450);
         mainFrame.setLayout(null);
 
+
         taQuestion = new JTextArea("");
         taQuestion.setBounds(17, 33, 450, 90);
         taQuestion.setText(displayQuestion(theCate, theId));
+        taQuestion.setLineWrap(true);
+        taQuestion.setWrapStyleWord(true);
+
         btnHelper50 = new JButton("50/50");
         btnHelper50.setBackground(BLUE);
         btnHelper50.setBounds(17, 8, 50, 20);
 
-        btn = new JButton("Submit");
-        btn.setBackground(RED);
-        btn.setBounds(230, 340, 80, 30);
+        btnSubmit = new JButton("Submit");
+        btnSubmit.setBackground(RED);
+        btnSubmit.setBounds(230, 340, 80, 30);
 
         radioBtA = new JRadioButton();
         radioBtB = new JRadioButton();
@@ -78,13 +92,29 @@ public class RoomMCView extends JFrame {
         radioBtC.setBounds(12, 220, 400, 80);
         radioBtD.setBounds(12, 270, 400, 80);
 
+        font1 = new Font("Arial", Font.PLAIN, 50);
+        tfTimer = new JTextField();
+        mainFrame.add(tfTimer);
+        tfTimer.setBounds(360, 350, 100, 50);
+        tfTimer.setText("01:00");
+
+        second = 0;
+        minute = 1;
+
+       /* CountdownTimer cntTimer = new CountdownTimer();
+        cntTimer.countdownTimer();
+        timer.start();*/
+
+
+
         mainFrame.add(taQuestion);
         mainFrame.add(radioBtA);
         mainFrame.add(radioBtB);
         mainFrame.add(radioBtC);
         mainFrame.add(radioBtD);
         mainFrame.add(btnHelper50);
-        mainFrame.add(btn);
+        mainFrame.add(btnSubmit);
+
 
         groupRadio.add(radioBtA);
         groupRadio.add(radioBtB);
@@ -130,7 +160,7 @@ public class RoomMCView extends JFrame {
         });
 
 
-        btn.addActionListener(new ActionListener() {
+        btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String corrAns = displayAnswer(myCate, myId);
@@ -152,15 +182,15 @@ public class RoomMCView extends JFrame {
                     }
                 }
                 if(userAns.equals("")) {
-                    JOptionPane.showMessageDialog(btn, "Please, select your answer!");
+                    JOptionPane.showMessageDialog(btnSubmit, "Please, select your answer!");
                 }
                 else if(userAns.equals(corrAns)){
-                    JOptionPane.showMessageDialog(btn, "It's correct. You're pass!");
+                    JOptionPane.showMessageDialog(btnSubmit, "It's correct. You're pass!");
                     checkAns = true;
                     index++;
                 }
                 else {
-                    JOptionPane.showMessageDialog(btn, "It's not correct. Please, try other door!");
+                    JOptionPane.showMessageDialog(btnSubmit, "It's not correct. Please, try other door!");
                     checkAns = false;
                 }
                 //System.out.println("index: " + index);

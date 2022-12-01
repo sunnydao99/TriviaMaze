@@ -63,7 +63,9 @@ public class Main {
         bk.connection();*/
 
         //Test View
-        //RoomMCView rwMC = new RoomMCView("MC", 8);
+        RoomMCView rwMC = new RoomMCView("MC", 8);
+        rwMC.showEventDemo();
+        rwMC.roomShow();
         /*RoomTFView rwTF = new RoomTFView("TF", 3);
 
         RoomSAView rwSA = new RoomSAView("SA", 1);*/
@@ -72,9 +74,11 @@ public class Main {
         mview.showEventDemo();*/
 
         //Test for PlayGameView
-        PlayGameView lv = new PlayGameView();
-
-
+        //PlayGameView lv = new PlayGameView();
+        /*RoomSAView saview = new RoomSAView("SA", 7);
+        RoomTFView tfview = new RoomTFView("TF", 5);*/
+       /* RoomMCView mcview = new RoomMCView("MC",9);
+        mcview.roomShow();*/
         //Test LvEasyView
         /*SwingUtilities.invokeLater(new Runnable(){
             @Override
@@ -86,8 +90,8 @@ public class Main {
         });*/
 
         //testing for counter timer
-        //CountdownTimer cnttimer = new CountdownTimer();
-
+       /* CountdownTimer cnttimer = new CountdownTimer();
+        cnttimer.countdownTimer();*/
         //testing for QATFE
        /* QA bankExtra = new QA();
         bankExtra.connection();*/

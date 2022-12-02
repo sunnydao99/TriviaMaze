@@ -47,12 +47,14 @@ public class RoomSAView extends JFrame {
         myMainFrame.setLayout(null);
 
         myTaQuestion = new JTextArea();
-        JScrollPane talkPane = new JScrollPane (myTaQuestion);
+      /*  JScrollPane talkPane = new JScrollPane (myTaQuestion);
         talkPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        talkPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        talkPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);*/
 
         myTaQuestion.setBounds(17,33,400,90);
         myTaQuestion.setText(displayQuestion(theCate, theId));
+        myTaQuestion.setLineWrap(true);
+        myTaQuestion.setWrapStyleWord(true);
 
         myTfInputAns = new JTextField();
         myTfInputAns.setBounds(20, 250, 200, 40);
@@ -70,8 +72,6 @@ public class RoomSAView extends JFrame {
 
 
         myMainFrame.add(myTaQuestion);
-        myMainFrame.add(talkPane, BorderLayout. CENTER );
-        myMainFrame.getContentPane().add(talkPane);
         myMainFrame.add(myBtnHints);
         myMainFrame.add(myTfInputAns);
         myMainFrame.add(myBtnSubmit);

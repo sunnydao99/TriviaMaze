@@ -9,8 +9,8 @@ public class QASA extends QA{
     private String myCorrAnsSA;
     private String myHint;
 
-    String myCategory;
-    int myId;
+    private String myCategory;
+    private int myId;
 
     public QASA(String theCate, int theId) {
         myCategory = theCate;

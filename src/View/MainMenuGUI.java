@@ -50,9 +50,9 @@ public class MainMenuGUI {
 
 
 
-        myMainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //myMainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         myMainFrame.setLayout(new GridLayout(3, 1));
-        myMainFrame.setSize(600, 750);
+        myMainFrame.setSize(700, 600);
         myMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //BufferedImage myPicture = ImageIO.read(new File("TriviaMaze.iml"));
@@ -70,7 +70,7 @@ public class MainMenuGUI {
             }
         });
         myControlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        myControlPanel.setLayout(new GridLayout(6,3));
+        myControlPanel.setLayout(new GridLayout(6,1));
         myMainFrame.add(myHeaderLabel);
         myMainFrame.add(myControlPanel);
         myMainFrame.add(myStatusLabel);
@@ -81,6 +81,7 @@ public class MainMenuGUI {
 
         JPanel panel1 = new JPanel();
         panel1.setBackground(Color.CYAN);
+        panel1.setSize(500,150);
         //panel1.setLayout(myBL);
         JButton mainMenuButton = new JButton("Play Game");
 

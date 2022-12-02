@@ -6,12 +6,12 @@ import java.util.Random;
 
 public class QAMC extends QA {
     Connection myConn;
-    String myQuesMC;
-    String myCorrAnsMC;
-    ArrayList<String> myArrChoiceMC;
-    ArrayList<String> myArrRedChoiceMC;
-    String myCategory;
-    int myId;
+    private String myQuesMC;
+    private String myCorrAnsMC;
+    private ArrayList<String> myArrChoiceMC;
+    private ArrayList<String> myArrRedChoiceMC;
+    private String myCategory;
+    private int myId;
 
     public QAMC(String theCate, int theId) {
         myQuesMC = "";

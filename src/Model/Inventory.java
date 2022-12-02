@@ -4,21 +4,23 @@ import org.sqlite.SQLiteDataSource;
 import java.sql.*;
 
 public abstract class Inventory {
-    public String myUrl;
-    public Connection conn;
-    public String myFileName;
-    public SQLiteDataSource ds = null;
+    private String myUrl;
+    private Connection myConnIven;
+    private String myFileName;
+    private SQLiteDataSource ds = null;
+
+    //should be change public instance vars into private  vars and create getter() and setter() methods
 
     public Inventory() {
         myUrl = "jdbc:sqlite:";
-        conn = null;
+        myConnIven = null;
         myFileName = "jdbc:sqlite:Database_QA.db";
     }
 
     public Inventory(String theFileName) {
         try {
             // create a connection to the database
-           /* conn = DriverManager.getConnection(myUrl);
+           /* myConnIven = DriverManager.getConnection(myUrl);
             System.out.println("Connection to SQLite has been established.");*/
 
             ds = new SQLiteDataSource();
@@ -32,14 +34,15 @@ public abstract class Inventory {
         System.out.println( "Opened database successfully" );
     }
 
+
     public void createDB() {
         try {
             ds = new SQLiteDataSource();
             ds.setUrl(myFileName);
-            //conn = DriverManager.getConnection(myFileName);
-            conn = ds.getConnection();
-            if (conn != null) {
-                DatabaseMetaData meta = conn.getMetaData();
+            //myConnIven = DriverManager.getConnection(myFileName);
+            myConnIven = ds.getConnection();
+            if (myConnIven != null) {
+                DatabaseMetaData meta = myConnIven.getMetaData();
                 System.out.println("A new database has been created.");
 
             }
@@ -49,15 +52,15 @@ public abstract class Inventory {
         }
     }
 
-    public void connection(){
+    public final void connection(){
         try {
             // create a connection to the database
-            //conn = DriverManager.getConnection(myFileName);
+            //myConnIven = DriverManager.getConnection(myFileName);
             ds = new SQLiteDataSource();
             ds.setUrl(myFileName);
             System.out.println("ds "+ ds);
-            conn = ds.getConnection();
-            System.out.println("from Inventoyr: " + conn);
+            myConnIven = ds.getConnection();
+            System.out.println("from Inventoyry: " + myConnIven);
             System.out.println( "Connected database successfully" );
 
         } catch (SQLException e) {
@@ -65,7 +68,7 @@ public abstract class Inventory {
         }
     }
 
-    public void createTableMC() {
+    public final void createTableMC() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS tableMC (\n"
                 + " IDQuest integer PRIMARY KEY,\n"
@@ -80,8 +83,8 @@ public abstract class Inventory {
                 + ") ";
 
         try {
-            /* Connection conn = DriverManager.getConnection(myFileName);*/
-            Statement stmt = conn.createStatement();
+            /* Connection myConnIven = DriverManager.getConnection(myFileName);*/
+            Statement stmt = myConnIven.createStatement();
             stmt.execute(sql);
             System.out.println("created tableMC");
         } catch (SQLException e) {
@@ -89,7 +92,7 @@ public abstract class Inventory {
         }
     }
 
-    public void createTableTF() {
+    public final void createTableTF() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS tableTF (\n"
                 + " IDQuest text PRIMARY KEY,\n"
@@ -102,7 +105,7 @@ public abstract class Inventory {
                 + ");";
 
         try {
-            Statement stmt = conn.createStatement();
+            Statement stmt = myConnIven.createStatement();
             stmt.execute(sql);
             System.out.println("created tableTF");
         } catch (SQLException e) {
@@ -111,7 +114,7 @@ public abstract class Inventory {
 
     }
 
-    public void createTableSA() {
+    public final void createTableSA() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS tableSA (\n"
                 + " IDQuest text PRIMARY KEY,\n"
@@ -123,7 +126,7 @@ public abstract class Inventory {
                 + ");";
 
         try {
-            Statement stmt = conn.createStatement();
+            Statement stmt = myConnIven.createStatement();
             stmt.execute(sql);
             System.out.println("created tableSA");
         } catch (SQLException e) {
@@ -131,7 +134,7 @@ public abstract class Inventory {
         }
     }
 
-    public void createTableTFExtra() {
+    public final void createTableTFExtra() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS tableTFExtra (\n"
                 + " IDQuest text PRIMARY KEY,\n"
@@ -144,7 +147,7 @@ public abstract class Inventory {
                 + ");";
 
         try {
-            Statement stmt = conn.createStatement();
+            Statement stmt = myConnIven.createStatement();
             stmt.execute(sql);
             System.out.println("created tableTFExtra");
         } catch (SQLException e) {

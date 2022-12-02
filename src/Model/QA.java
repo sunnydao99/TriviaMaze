@@ -8,20 +8,20 @@ import java.util.*;
 
 public class QA extends Inventory{
 
-    File myFileCSV_QMC;
-    File myFileCSV_QAS;
-    File myFileCSV_QTF;
-    File myFileCSV_QTFE;
-    Scanner myScanMC;
-    Scanner myScanQS;
-    Scanner myScanTF;
-    Scanner myScanTFE;
-    String myCategory;
-    ArrayList<Integer> myIdList;
-    String myCate;
-    int myId;
+    private File myFileCSV_QMC;
+    private File myFileCSV_QAS;
+    private File myFileCSV_QTF;
+    private File myFileCSV_QTFE;
+    private Scanner myScanMC;
+    private Scanner myScanQS;
+    private Scanner myScanTF;
+    private Scanner myScanTFE;
+    private String myCategory;
+    private ArrayList<Integer> myIdList;
+    private String myCate;
+    private int myId;
 
-    Connection myConn;
+    private Connection myConn;
 
     public QA(){
         myFileCSV_QMC = new File("Database/QAMultiple.csv");
@@ -69,7 +69,7 @@ public class QA extends Inventory{
             myScanMC.useDelimiter(",\n");   //sets the delimiter pattern
 
             String line =  "";
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = connect().prepareStatement(sql);
             String iDQuest = "";
             String category= "";
             String question = "";
@@ -125,7 +125,7 @@ public class QA extends Inventory{
             myScanTF.useDelimiter(",\n");   //sets the delimiter pattern
 
             String line =  "";
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = connect().prepareStatement(sql);
 
             String iDQuest = "";
             String category= "";
@@ -175,7 +175,7 @@ public class QA extends Inventory{
             myScanQS.useDelimiter(",\n");   //sets the delimiter pattern
 
             String line =  "";
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = connect().prepareStatement(sql);
 
             String iDQuest = "";
             String category= "";
@@ -222,8 +222,8 @@ public class QA extends Inventory{
             myScanTFE.useDelimiter(",\n");   //sets the delimiter pattern
 
             String line =  "";
-            System.out.println("conn from QA: "+ conn);
-            PreparedStatement statement = conn.prepareStatement(sql);
+
+            PreparedStatement statement = connect().prepareStatement(sql);
 
             String iDQuest = "";
             String category= "";

@@ -47,10 +47,12 @@ public class RoomTFView extends JFrame {
         myTaQuestion = new JTextArea();
         myTaQuestion.setBounds(17,33,450,90);
         myTaQuestion.setText(displayQuestion(theCate, theId));
+        myTaQuestion.setLineWrap(true);
+        myTaQuestion.setWrapStyleWord(true);
 
         myBtnSwitch = new JButton("Switch Question");
         myBtnSwitch.setBackground(BLUE);
-        myBtnSwitch.setBounds(17, 8, 80,20);
+        myBtnSwitch.setBounds(17, 8, 120,20);
         myBtnSubmit = new JButton("Submit");
         myBtnSubmit.setBounds(230, 330, 80, 30);
         myBtnSubmit.setBackground(RED);

@@ -52,31 +52,32 @@ public class TriviaMaze {
 
 
         //Test for RoomSAView
-        //RoomSAView rmSA = new RoomSAView("SA", 6);
+       /* RoomSAView rmSA = new RoomSAView("SA", 7);
+        rmSA.showEventDemo();
+        rmSA.roomShow();*/
 
-
-        //TestRoom
-        //Room room = new Room();
-        //room.randomIDCategory();
-        //room.randomQA();
+        //TestRoom TFview
+        /*RoomTFView rmtf = new RoomTFView("TF", 9);
+        rmtf.showEventDemo();
+        rmtf.roomShow();*/
 
 
        /* QA bk = new QA();
         bk.connection();*/
 
         //Test View
-        RoomMCView rwMC = new RoomMCView("MC", 8);
+        /*RoomMCView rwMC = new RoomMCView("MC", 8);
         rwMC.showEventDemo();
-        rwMC.roomShow();
+        rwMC.roomShow();*/
+
         /*RoomTFView rwTF = new RoomTFView("TF", 3);
 
         RoomSAView rwSA = new RoomSAView("SA", 1);*/
 
-        /*MainView mview = new MainView("SA", 1);
-        mview.showEventDemo();*/
 
         //Test for PlayGameView
-        //PlayGameView lv = new PlayGameView();
+        PlayGameView lv = new PlayGameView();
+
         /*RoomSAView saview = new RoomSAView("SA", 7);
         RoomTFView tfview = new RoomTFView("TF", 5);*/
        /* RoomMCView mcview = new RoomMCView("MC",9);
@@ -92,7 +93,7 @@ public class TriviaMaze {
         });*/
 
         //testing for counter timer
-       /* CountdownTimer cnttimer = new CountdownTimer();
+        /*CountdownTimer cnttimer = new CountdownTimer();
         cnttimer.countdownTimer();*/
         //testing for QATFE
        /* QA bankExtra = new QA();

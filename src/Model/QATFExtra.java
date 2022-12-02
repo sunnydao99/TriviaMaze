@@ -7,9 +7,9 @@ public class QATFExtra extends QA{
     Connection myConn;
     private String myQuesTFE;
     private String myCorrAnsTFE;
-    ArrayList<String> myArrChoiceTFE;
-    String myCategory;
-    int myId;
+    private ArrayList<String> myArrChoiceTFE;
+    private String myCategory;
+    private int myId;
 
     public QATFExtra(String theCate, int theId) {
         myCategory = theCate;

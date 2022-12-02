@@ -8,9 +8,9 @@ public class QATF extends QA{
     Connection myConn;
     private String myQuesTF;
     private String myCorrAnsTF;
-    ArrayList<String> myArrChoiceTF;
-    String myCategory;
-    int myId;
+    private ArrayList<String> myArrChoiceTF;
+    private String myCategory;
+    private int myId;
 
     public QATF(String theCate, int theId) {
         myCategory = theCate;

@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class Room {
 
-    public static ArrayList<Integer> myIdList;
-    public static ArrayList<String> myCategoryList;
+    private static ArrayList<Integer> myIdList;
+    private static ArrayList<String> myCategoryList;
     private ArrayList<String> myRooms;
 
     public Room() {

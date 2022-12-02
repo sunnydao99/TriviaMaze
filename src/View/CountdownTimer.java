@@ -31,11 +31,11 @@ public class CountdownTimer {
         background.add(counterLabel);
         background.setVisible(true);
 
-       /* counterLabel.setText("01:00");
+        counterLabel.setText("01:00");
         second = 0;
         minute = 1;
         countdownTimer();
-        timer.start();*/
+        timer.start();
 
     }
 

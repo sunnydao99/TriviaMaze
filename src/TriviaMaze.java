@@ -66,9 +66,9 @@ public class TriviaMaze {
         bk.connection();*/
 
         //Test View
-        /*RoomMCView rwMC = new RoomMCView("MC", 8);
+        RoomMCView rwMC = new RoomMCView("MC", 8);
         rwMC.showEventDemo();
-        rwMC.roomShow();*/
+        rwMC.roomShow();
 
         /*RoomTFView rwTF = new RoomTFView("TF", 3);
 
@@ -76,7 +76,7 @@ public class TriviaMaze {
 
 
         //Test for PlayGameView
-        PlayGameView lv = new PlayGameView();
+        //PlayGameView lv = new PlayGameView();
 
         /*RoomSAView saview = new RoomSAView("SA", 7);
         RoomTFView tfview = new RoomTFView("TF", 5);*/

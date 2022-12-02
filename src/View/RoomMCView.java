@@ -91,22 +91,15 @@ public class RoomMCView extends JFrame {
         myRadioBtC.setBounds(12, 220, 400, 80);
         myRadioBtD.setBounds(12, 270, 400, 80);
 
-        font1 = new Font("Arial", Font.PLAIN, 50);
+        font1 = new Font("Arial", Font.PLAIN, 20);
         tfTimer = new JTextField();
+        tfTimer.setBounds(360, 350, 80, 50);
+        //tfTimer.setText("    01:00");
+        CountdownTimer cntTimer = new CountdownTimer();
+        tfTimer.setText(cntTimer.getStrTimer());
+        //timer.start();
+
         myMainFrame.add(tfTimer);
-        tfTimer.setBounds(360, 350, 100, 50);
-        tfTimer.setText("01:00");
-
-        second = 0;
-        minute = 1;
-
-       /* CountdownTimer cntTimer = new CountdownTimer();
-        cntTimer.countdownTimer();
-
-        timer.start();*/
-
-
-
         myMainFrame.add(myTaQuestion);
         myMainFrame.add(myRadioBtA);
         myMainFrame.add(myRadioBtB);
@@ -138,6 +131,20 @@ public class RoomMCView extends JFrame {
     }
 
     public void showEventDemo() {
+
+
+/*
+        tfTimer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CountdownTimer cntTimer = new CountdownTimer();
+                cntTimer.countdownTimer();
+                tfTimer.setText(cntTimer.getStrTimer());
+                timer.start();
+
+            }
+        });
+*/
 
         myBtnHelper50.addActionListener(new ActionListener() {
             @Override

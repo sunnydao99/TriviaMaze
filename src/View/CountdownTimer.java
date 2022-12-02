@@ -8,17 +8,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 public class CountdownTimer {
-    JFrame background;
+  /*  JFrame background;
     JLabel counterLabel;
-    Font font1 = new Font("Arial", Font.PLAIN, 50);
+    Font font1 = new Font("Arial", Font.PLAIN, 20);*/
     Timer timer;
     int second, minute;
     String ddSecond, ddMinute;
     DecimalFormat dFormat = new DecimalFormat("00");
+    private String myStrTimer;
 
     public CountdownTimer() {
+        myStrTimer = "01:00";
 
-        background = new JFrame();
+       /* background = new JFrame();
         background.setSize(400, 300);
         background.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         background.setLayout(null);
@@ -29,13 +31,14 @@ public class CountdownTimer {
         counterLabel.setFont(font1);
 
         background.add(counterLabel);
-        background.setVisible(true);
+        background.setVisible(true);*/
 
-        counterLabel.setText("01:00");
-        second = 0;
-        minute = 1;
+        //counterLabel.setText("01:00");
+        second = 60;
+        minute = 0;
         countdownTimer();
         timer.start();
+
 
     }
 
@@ -46,22 +49,35 @@ public class CountdownTimer {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                second--;
-                ddSecond = dFormat.format(second);
-                ddMinute = dFormat.format(minute);
-                counterLabel.setText(ddMinute + ":" + ddSecond);
 
+                //counterLabel.setText(ddMinute + ":" + ddSecond);
+/*
                 if(second==-1) {
                     second = 59;
                     minute--;
                     ddSecond = dFormat.format(second);
                     ddMinute = dFormat.format(minute);
-                    counterLabel.setText(ddMinute + ":" + ddSecond);
-                }
+                    myStrTimer = ddMinute + ":" + ddSecond;
+                    System.out.println("test string timer 2: "+myStrTimer);
+                    timer.stop();
+                    //counterLabel.setText(ddMinute + ":" + ddSecond);
+                }*/
                 if(minute==0 && second==0) {
                     timer.stop();
+
+                }
+                else{
+                    second--;
+                    ddSecond = dFormat.format(second);
+                    ddMinute = dFormat.format(minute);
+                    myStrTimer = ddMinute + ":" + ddSecond;
+                    //System.out.println("test string timer 1: "+myStrTimer);
                 }
             }
         });
+    }
+
+    public String getStrTimer(){
+        return myStrTimer;
     }
 }

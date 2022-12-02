@@ -10,11 +10,11 @@ import java.awt.GridBagLayout;
 
 
 public class PlayGameView {
-    private JFrame mainFrame;
-    private JButton btnLevelEasy;
-    private JButton btnLevelMedium;
-    private JButton btnLevelHard;
-    private Panel panelRoom;
+    private JFrame myMainFrame;
+    private JButton myBtnLevelEasy;
+    private JButton myBtnLevelMedium;
+    private JButton myBtnLevelHard;
+    private Panel myPanelRoom;
     private String myCate;
     private int myId;
 
@@ -25,41 +25,41 @@ public class PlayGameView {
     }
 
     private void prepareGUI(){
-        mainFrame = new JFrame("Levels");
-        mainFrame.setSize(500,400);
-        mainFrame.setLayout(null);
+        myMainFrame = new JFrame("Levels");
+        myMainFrame.setSize(500,400);
+        myMainFrame.setLayout(null);
 
-        panelRoom = new Panel(new GridBagLayout());
-        btnLevelEasy = new JButton("Beginner");
-        btnLevelEasy.setBounds(190, 120, 130,40);
-        btnLevelMedium = new JButton("Intermediate");
-        btnLevelMedium.setBounds(235, 120, 130,40);
-        btnLevelHard = new JButton("Expert");
-        btnLevelHard.setBounds(280, 120, 130,40);
-        panelRoom.add(btnLevelEasy);
-        panelRoom.add(btnLevelMedium);
-        panelRoom.add(btnLevelHard);
+        myPanelRoom = new Panel(new GridBagLayout());
+        myBtnLevelEasy = new JButton("Beginner");
+        myBtnLevelEasy.setBounds(190, 120, 130,40);
+        myBtnLevelMedium = new JButton("Intermediate");
+        myBtnLevelMedium.setBounds(235, 120, 130,40);
+        myBtnLevelHard = new JButton("Expert");
+        myBtnLevelHard.setBounds(280, 120, 130,40);
+        myPanelRoom.add(myBtnLevelEasy);
+        myPanelRoom.add(myBtnLevelMedium);
+        myPanelRoom.add(myBtnLevelHard);
 
-        panelRoom.setBounds(40,80, 400,130);
-        panelRoom.setBackground(Color.PINK);
+        myPanelRoom.setBounds(40,80, 400,130);
+        myPanelRoom.setBackground(Color.PINK);
 
-        mainFrame.add(panelRoom);
+        myMainFrame.add(myPanelRoom);
 
-        mainFrame.addWindowListener(new WindowAdapter() {
+        myMainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent){
                 System.exit(0);
             }
         });
 
-        mainFrame.setVisible(true);
+        myMainFrame.setVisible(true);
     }
 
     public void showEventDemo(){
 
-        btnLevelEasy.addActionListener(new ActionListener() {
+        myBtnLevelEasy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(btnLevelEasy,"Welcome to Beginner Challenge");
+                JOptionPane.showMessageDialog(myBtnLevelEasy,"Welcome to Beginner Challenge");
                 SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run() {
@@ -71,10 +71,10 @@ public class PlayGameView {
 
             }
         });
-        btnLevelMedium.addActionListener(new ActionListener() {
+        myBtnLevelMedium.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(btnLevelMedium,"Welcome to Intermediate Challenge");
+                JOptionPane.showMessageDialog(myBtnLevelMedium,"Welcome to Intermediate Challenge");
 
                 SwingUtilities.invokeLater(new Runnable(){
                     @Override
@@ -87,10 +87,10 @@ public class PlayGameView {
 
             }
         });
-        btnLevelHard.addActionListener(new ActionListener() {
+        myBtnLevelHard.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(btnLevelHard,"Welcome to Expert Challenge");
+                JOptionPane.showMessageDialog(myBtnLevelHard,"Welcome to Expert Challenge");
                 SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run() {

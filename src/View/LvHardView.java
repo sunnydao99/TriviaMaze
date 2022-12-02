@@ -32,27 +32,27 @@ public class LvHardView extends JFrame {
 
 
 
-    private int preX, preY;
-    private int currentX, currentY;
+    private int myPreX, myPreY;
+    private int myCurrentX, myCurrentY;
 
-    private RoomMCView viewMC;
-    private RoomSAView viewSA;
-    private RoomTFView viewTF;
-    private String cate;
-    private int id;
+    private RoomMCView myViewMC;
+    private RoomSAView myViewSA;
+    private RoomTFView myViewTF;
+    private String myCate;
+    private int myId;
 
     public LvHardView() {
 
         prepareGUI();
-        viewMC = new RoomMCView();
-        viewSA = new RoomSAView();
-        viewTF = new RoomTFView();
-        preX = 1;
-        preY = 1;
-        currentX = 1;
-        currentY = 1;
-        cate = "";
-        id = 0;
+        myViewMC = new RoomMCView();
+        myViewSA = new RoomSAView();
+        myViewTF = new RoomTFView();
+        myPreX = 1;
+        myPreY = 1;
+        myCurrentX = 1;
+        myCurrentY = 1;
+        myCate = "";
+        myId = 0;
     }
 
     private void prepareGUI() {
@@ -103,7 +103,7 @@ public class LvHardView extends JFrame {
                 g.setColor(Color.BLACK);
                 g.drawRect(RECT_SIZE * col, RECT_SIZE * row, RECT_SIZE, RECT_SIZE);
 
-                if (currentX == col && currentY == row) {
+                if (myCurrentX == col && myCurrentY == row) {
                     g.setColor(Color.PINK);
                     g.fillOval(RECT_SIZE * col, RECT_SIZE * row, RECT_SIZE, RECT_SIZE);
                 }
@@ -121,77 +121,77 @@ public class LvHardView extends JFrame {
             return;
         }
 
-        if (cate.equals("MC")) {
-            if (viewMC.checkAns == false) {
-                MAZEHARD[currentY][currentX] = E_FAIL;
-                currentX = preX;
-                currentY = preY;
+        if (myCate.equals("MC")) {
+            if (myViewMC.checkAns == false) {
+                MAZEHARD[myCurrentY][myCurrentX] = E_FAIL;
+                myCurrentX = myPreX;
+                myCurrentY = myPreY;
             }
             else {
-                MAZEHARD[currentY][currentX] = E_PASS;
+                MAZEHARD[myCurrentY][myCurrentX] = E_PASS;
             }
 
             reDraw = true;
-            cate = "";
-        } else if (cate.equals("TF")) {
-            if (viewTF.checkAns == false) {
-                MAZEHARD[currentY][currentX] = E_FAIL;
-                currentX = preX;
-                currentY = preY;
+            myCate = "";
+        } else if (myCate.equals("TF")) {
+            if (myViewTF.myCheckAns == false) {
+                MAZEHARD[myCurrentY][myCurrentX] = E_FAIL;
+                myCurrentX = myPreX;
+                myCurrentY = myPreY;
             }
             else {
-                MAZEHARD[currentY][currentX] = E_PASS;
+                MAZEHARD[myCurrentY][myCurrentX] = E_PASS;
             }
 
             reDraw = true;
-            cate = "";
-        } else if (cate.equals("SA")) {
-            if (viewSA.checkAns == false) {
-                MAZEHARD[currentY][currentX] = E_FAIL;
-                currentX = preX;
-                currentY = preY;
+            myCate = "";
+        } else if (myCate.equals("SA")) {
+            if (myViewSA.myCheckAns == false) {
+                MAZEHARD[myCurrentY][myCurrentX] = E_FAIL;
+                myCurrentX = myPreX;
+                myCurrentY = myPreY;
             }
             else {
-                MAZEHARD[currentY][currentX] = E_PASS;
+                MAZEHARD[myCurrentY][myCurrentX] = E_PASS;
             }
 
             reDraw = true;
-            cate = "";
+            myCate = "";
         }
 
         if (ke.getKeyCode() == KeyEvent.VK_UP) {
-            if (currentY > 0) {
-                if(MAZEHARD[currentY - 1][currentX] > E_FAIL) {
-                    preX = currentX;
-                    preY = currentY;
-                    currentY -= 1;
+            if (myCurrentY > 0) {
+                if(MAZEHARD[myCurrentY - 1][myCurrentX] > E_FAIL) {
+                    myPreX = myCurrentX;
+                    myPreY = myCurrentY;
+                    myCurrentY -= 1;
                     reDraw = true;
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (currentY < MAZEHARD.length - 1) {
-                if(MAZEHARD[currentY + 1][currentX] > E_FAIL) {
-                    preX = currentX;
-                    preY = currentY;
-                    currentY += 1;
+            if (myCurrentY < MAZEHARD.length - 1) {
+                if(MAZEHARD[myCurrentY + 1][myCurrentX] > E_FAIL) {
+                    myPreX = myCurrentX;
+                    myPreY = myCurrentY;
+                    myCurrentY += 1;
                     reDraw = true;
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-            if (currentX > 0) {
-                if(MAZEHARD[currentY][currentX - 1] > E_FAIL) {
-                    preX = currentX;
-                    preY = currentY;
-                    currentX -= 1;
+            if (myCurrentX > 0) {
+                if(MAZEHARD[myCurrentY][myCurrentX - 1] > E_FAIL) {
+                    myPreX = myCurrentX;
+                    myPreY = myCurrentY;
+                    myCurrentX -= 1;
                     reDraw = true;
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (currentX < MAZEHARD[0].length - 1) {
-                if(MAZEHARD[currentY][currentX + 1] > E_FAIL) {
-                    preX = currentX;
-                    preY = currentY;
-                    currentX += 1;
+            if (myCurrentX < MAZEHARD[0].length - 1) {
+                if(MAZEHARD[myCurrentY][myCurrentX + 1] > E_FAIL) {
+                    myPreX = myCurrentX;
+                    myPreY = myCurrentY;
+                    myCurrentX += 1;
                     reDraw = true;
                 }
             }
@@ -199,7 +199,7 @@ public class LvHardView extends JFrame {
 
         if (reDraw) {
             repaint();
-            if(MAZEHARD[currentY][currentX] == E_DOOR) {
+            if(MAZEHARD[myCurrentY][myCurrentX] == E_DOOR) {
                 displayQuestion();
             }
         }
@@ -207,18 +207,18 @@ public class LvHardView extends JFrame {
 
     public void displayQuestion() {
         Room.randomIDCategory();
-        id = Room.getLastID();
-        cate = Room.getLastCategory();
+        myId = Room.getLastID();
+        myCate = Room.getLastCategory();
 
-        if (cate.equals("MC")) {
-            viewMC = new RoomMCView(cate, id);
-            viewMC.roomShow();
-        } else if (cate.equals("TF")) {
-            viewTF = new RoomTFView(cate, id);
-            viewTF.roomShow();
+        if (myCate.equals("MC")) {
+            myViewMC = new RoomMCView(myCate, myId);
+            myViewMC.roomShow();
+        } else if (myCate.equals("TF")) {
+            myViewTF = new RoomTFView(myCate, myId);
+            myViewTF.roomShow();
         } else {
-            viewSA = new RoomSAView(cate, id);
-            viewSA.roomShow();
+            myViewSA = new RoomSAView(myCate, myId);
+            myViewSA.roomShow();
         }
     }
 }

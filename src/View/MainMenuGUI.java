@@ -52,6 +52,7 @@ public class MainMenuGUI {
 
         myMainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         myMainFrame.setLayout(new GridLayout(3, 1));
+        myMainFrame.setSize(600, 750);
         myMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //BufferedImage myPicture = ImageIO.read(new File("TriviaMaze.iml"));

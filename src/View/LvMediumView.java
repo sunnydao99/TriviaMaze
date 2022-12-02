@@ -17,7 +17,7 @@ public class LvMediumView extends JFrame {
     private final int E_DEST = 5;
     private final int E_PATH = 8;
 
-    private final int[][] mazeMedium =
+    private final int[][] MAZEMEDIUM =
             {       {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                     {1, 8, 1, 8, 4, 8, 8, 8, 8, 8, 4, 8, 1},
                     {1, 8, 1, 8, 8, 8, 8, 4, 1, 1, 1, 8, 1},
@@ -32,14 +32,14 @@ public class LvMediumView extends JFrame {
 
 
 
-    private int preX, preY;
-    private int currentX, currentY;
+    private int myPreX, myPreY;
+    private int myCurrentX, myCurrentY;
 
-    private RoomMCView viewMC;
-    private RoomSAView viewSA;
-    private RoomTFView viewTF;
-    private String cate;
-    private int id;
+    private RoomMCView myViewMC;
+    private RoomSAView myViewSA;
+    private RoomTFView myViewTF;
+    private String myCate;
+    private int myId;
 
     public LvMediumView() {
         /*setTitle("Simple Maze");
@@ -48,15 +48,15 @@ public class LvMediumView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 
         prepareGUI();
-        viewMC = new RoomMCView();
-        viewSA = new RoomSAView();
-        viewTF = new RoomTFView();
-        preX = 1;
-        preY = 1;
-        currentX = 1;
-        currentY = 1;
-        cate = "";
-        id = 0;
+        myViewMC = new RoomMCView();
+        myViewSA = new RoomSAView();
+        myViewTF = new RoomTFView();
+        myPreX = 1;
+        myPreY = 1;
+        myCurrentX = 1;
+        myCurrentY = 1;
+        myCate = "";
+        myId = 0;
     }
 
     private void prepareGUI() {
@@ -78,10 +78,10 @@ public class LvMediumView extends JFrame {
         int check = 0;
 
 
-        for (int row = 0; row < mazeMedium.length; row++) {
-            for (int col = 0; col < mazeMedium[0].length; col++) {
+        for (int row = 0; row < MAZEMEDIUM.length; row++) {
+            for (int col = 0; col < MAZEMEDIUM[0].length; col++) {
                 Color color;
-                switch (mazeMedium[row][col]) {
+                switch (MAZEMEDIUM[row][col]) {
                     case E_WALL:
                         color = Color.GRAY;
                         break;
@@ -107,7 +107,7 @@ public class LvMediumView extends JFrame {
                 g.setColor(Color.BLACK);
                 g.drawRect(RECT_SIZE * col, RECT_SIZE * row, RECT_SIZE, RECT_SIZE);
 
-                if (currentX == col && currentY == row) {
+                if (myCurrentX == col && myCurrentY == row) {
                     g.setColor(Color.PINK);
                     g.fillOval(RECT_SIZE * col, RECT_SIZE * row, RECT_SIZE, RECT_SIZE);
                 }
@@ -126,77 +126,77 @@ public class LvMediumView extends JFrame {
             return;
         }
 
-        if (cate.equals("MC")) {
-            if (viewMC.checkAns == false) {
-                mazeMedium[currentY][currentX] = E_FAIL;
-                currentX = preX;
-                currentY = preY;
+        if (myCate.equals("MC")) {
+            if (myViewMC.checkAns == false) {
+                MAZEMEDIUM[myCurrentY][myCurrentX] = E_FAIL;
+                myCurrentX = myPreX;
+                myCurrentY = myPreY;
             }
             else {
-                mazeMedium[currentY][currentX] = E_PASS;
+                MAZEMEDIUM[myCurrentY][myCurrentX] = E_PASS;
             }
 
             reDraw = true;
-            cate = "";
-        } else if (cate.equals("TF")) {
-            if (viewTF.checkAns == false) {
-                mazeMedium[currentY][currentX] = E_FAIL;
-                currentX = preX;
-                currentY = preY;
+            myCate = "";
+        } else if (myCate.equals("TF")) {
+            if (myViewTF.myCheckAns == false) {
+                MAZEMEDIUM[myCurrentY][myCurrentX] = E_FAIL;
+                myCurrentX = myPreX;
+                myCurrentY = myPreY;
             }
             else {
-                mazeMedium[currentY][currentX] = E_PASS;
+                MAZEMEDIUM[myCurrentY][myCurrentX] = E_PASS;
             }
 
             reDraw = true;
-            cate = "";
-        } else if (cate.equals("SA")) {
-            if (viewSA.checkAns == false) {
-                mazeMedium[currentY][currentX] = E_FAIL;
-                currentX = preX;
-                currentY = preY;
+            myCate = "";
+        } else if (myCate.equals("SA")) {
+            if (myViewSA.myCheckAns == false) {
+                MAZEMEDIUM[myCurrentY][myCurrentX] = E_FAIL;
+                myCurrentX = myPreX;
+                myCurrentY = myPreY;
             }
             else {
-                mazeMedium[currentY][currentX] = E_PASS;
+                MAZEMEDIUM[myCurrentY][myCurrentX] = E_PASS;
             }
 
             reDraw = true;
-            cate = "";
+            myCate = "";
         }
 
         if (ke.getKeyCode() == KeyEvent.VK_UP) {
-            if (currentY > 0) {
-                if(mazeMedium[currentY - 1][currentX] > E_FAIL) {
-                    preX = currentX;
-                    preY = currentY;
-                    currentY -= 1;
+            if (myCurrentY > 0) {
+                if(MAZEMEDIUM[myCurrentY - 1][myCurrentX] > E_FAIL) {
+                    myPreX = myCurrentX;
+                    myPreY = myCurrentY;
+                    myCurrentY -= 1;
                     reDraw = true;
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (currentY < mazeMedium.length - 1) {
-                if(mazeMedium[currentY + 1][currentX] > E_FAIL) {
-                    preX = currentX;
-                    preY = currentY;
-                    currentY += 1;
+            if (myCurrentY < MAZEMEDIUM.length - 1) {
+                if(MAZEMEDIUM[myCurrentY + 1][myCurrentX] > E_FAIL) {
+                    myPreX = myCurrentX;
+                    myPreY = myCurrentY;
+                    myCurrentY += 1;
                     reDraw = true;
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
-            if (currentX > 0) {
-                if(mazeMedium[currentY][currentX - 1] > E_FAIL) {
-                    preX = currentX;
-                    preY = currentY;
-                    currentX -= 1;
+            if (myCurrentX > 0) {
+                if(MAZEMEDIUM[myCurrentY][myCurrentX - 1] > E_FAIL) {
+                    myPreX = myCurrentX;
+                    myPreY = myCurrentY;
+                    myCurrentX -= 1;
                     reDraw = true;
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (currentX < mazeMedium[0].length - 1) {
-                if(mazeMedium[currentY][currentX + 1] > E_FAIL) {
-                    preX = currentX;
-                    preY = currentY;
-                    currentX += 1;
+            if (myCurrentX < MAZEMEDIUM[0].length - 1) {
+                if(MAZEMEDIUM[myCurrentY][myCurrentX + 1] > E_FAIL) {
+                    myPreX = myCurrentX;
+                    myPreY = myCurrentY;
+                    myCurrentX += 1;
                     reDraw = true;
                 }
             }
@@ -204,7 +204,7 @@ public class LvMediumView extends JFrame {
 
         if (reDraw) {
             repaint();
-            if(mazeMedium[currentY][currentX] == E_DOOR) {
+            if(MAZEMEDIUM[myCurrentY][myCurrentX] == E_DOOR) {
                 displayQuestion();
             }
         }
@@ -212,18 +212,18 @@ public class LvMediumView extends JFrame {
 
     public void displayQuestion() {
         Room.randomIDCategory();
-        id = Room.getLastID();
-        cate = Room.getLastCategory();
+        myId = Room.getLastID();
+        myCate = Room.getLastCategory();
 
-        if (cate.equals("MC")) {
-            viewMC = new RoomMCView(cate, id);
-            viewMC.roomShow();
-        } else if (cate.equals("TF")) {
-            viewTF = new RoomTFView(cate, id);
-            viewTF.roomShow();
+        if (myCate.equals("MC")) {
+            myViewMC = new RoomMCView(myCate, myId);
+            myViewMC.roomShow();
+        } else if (myCate.equals("TF")) {
+            myViewTF = new RoomTFView(myCate, myId);
+            myViewTF.roomShow();
         } else {
-            viewSA = new RoomSAView(cate, id);
-            viewSA.roomShow();
+            myViewSA = new RoomSAView(myCate, myId);
+            myViewSA.roomShow();
         }
     }
 }

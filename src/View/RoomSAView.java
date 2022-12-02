@@ -1,6 +1,5 @@
 package View;
 import Model.QA;
-import Model.QAMC;
 import Model.QASA;
 
 import java.awt.*;
@@ -12,14 +11,14 @@ import static java.awt.Color.BLUE;
 import static java.awt.Color.RED;
 
 public class RoomSAView extends JFrame {
-    private JFrame mainFrame;
-    private JTextArea taQuestion;
-    private JTextField tfInputAns;
-    private JTextArea taHint;
-    private JButton btnHints;
-    private JButton btnSubmit;
+    private JFrame myMainFrame;
+    private JTextArea myTaQuestion;
+    private JTextField myTfInputAns;
+    private JTextArea myTaHint;
+    private JButton myBtnHints;
+    private JButton myBtnSubmit;
 
-    public boolean checkAns;
+    public boolean myCheckAns;
     private String myCate;
     private int myId;
     private String myCorrAns;
@@ -35,7 +34,7 @@ public class RoomSAView extends JFrame {
         myBank = new QASA(theCate, theId);
         myHint = "";
         prepareGUI(theCate, theId);
-        checkAns = false;
+        myCheckAns = false;
         roomShow();
     }
     public RoomSAView(){
@@ -43,44 +42,44 @@ public class RoomSAView extends JFrame {
     }
 
     private void prepareGUI(String theCate, int theId){
-        mainFrame = new JFrame("Welcome to challenge^^");
-        mainFrame.setSize(500,400);
-        mainFrame.setLayout(null);
+        myMainFrame = new JFrame("Welcome to challenge^^");
+        myMainFrame.setSize(500,400);
+        myMainFrame.setLayout(null);
 
-        taQuestion = new JTextArea();
-        JScrollPane talkPane = new JScrollPane (taQuestion);
+        myTaQuestion = new JTextArea();
+        JScrollPane talkPane = new JScrollPane (myTaQuestion);
         talkPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         talkPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        taQuestion.setBounds(17,33,400,90);
-        taQuestion.setText(displayQuestion(theCate, theId));
+        myTaQuestion.setBounds(17,33,400,90);
+        myTaQuestion.setText(displayQuestion(theCate, theId));
 
-        tfInputAns = new JTextField();
-        tfInputAns.setBounds(20, 250, 200, 40);
+        myTfInputAns = new JTextField();
+        myTfInputAns.setBounds(20, 250, 200, 40);
 
-        taHint = new JTextArea();
-        taHint.setBounds(17, 150, 380, 60 );
-        taHint.setVisible(false);
+        myTaHint = new JTextArea();
+        myTaHint.setBounds(17, 150, 380, 60 );
+        myTaHint.setVisible(false);
 
-        btnHints = new JButton("Hints");
-        btnHints.setBackground(BLUE);
-        btnHints.setBounds(17, 8, 50,20);
-        btnSubmit = new JButton("Submit");
-        btnSubmit.setBounds(230, 330, 80, 30);
-        btnSubmit.setBackground(RED);
+        myBtnHints = new JButton("Hints");
+        myBtnHints.setBackground(BLUE);
+        myBtnHints.setBounds(17, 8, 50,20);
+        myBtnSubmit = new JButton("Submit");
+        myBtnSubmit.setBounds(230, 330, 80, 30);
+        myBtnSubmit.setBackground(RED);
 
 
-        mainFrame.add(taQuestion);
-        mainFrame.add(talkPane, BorderLayout. CENTER );
-        mainFrame.getContentPane().add(talkPane);
-        mainFrame.add(btnHints);
-        mainFrame.add(tfInputAns);
-        mainFrame.add(btnSubmit);
-        mainFrame.add(taHint);
+        myMainFrame.add(myTaQuestion);
+        myMainFrame.add(talkPane, BorderLayout. CENTER );
+        myMainFrame.getContentPane().add(talkPane);
+        myMainFrame.add(myBtnHints);
+        myMainFrame.add(myTfInputAns);
+        myMainFrame.add(myBtnSubmit);
+        myMainFrame.add(myTaHint);
 
-        mainFrame.addWindowListener(new WindowAdapter() {
+        myMainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent){
-                mainFrame.dispose();
+                myMainFrame.dispose();
                 //System.exit(0);
             }
         });
@@ -90,39 +89,39 @@ public class RoomSAView extends JFrame {
     }
 
     public void roomShow(){
-        mainFrame.setVisible(true);
+        myMainFrame.setVisible(true);
     }
 
     public void showEventDemo(){
 
-        btnHints.addActionListener(new ActionListener() {
+        myBtnHints.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 myHint = "Hints: ";
                 myHint += displayHints(myCate, myId);
-                taHint.setText(myHint);
-                taHint.setVisible(true);
-                //JOptionPane.showMessageDialog(btnHints,"Display Hints");
+                myTaHint.setText(myHint);
+                myTaHint.setVisible(true);
+                //JOptionPane.showMessageDialog(myBtnHints,"Display Hints");
             }
         });
 
-        btnSubmit.addActionListener(new ActionListener() {
+        myBtnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String text = "";
-                String temp = tfInputAns.getText();
+                String temp = myTfInputAns.getText();
                 myCorrAns = displayAnswer(myCate, myId);
                 if(temp.toUpperCase().equals(myCorrAns.toUpperCase())){
                     text = "It's correct. You're pass!";
                     RoomMCView.index++;
-                    checkAns = true;
+                    myCheckAns = true;
                 }
                 else{
                     text = "It's not correct. Please, try other door!";
-                    checkAns = false;
+                    myCheckAns = false;
                 }
-                JOptionPane.showMessageDialog(btnSubmit,text);
-                mainFrame.dispose();
+                JOptionPane.showMessageDialog(myBtnSubmit,text);
+                myMainFrame.dispose();
             }
         });
     }

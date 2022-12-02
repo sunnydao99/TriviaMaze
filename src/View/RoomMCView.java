@@ -5,7 +5,6 @@ import java.awt.event.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.text.DefaultCaret;
 
 import Model.QA;
 import Model.QAMC;
@@ -13,15 +12,15 @@ import Model.QAMC;
 import static java.awt.Color.*;
 
 public class RoomMCView extends JFrame {
-    private JFrame mainFrame;
-    private JTextArea taQuestion;
-    private JRadioButton radioBtA;
-    private JRadioButton radioBtB;
-    private JRadioButton radioBtC;
-    private JRadioButton radioBtD;
-    private ButtonGroup groupRadio;
-    private JButton btnHelper50;
-    private JButton btnSubmit;
+    private JFrame myMainFrame;
+    private JTextArea myTaQuestion;
+    private JRadioButton myRadioBtA;
+    private JRadioButton myRadioBtB;
+    private JRadioButton myRadioBtC;
+    private JRadioButton myRadioBtD;
+    private ButtonGroup myGroupRadio;
+    private JButton myBtnHelper50;
+    private JButton myBtnSubmit;
 
     private  JTextField tfTimer;
     private  Font font1;
@@ -37,9 +36,9 @@ public class RoomMCView extends JFrame {
     private int myId;
 
     private String myCorrAns;
-    private ArrayList<String> arrChoice;
-    private ArrayList<String> arrRedChoice;
-    private ArrayList<String> arrOpt50;
+    private ArrayList<String> myArrChoice;
+    private ArrayList<String> myArrRedChoice;
+    private ArrayList<String> myArrOpt50;
     private QA myBank;
 
     // Constructor to setup GUI components and event handlers
@@ -58,43 +57,43 @@ public class RoomMCView extends JFrame {
     }
 
     private void prepareGUI(String theCate, int theId) {
-        mainFrame = new JFrame("Welcome to challenge^^");
-        mainFrame.setSize(500, 450);
-        mainFrame.setLayout(null);
+        myMainFrame = new JFrame("Welcome to challenge^^");
+        myMainFrame.setSize(500, 450);
+        myMainFrame.setLayout(null);
 
 
-        taQuestion = new JTextArea("");
-        taQuestion.setBounds(17, 33, 450, 90);
-        taQuestion.setText(displayQuestion(theCate, theId));
-        taQuestion.setLineWrap(true);
-        taQuestion.setWrapStyleWord(true);
+        myTaQuestion = new JTextArea("");
+        myTaQuestion.setBounds(17, 33, 450, 90);
+        myTaQuestion.setText(displayQuestion(theCate, theId));
+        myTaQuestion.setLineWrap(true);
+        myTaQuestion.setWrapStyleWord(true);
 
-        btnHelper50 = new JButton("50/50");
-        btnHelper50.setBackground(BLUE);
-        btnHelper50.setBounds(17, 8, 50, 20);
+        myBtnHelper50 = new JButton("50/50");
+        myBtnHelper50.setBackground(BLUE);
+        myBtnHelper50.setBounds(17, 8, 50, 20);
 
-        btnSubmit = new JButton("Submit");
-        btnSubmit.setBackground(RED);
-        btnSubmit.setBounds(230, 340, 80, 30);
+        myBtnSubmit = new JButton("Submit");
+        myBtnSubmit.setBackground(RED);
+        myBtnSubmit.setBounds(230, 340, 80, 30);
 
-        radioBtA = new JRadioButton();
-        radioBtB = new JRadioButton();
-        radioBtC = new JRadioButton();
-        radioBtD = new JRadioButton();
-        groupRadio = new ButtonGroup();
-        arrChoice = displayChoices(theCate, theId);
-        radioBtA.setText(arrChoice.get(0));
-        radioBtB.setText(arrChoice.get(1));
-        radioBtC.setText(arrChoice.get(2));
-        radioBtD.setText(arrChoice.get(3));
-        radioBtA.setBounds(12, 120, 400, 80);
-        radioBtB.setBounds(12, 170, 400, 80);
-        radioBtC.setBounds(12, 220, 400, 80);
-        radioBtD.setBounds(12, 270, 400, 80);
+        myRadioBtA = new JRadioButton();
+        myRadioBtB = new JRadioButton();
+        myRadioBtC = new JRadioButton();
+        myRadioBtD = new JRadioButton();
+        myGroupRadio = new ButtonGroup();
+        myArrChoice = displayChoices(theCate, theId);
+        myRadioBtA.setText(myArrChoice.get(0));
+        myRadioBtB.setText(myArrChoice.get(1));
+        myRadioBtC.setText(myArrChoice.get(2));
+        myRadioBtD.setText(myArrChoice.get(3));
+        myRadioBtA.setBounds(12, 120, 400, 80);
+        myRadioBtB.setBounds(12, 170, 400, 80);
+        myRadioBtC.setBounds(12, 220, 400, 80);
+        myRadioBtD.setBounds(12, 270, 400, 80);
 
         font1 = new Font("Arial", Font.PLAIN, 50);
         tfTimer = new JTextField();
-        mainFrame.add(tfTimer);
+        myMainFrame.add(tfTimer);
         tfTimer.setBounds(360, 350, 100, 50);
         tfTimer.setText("01:00");
 
@@ -107,23 +106,23 @@ public class RoomMCView extends JFrame {
 
 
 
-        mainFrame.add(taQuestion);
-        mainFrame.add(radioBtA);
-        mainFrame.add(radioBtB);
-        mainFrame.add(radioBtC);
-        mainFrame.add(radioBtD);
-        mainFrame.add(btnHelper50);
-        mainFrame.add(btnSubmit);
+        myMainFrame.add(myTaQuestion);
+        myMainFrame.add(myRadioBtA);
+        myMainFrame.add(myRadioBtB);
+        myMainFrame.add(myRadioBtC);
+        myMainFrame.add(myRadioBtD);
+        myMainFrame.add(myBtnHelper50);
+        myMainFrame.add(myBtnSubmit);
 
 
-        groupRadio.add(radioBtA);
-        groupRadio.add(radioBtB);
-        groupRadio.add(radioBtC);
-        groupRadio.add(radioBtD);
+        myGroupRadio.add(myRadioBtA);
+        myGroupRadio.add(myRadioBtB);
+        myGroupRadio.add(myRadioBtC);
+        myGroupRadio.add(myRadioBtD);
 
-        mainFrame.addWindowListener(new WindowAdapter() {
+        myMainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
-                mainFrame.dispose();
+                myMainFrame.dispose();
                 //System.exit(0);
             }
         });
@@ -134,25 +133,25 @@ public class RoomMCView extends JFrame {
     }
 
     public void roomShow(){
-        mainFrame.setVisible(true);
+        myMainFrame.setVisible(true);
     }
 
     public void showEventDemo() {
 
-        btnHelper50.addActionListener(new ActionListener() {
+        myBtnHelper50.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(btnHelper50, "Reduce choices");
-                arrOpt50 = disappearHalfChoice(myCate, myId);
-                for (int i = 0; i < arrOpt50.size(); i++) {
-                    if (arrOpt50.get(i).equals("A")) {
-                        radioBtA.setVisible(false);
-                    } else if (arrOpt50.get(i).equals("B")) {
-                        radioBtB.setVisible(false);
-                    } else if (arrOpt50.get(i).equals("C")) {
-                        radioBtC.setVisible(false);
+                JOptionPane.showMessageDialog(myBtnHelper50, "Reduce choices");
+                myArrOpt50 = disappearHalfChoice(myCate, myId);
+                for (int i = 0; i < myArrOpt50.size(); i++) {
+                    if (myArrOpt50.get(i).equals("A")) {
+                        myRadioBtA.setVisible(false);
+                    } else if (myArrOpt50.get(i).equals("B")) {
+                        myRadioBtB.setVisible(false);
+                    } else if (myArrOpt50.get(i).equals("C")) {
+                        myRadioBtC.setVisible(false);
                     } else {
-                        radioBtD.setVisible(false);
+                        myRadioBtD.setVisible(false);
                     }
                 }
 
@@ -160,41 +159,41 @@ public class RoomMCView extends JFrame {
         });
 
 
-        btnSubmit.addActionListener(new ActionListener() {
+        myBtnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String corrAns = displayAnswer(myCate, myId);
                 String userAns = "";
 
                 for (int i = 0; i < 4; i++) {
-                    if (radioBtA.isSelected()) {
+                    if (myRadioBtA.isSelected()) {
                         userAns = "A";
                         break;
-                    } else if (radioBtB.isSelected()) {
+                    } else if (myRadioBtB.isSelected()) {
                         userAns = "B";
                         break;
-                    } else if (radioBtC.isSelected()) {
+                    } else if (myRadioBtC.isSelected()) {
                         userAns = "C";
                         break;
-                    } else if (radioBtD.isSelected()) {
+                    } else if (myRadioBtD.isSelected()) {
                         userAns = "D";
                         break;
                     }
                 }
                 if(userAns.equals("")) {
-                    JOptionPane.showMessageDialog(btnSubmit, "Please, select your answer!");
+                    JOptionPane.showMessageDialog(myBtnSubmit, "Please, select your answer!");
                 }
                 else if(userAns.equals(corrAns)){
-                    JOptionPane.showMessageDialog(btnSubmit, "It's correct. You're pass!");
+                    JOptionPane.showMessageDialog(myBtnSubmit, "It's correct. You're pass!");
                     checkAns = true;
                     index++;
                 }
                 else {
-                    JOptionPane.showMessageDialog(btnSubmit, "It's not correct. Please, try other door!");
+                    JOptionPane.showMessageDialog(myBtnSubmit, "It's not correct. Please, try other door!");
                     checkAns = false;
                 }
                 //System.out.println("index: " + index);
-                mainFrame.dispose();
+                myMainFrame.dispose();
                 //System.exit(0);
             }
         });
@@ -208,11 +207,11 @@ public class RoomMCView extends JFrame {
     }
 
     public ArrayList<String> displayChoices(String theCate, int theId) {
-        arrChoice = new ArrayList<String>();
+        myArrChoice = new ArrayList<String>();
         ArrayList<String> temp = new ArrayList<String>();
         temp = myBank.getChoices(theCate, theId);
-        arrChoice.addAll(temp);
-        return arrChoice;
+        myArrChoice.addAll(temp);
+        return myArrChoice;
     }
 
     public String displayAnswer(String theCate, int theId) {
@@ -223,7 +222,7 @@ public class RoomMCView extends JFrame {
     }
 
     public ArrayList<String> disappearHalfChoice(String theCate, int theId) {
-        arrOpt50 = new ArrayList<String>();
+        myArrOpt50 = new ArrayList<String>();
         ArrayList<Integer> temp = new ArrayList<Integer>();
         ArrayList<String> optList = new ArrayList<String>();
         temp = ((QAMC) myBank).getOptionForRedChoice(theCate, theId);

@@ -1,8 +1,10 @@
 import View.*;
 
-public class Main {
+import java.io.IOException;
 
-    public static void main(String[] args) {
+public class TriviaMaze {
+
+    public static void main(String[] args) throws IOException {
 	// An Testing
 
        /* QA bankQA = new QA("MC", 1);*/
@@ -102,6 +104,16 @@ public class Main {
         tfExtra.getAnswer("TFE", 3);
         tfExtra.getChoices("TFE", 3);
 */
+
+
+        //Test for About, Help...
+        //setupGUI();
+
+
+    }
+    public static void setupGUI() throws IOException {
+        MainMenuGUI myMenuListener = new MainMenuGUI();
+        myMenuListener.showActionListener();
 
 
     }

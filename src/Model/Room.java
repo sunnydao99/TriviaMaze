@@ -5,8 +5,7 @@ import java.util.Collections;
 import java.util.Random;
 
 public class Room {
-    //private int myId;
-    //private String myCate;
+
     public static ArrayList<Integer> myIdList;
     public static ArrayList<String> myCategoryList;
     private ArrayList<String> myRooms;

@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 
 public class LvEasyView extends JFrame {
 
-    private final int RECT_SIZE = 35;
+    private final int RECT_SIZE = 60;
     private final int E_WALL = 1;
     private final int E_FAIL = 2;
     private final int E_PASS = 3;
@@ -76,10 +76,11 @@ public class LvEasyView extends JFrame {
 
     private void prepareGUI() {
 
-        this.setTitle("Welcome to Beginner");
-        this.setSize(640, 480);
+        this.setTitle("Welcome to Easy");
+//        this.setSize(640, 480);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
 
     }

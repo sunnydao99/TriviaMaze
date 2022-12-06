@@ -31,8 +31,8 @@ public class Instructions {
                 " Reach the Exit to complete the game and Have Fun!";
 
         JTextArea textArea = new JTextArea(inst);
-        textArea.setForeground(Color.getHSBColor(240,100,72));
-        Font instFont = new Font("Instruction Font", Font.ITALIC, 18);
+        //textArea.setForeground(Color.getHSBColor(240,100,72));
+        Font instFont = new Font("Instruction Font", Font.ITALIC, 20);
 
         textArea.setFont(instFont);
         myInstFrame.add(textArea);

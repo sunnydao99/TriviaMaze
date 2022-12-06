@@ -1,10 +1,11 @@
 package Model;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class QATF extends QA{
+public class QATF extends QA implements Serializable {
     Connection myConn;
     private String myQuesTF;
     private String myCorrAnsTF;

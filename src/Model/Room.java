@@ -1,10 +1,11 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class Room {
+public class Room implements Serializable {
 
     private static ArrayList<Integer> myIdList;
     private static ArrayList<String> myCategoryList;

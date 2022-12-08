@@ -18,13 +18,13 @@ public class PlayGameView {
     private String myCate;
     private int myId;
 
-    public PlayGameView(){
+//    public PlayGameView(){
+//
+//        prepareGUI();
+//        showEventDemo();
+//    }
 
-        prepareGUI();
-        showEventDemo();
-    }
-
-    private void prepareGUI(){
+    void prepareGUI(){
         myMainFrame = new JFrame("Levels");
         myMainFrame.setSize(500,400);
         //myMainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);

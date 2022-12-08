@@ -3,13 +3,22 @@ package View;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+/**
+ * @author satindersingh
+ * @version 12/2/2022
+ *
+ */
 
+/**
+ * This class displays information about the game contents on a new Jframe window
+ */
 public class Help {
     private JFrame myHelpFrame;
-    public Help(){
-        prepareGUI();
-    }
-    private void prepareGUI(){
+    /**
+     * @return void
+     * This method displays a JFrame with text about what the game is about
+     */
+    void prepareGUI(){
         myHelpFrame = new JFrame("Help Page");
         //myHelpFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //myHelpFrame.setUndecorated(true);

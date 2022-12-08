@@ -1,24 +1,22 @@
+/**
+ * @author satindersingh
+ * @version 12/2/2022
+ */
 package View;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import javax.imageio.ImageIO;
-import javax.print.attribute.standard.Media;
-import javax.print.attribute.standard.MediaName;
 import javax.sound.sampled.*;
-import javax.sound.sampled.spi.AudioFileReader;
 import javax.swing.*;
 
-//Satinder
+/**
+ * This class displays the main menu that the user will interact with on a new Jframe window
+ */
 public class MainMenuGUI {
     private JFrame myMainFrame;
-    private JFrame myGifFrame;
+    //private JFrame myGifFrame;
     private JLabel myHeaderLabel;
     private JLabel myStatusLabel;
     private JPanel myControlPanel;
@@ -26,9 +24,23 @@ public class MainMenuGUI {
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
+    /**
+     * Default constructor that calls prepareGUI() method
+     * @throws IOException to see if the file exists
+     * @throws UnsupportedAudioFileException to make sure the format is correct
+     * @throws LineUnavailableException to make sure data is in bounds
+     */
     public MainMenuGUI() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         prepareGUI();
     }
+
+    /**
+     * This method displays the choices for the player to navigate the program
+     * this also plays the background music
+     * @throws IOException to see if the file exists
+     * @throws UnsupportedAudioFileException to make sure the format is correct
+     * @throws LineUnavailableException to make sure data is in bounds
+     */
     private void prepareGUI() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         myMainFrame = new JFrame("Trivia Maze");
         String myBgMusicFile = "kim-lightyear-angel-eyes-chiptune-edit-110226-_1_.wav";
@@ -69,6 +81,12 @@ public class MainMenuGUI {
         //myGifFrame.setVisible(true);
         myMainFrame.setVisible(true);
     }
+
+    /**
+     * @return void
+     * This method handles the actionListeners of the main menu and
+     * instantiates the correct classes based on user input
+     */
     public void showActionListener(){
         //myHeaderLabel.setText("Welcome to Trivia Maze!");
 
@@ -95,9 +113,9 @@ public class MainMenuGUI {
         panel5.setBackground(Color.getHSBColor(240,100,76));
         JButton aboutButton = new JButton("About");
 
-        JPanel panel6 = new JPanel();
-        panel6.setBackground(Color.getHSBColor(240,100,78));
-        JButton exitButton = new JButton("Exit");
+//        JPanel panel6 = new JPanel();
+//        panel6.setBackground(Color.getHSBColor(240,100,78));
+//        JButton exitButton = new JButton("Exit");
         //panel6.setBackground(Color.getHSBColor(240,100,80));
 
 //        mainMenuButton.addActionListener(new ActionListener() {
@@ -107,42 +125,31 @@ public class MainMenuGUI {
 //            }
 //        });
         panel1.add(mainMenuButton);
-        mainMenuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                {
-                    PlayGameView myPG = new PlayGameView();
-                }
+        mainMenuButton.addActionListener(e -> {
+            {
+                PlayGameView myPG = new PlayGameView();
+                myPG.prepareGUI();
+                myPG.showEventDemo();
             }
         });
         panel2.add(loadButton);
-        loadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                LoadGame myLG = new LoadGame();
-            }
+        loadButton.addActionListener(e -> {
+            LoadGame myLG = new LoadGame();
         });
         panel3.add(instructButton);
-        instructButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Instructions myInst = new Instructions();
-                //myInst.showListener();
-            }
+        instructButton.addActionListener(e -> {
+            Instructions myInst = new Instructions();
+            myInst.prepareGUI();
         });
         panel4.add(helpButton);
-        helpButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Help myHelp = new Help();
-            }
+        helpButton.addActionListener(e -> {
+            Help myHelp = new Help();
+            myHelp.prepareGUI();
         });
         panel5.add(aboutButton);
-        aboutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                About myAbout = new About();
-            }
+        aboutButton.addActionListener(e -> {
+            About myAbout = new About();
+            myAbout.prepareGUI();
         });
 //        panel6.add(exitButton);
 //        aboutButton.add(new WindowAdapter() {

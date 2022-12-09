@@ -18,15 +18,16 @@ public class PlayGameView {
     private String myCate;
     private int myId;
 
-    public PlayGameView(){
+//    public PlayGameView(){
+//
+//        prepareGUI();
+//        showEventDemo();
+//    }
 
-        prepareGUI();
-        showEventDemo();
-    }
-
-    private void prepareGUI(){
+    void prepareGUI(){
         myMainFrame = new JFrame("Levels");
         myMainFrame.setSize(500,400);
+        //myMainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         myMainFrame.setLayout(null);
 
         myPanelRoom = new Panel(new GridBagLayout());
@@ -47,7 +48,7 @@ public class PlayGameView {
 
         myMainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent){
-                System.exit(0);
+                myMainFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             }
         });
 
@@ -59,7 +60,8 @@ public class PlayGameView {
         myBtnLevelEasy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(myBtnLevelEasy,"Welcome to Beginner Challenge");
+                JOptionPane.showMessageDialog(myBtnLevelEasy,"Navigate using keyboard to exit to win!");
+                //Instructions inst = new Instructions();
                 SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run() {
@@ -74,8 +76,8 @@ public class PlayGameView {
         myBtnLevelMedium.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(myBtnLevelMedium,"Welcome to Intermediate Challenge");
-
+                JOptionPane.showMessageDialog(myBtnLevelMedium,"Navigate using keyboard to exit to win!");
+                //Instructions inst = new Instructions();
                 SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run() {
@@ -90,7 +92,7 @@ public class PlayGameView {
         myBtnLevelHard.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(myBtnLevelHard,"Welcome to Expert Challenge");
+                JOptionPane.showMessageDialog(myBtnLevelHard,"Navigate using keyboard to exit to win!");
                 SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run() {

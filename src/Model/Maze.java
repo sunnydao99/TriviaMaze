@@ -1,8 +1,10 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Maze {
+public class Maze implements Serializable {
+    private static final long serialVersionUID = 1234567890L;
 
     //if path was found, this method will return true
     // and the path list will be filled

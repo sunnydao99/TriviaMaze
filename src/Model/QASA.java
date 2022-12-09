@@ -1,9 +1,10 @@
 package Model;
 
+import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class QASA extends QA{
+public class QASA extends QA implements Serializable {
     Connection myConn;
     private String myQuesSA;
     private String myCorrAnsSA;

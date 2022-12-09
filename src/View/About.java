@@ -4,12 +4,22 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * @author satindersingh
+ * @version 12/2/2022
+ *
+ */
+
+/**
+ * This class displays information about the developers on a new Jframe window
+ */
 public class About {
     private JFrame myAboutFrame;
-    public About(){
-        prepareGUI();
-    }
-    private void prepareGUI(){
+    /**
+     * @return void
+     * This method displays a JFrame with text about the developers
+     */
+    void prepareGUI(){
         myAboutFrame = new JFrame("About Page");
         //myAboutFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //myAboutFrame.setUndecorated(true);

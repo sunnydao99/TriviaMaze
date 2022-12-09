@@ -6,7 +6,7 @@ import java.sql.*;
 
 import java.util.*;
 
-public class QA extends Inventory{
+public class QA extends Inventory implements Serializable{
 
     private File myFileCSV_QMC;
     private File myFileCSV_QAS;

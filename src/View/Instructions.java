@@ -3,13 +3,29 @@ package View;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+/**
+ * @author satindersingh
+ * @version 12/2/2022
+ *
+ */
 
+/**
+ * This class displays instructions on how to play on a new Jframe window
+ */
 public class Instructions {
     private JFrame myInstFrame;
-    public Instructions(){
-        prepareGUI();
-    }
-    private void prepareGUI(){
+
+//    /**
+//     * Default constructor that calls prepareGUI()
+//     */
+//    public Instructions(){
+//        prepareGUI();
+//    }
+    /**
+     * @return void
+     * This method displays a JFrame with text about the developers
+     */
+    void prepareGUI(){
         myInstFrame = new JFrame("Instructions on How To Play");
         myInstFrame.setSize(800,700);
         //myInstFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -31,8 +47,8 @@ public class Instructions {
                 " Reach the Exit to complete the game and Have Fun!";
 
         JTextArea textArea = new JTextArea(inst);
-        textArea.setForeground(Color.getHSBColor(240,100,72));
-        Font instFont = new Font("Instruction Font", Font.ITALIC, 18);
+        //textArea.setForeground(Color.getHSBColor(240,100,72));
+        Font instFont = new Font("Instruction Font", Font.ITALIC, 20);
 
         textArea.setFont(instFont);
         myInstFrame.add(textArea);

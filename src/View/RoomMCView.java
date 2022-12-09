@@ -199,6 +199,7 @@ public class RoomMCView extends JFrame {
                 else {
                     JOptionPane.showMessageDialog(myBtnSubmit, "It's not correct. Please, try other door!");
                     checkAns = false;
+                    checkPlayable();
                 }
                 //System.out.println("index: " + index);
                 myMainFrame.dispose();
@@ -255,5 +256,8 @@ public class RoomMCView extends JFrame {
         return optList;
     }
 
+    public void checkPlayable(){
+
+    }
 
 }

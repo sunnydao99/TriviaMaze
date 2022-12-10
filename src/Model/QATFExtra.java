@@ -120,7 +120,7 @@ public class QATFExtra extends QA implements Serializable {
 
             }
             myArrChoiceTFE.addAll(choices);
-            System.out.println("from QATFExtra: choices created");
+            //System.out.println("from QATFExtra: choices created");
 
             return choices;
         } catch (SQLException e) {

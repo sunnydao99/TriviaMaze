@@ -50,17 +50,17 @@ public class CountdownTimer {
             public void actionPerformed(ActionEvent e) {
 
 
-                //counterLabel.setText(ddMinute + ":" + ddSecond);
+                //counterLabel.setText(myddMinute + ":" + myddSecond);
 /*
-                if(second==-1) {
-                    second = 59;
-                    minute--;
-                    ddSecond = dFormat.format(second);
-                    ddMinute = dFormat.format(minute);
-                    myStrTimer = ddMinute + ":" + ddSecond;
-                    System.out.println("test string timer 2: "+myStrTimer);
-                    timer.stop();
-                    //counterLabel.setText(ddMinute + ":" + ddSecond);
+                if(mySecond==-1) {
+                    mySecond = 59;
+                    myMinute--;
+                    myddSecond = mydFormat.format(mySecond);
+                    myddMinute = mydFormat.format(myMinute);
+                    myStrTimer = myddMinute + ":" + myddSecond;
+                    System.out.println("test string myTimer 2: "+myStrTimer);
+                    myTimer.stop();
+                    //counterLabel.setText(myddMinute + ":" + myddSecond);
                 }*/
                 if(minute==0 && second==0) {
                     timer.stop();
@@ -71,7 +71,7 @@ public class CountdownTimer {
                     ddSecond = dFormat.format(second);
                     ddMinute = dFormat.format(minute);
                     myStrTimer = ddMinute + ":" + ddSecond;
-                    //System.out.println("test string timer 1: "+myStrTimer);
+                    System.out.println("test string myTimer 1: "+myStrTimer);
                 }
             }
         });

@@ -4,6 +4,7 @@ import Model.QASA;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -17,6 +18,13 @@ public class RoomSAView extends JFrame {
     private JTextArea myTaHint;
     private JButton myBtnHints;
     private JButton myBtnSubmit;
+
+    private  JLabel myLbTimer;
+    private  Font myFont1;
+    Timer myTimer;
+    private int mySecond, myMinute;
+    private String myddSecond, myddMinute;
+    DecimalFormat mydFormat = new DecimalFormat("00");
 
     public boolean myCheckAns;
     private String myCate;
@@ -47,10 +55,6 @@ public class RoomSAView extends JFrame {
         myMainFrame.setLayout(null);
 
         myTaQuestion = new JTextArea();
-      /*  JScrollPane talkPane = new JScrollPane (myTaQuestion);
-        talkPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        talkPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);*/
-
         myTaQuestion.setBounds(17,33,400,90);
         myTaQuestion.setText(displayQuestion(theCate, theId));
         myTaQuestion.setLineWrap(true);
@@ -70,7 +74,16 @@ public class RoomSAView extends JFrame {
         myBtnSubmit.setBounds(230, 330, 80, 30);
         myBtnSubmit.setBackground(RED);
 
+        myFont1 = new Font("Arial", Font.PLAIN, 50);
+        myLbTimer = new JLabel();
+        myLbTimer.setBounds(350, 300, 80, 70);
+        myLbTimer.setText("00:60");
+        mySecond = 60;
+        myMinute = 0;
+        countingTimer();
+        myTimer.start();
 
+        myMainFrame.add(myLbTimer);
         myMainFrame.add(myTaQuestion);
         myMainFrame.add(myBtnHints);
         myMainFrame.add(myTfInputAns);
@@ -79,6 +92,7 @@ public class RoomSAView extends JFrame {
 
         myMainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent){
+                myTimer.stop();
                 myMainFrame.dispose();
                 //System.exit(0);
             }
@@ -113,7 +127,7 @@ public class RoomSAView extends JFrame {
                 myCorrAns = displayAnswer(myCate, myId);
                 if(temp.toUpperCase().equals(myCorrAns.toUpperCase())){
                     text = "It's correct. You're pass!";
-                    RoomMCView.index++;
+                    //RoomMCView.index++;
                     myCheckAns = true;
                 }
                 else{
@@ -121,6 +135,7 @@ public class RoomSAView extends JFrame {
                     myCheckAns = false;
                 }
                 JOptionPane.showMessageDialog(myBtnSubmit,text);
+                myTimer.stop();
                 myMainFrame.dispose();
             }
         });
@@ -142,6 +157,27 @@ public class RoomSAView extends JFrame {
     public String displayHints(String theCate, int theId) {
         String hint = ((QASA) myBank).getHintSA(theCate, theId);
         return hint;
+    }
+
+    private void countingTimer(){
+        myTimer = new Timer(1000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(myMinute ==0 && mySecond ==0) {
+                    myTimer.stop();
+
+                }
+                else{
+                    mySecond--;
+                    myddSecond = mydFormat.format(mySecond);
+                    myddMinute = mydFormat.format(myMinute);
+                    myLbTimer.setText(myddMinute + ":"+ myddSecond);
+
+                }
+            }
+        });
     }
 
 

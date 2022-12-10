@@ -43,8 +43,8 @@ public class MainMenuGUI {
      */
     private void prepareGUI() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         myMainFrame = new JFrame("Trivia Maze");
-        String myBgMusicFile = "kim-lightyear-angel-eyes-chiptune-edit-110226-_1_.wav";
-        AudioInputStream myBackgroundMusic = AudioSystem.getAudioInputStream(new File(myBgMusicFile));
+        //String myBgMusicFile = "soundBG.wav";
+        AudioInputStream myBackgroundMusic = AudioSystem.getAudioInputStream(new File("Assets/soundBG.wav"));
         Clip clip = AudioSystem.getClip();
         clip.open(myBackgroundMusic);
         clip.loop(Clip.LOOP_CONTINUOUSLY);

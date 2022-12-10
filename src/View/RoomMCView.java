@@ -2,8 +2,13 @@ package View;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import javax.sound.sampled.*;
 import javax.swing.*;
 
 import Model.QA;
@@ -22,15 +27,15 @@ public class RoomMCView extends JFrame {
     private JButton myBtnHelper50;
     private JButton myBtnSubmit;
 
-    private  JTextField tfTimer;
-    private  Font font1;
-    Timer timer ;
-    int second, minute;
-    String ddSecond, ddMinute;
-    DecimalFormat dFormat = new DecimalFormat("00");
+    private  JLabel myLbTimer;
+    private  Font myFont1;
+    Timer myTimer;
+    private int mySecond, myMinute;
+    private String myddSecond, myddMinute;
+    DecimalFormat mydFormat = new DecimalFormat("00");
 
-    public static int index;
-    public boolean checkAns;
+    //public static int index;
+    private boolean myCheckAns;
 
     private String myCate;
     private int myId;
@@ -46,9 +51,9 @@ public class RoomMCView extends JFrame {
         myCate = theCate;
         myId = theId;
         myBank = new QAMC(theCate, theId);
-        index = 0;
+        //index = 0;
         prepareGUI(theCate, theId);
-        checkAns = false;
+        myCheckAns = false;
 
     }
 
@@ -91,15 +96,16 @@ public class RoomMCView extends JFrame {
         myRadioBtC.setBounds(12, 220, 400, 80);
         myRadioBtD.setBounds(12, 270, 400, 80);
 
-        font1 = new Font("Arial", Font.PLAIN, 20);
-        tfTimer = new JTextField();
-        tfTimer.setBounds(360, 350, 80, 50);
-        //tfTimer.setText("    01:00");
-        CountdownTimer cntTimer = new CountdownTimer();
-        tfTimer.setText(cntTimer.getStrTimer());
-        //timer.start();
+        myFont1 = new Font("Arial", Font.PLAIN, 50);
+        myLbTimer = new JLabel();
+        myLbTimer.setBounds(360, 350, 80, 70);
+        myLbTimer.setText("00:60");
+        mySecond = 60;
+        myMinute = 0;
+        countingTimer();
+        myTimer.start();
 
-        myMainFrame.add(tfTimer);
+        myMainFrame.add(myLbTimer);
         myMainFrame.add(myTaQuestion);
         myMainFrame.add(myRadioBtA);
         myMainFrame.add(myRadioBtB);
@@ -116,6 +122,7 @@ public class RoomMCView extends JFrame {
 
         myMainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
+                myTimer.stop();
                 myMainFrame.dispose();
                 //System.exit(0);
             }
@@ -132,19 +139,6 @@ public class RoomMCView extends JFrame {
 
     public void showEventDemo() {
 
-
-/*
-        tfTimer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CountdownTimer cntTimer = new CountdownTimer();
-                cntTimer.countdownTimer();
-                tfTimer.setText(cntTimer.getStrTimer());
-                timer.start();
-
-            }
-        });
-*/
 
         myBtnHelper50.addActionListener(new ActionListener() {
             @Override
@@ -193,20 +187,61 @@ public class RoomMCView extends JFrame {
                 }
                 else if(userAns.equals(corrAns)){
                     JOptionPane.showMessageDialog(myBtnSubmit, "It's correct. You're pass!");
-                    checkAns = true;
-                    index++;
+                    myCheckAns = true;
+                    //index++;
                 }
                 else {
                     JOptionPane.showMessageDialog(myBtnSubmit, "It's not correct. Please, try other door!");
-                    checkAns = false;
-                    checkPlayable();
+                    myCheckAns = false;
                 }
                 //System.out.println("index: " + index);
+                myTimer.stop();
                 myMainFrame.dispose();
                 //System.exit(0);
             }
         });
 
+    }
+
+    private void countingTimer(){
+        myTimer = new Timer(1000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(myMinute ==0 && mySecond ==0) {
+                    myTimer.stop();
+
+                }
+                else{
+                    mySecond--;
+                    myddSecond = mydFormat.format(mySecond);
+                    myddMinute = mydFormat.format(myMinute);
+                    myLbTimer.setText(myddMinute + ":"+ myddSecond);
+
+                }
+            }
+        });
+    }
+
+    private void musicCounting() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+
+        AudioInputStream ais = AudioSystem.getAudioInputStream(new File("Common/winSound.mp3"));
+        final Clip clip = AudioSystem.getClip();
+        clip.open(ais);
+
+        JButton button = new JButton("Play Clip");
+        button.addActionListener( new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent ae)
+            {
+                clip.setFramePosition(0);
+                clip.start();
+            }
+        });
+
+        JOptionPane.showMessageDialog(null, button);
     }
 
     public String displayQuestion(String theCate, int theId) {
@@ -256,8 +291,9 @@ public class RoomMCView extends JFrame {
         return optList;
     }
 
-    public void checkPlayable(){
-
+    public boolean getMyCheckAns(){
+        return myCheckAns;
     }
+
 
 }

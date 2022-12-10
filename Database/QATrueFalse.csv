@@ -1,10 +1,13 @@
 IDQuest,Category,Question,ChoiceA,ChoiceB,CorrectAnswer
 1,TF,"System.in is the input stream connected to the console,",TRUE,FALSE,TRUE
 2,TF,String is primitive data type,TRUE,FALSE,FALSE
-3,TF,Is JRE (Java Runtime Environment) an implementation of JVM (Java Virtual Machine)?,TRUE,FALSE,TRUE
+3,TF,Real is Java primitive data type ,TRUE,FALSE,FALSE
 4,TF,Is 6/2 * 3 >= 7 ?,TRUE,FALSE,FALSE
 5,TF,Is (3*5 >= 12) && (3*4 < 12)?,TRUE,FALSE,FALSE
 6,TF,A static method can refer to any instance variable of the class.,TRUE,FALSE,FALSE
-7,TF,"Java does not allow a method with the same signature in a subclass, as a method in the superclass.",TRUE,FALSE,FALSE
+7,TF,Rate the following expression: 10.0 + 0.1 <11.0,TRUE,FALSE,TRUE
 8,TF,A method declaration must always contain the access level.,TRUE,FALSE,FALSE
-9,TF,The access level of an overridden method cannot be changed in a subclass.,TRUE,FALSE,FALSE
+9,TF,my Value is not a valid Java identifier ,TRUE,FALSE,TRUE 
+10,TF,nextInt is a Scanner method for inputting an integer value ,TRUE,FALSE ,TRUE
+11,TF,Java is case-sensitive language ,TRUE,FALSE,TRUE
+12,TF,\' is an escape character,TRUE,FALSE,TRUE

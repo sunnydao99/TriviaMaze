@@ -22,7 +22,7 @@ public class Room implements Serializable {
 
     public static int randomID() {
         Random rand = new Random();
-        int max = 9;
+        int max = 12;
         int min = 1;
         int id = rand.nextInt(max + 1 - min) + min;
         //myId = id;

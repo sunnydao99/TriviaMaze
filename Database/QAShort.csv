@@ -1,6 +1,6 @@
 IDQuest,Category,Question,CorrectAnswer,Hints
 1,SA,Which data type is used to create a variable that should store text?,String,Str
-2,SA,Data type of ,Complie Time,When a class have multiple methods by same name but different parameters
+2,SA,Which of this keyword must be used to inherit a class?,Extends,It is used for child class
 3,SA,How do you create a variable with the true value?,boolean,Using to compare values or variables
 4,SA,Another word for ‘looping’ is:,iteration,it
 5,SA,The result of the following expression: -32/6,5,5

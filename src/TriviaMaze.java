@@ -7,7 +7,6 @@ import java.io.IOException;
 public class TriviaMaze {
 
     public static void main(String[] args) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        setupGUI();
 	// An Testing
 
        /* QA bankQA = new QA("MC", 1);*/
@@ -69,9 +68,9 @@ public class TriviaMaze {
         bk.connection();*/
 
         //Test View
-//        RoomMCView rwMC = new RoomMCView("MC", 8);
-//        rwMC.showEventDemo();
-//        rwMC.roomShow();
+        /*RoomMCView rwMC = new RoomMCView("MC", 8);
+        rwMC.showEventDemo();
+        rwMC.roomShow();*/
 
         /*RoomTFView rwTF = new RoomTFView("TF", 3);
 
@@ -111,13 +110,14 @@ public class TriviaMaze {
 
 
         //Test for About, Help...
-        //setupGUI();
+        setupGUI();
 
 
     }
     public static void setupGUI() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         MainMenuGUI myMenuListener = new MainMenuGUI();
         myMenuListener.showActionListener();
+
 
     }
 }

@@ -3,8 +3,11 @@ import Model.QA;
 import Model.QATF;
 import Model.QATFExtra;
 
+import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Random;
 import javax.swing.*;
 
 import static java.awt.Color.BLUE;
@@ -19,6 +22,13 @@ public class RoomTFView extends JFrame {
     private JButton myBtnSwitch;
     private JButton myBtnSubmit;
 
+    private  JLabel myLbTimer;
+    private Font myFont1;
+    Timer myTimer;
+    private int mySecond, myMinute;
+    private String myddSecond, myddMinute;
+    DecimalFormat mydFormat = new DecimalFormat("00");
+
     public boolean myCheckAns;
     private String myCate;
     private int myId;
@@ -26,6 +36,7 @@ public class RoomTFView extends JFrame {
     private String myCorrAns;
     private ArrayList<String> myArrChoice;
     private QA myBank;
+    private boolean mySwitch;
 
     // Constructor to setup GUI components and event handlers
     public RoomTFView(String theCate, int theId) {
@@ -34,6 +45,7 @@ public class RoomTFView extends JFrame {
         myBank = new QATF(theCate, theId);
         prepareGUI(theCate, theId);
         myCheckAns = false;
+        mySwitch = false;
     }
     public RoomTFView(){
 
@@ -66,6 +78,16 @@ public class RoomTFView extends JFrame {
         myRadioBtA.setBounds(12, 120, 100, 80);
         myRadioBtB.setBounds(12, 170, 100, 80);
 
+        myFont1 = new Font("Arial", Font.PLAIN, 50);
+        myLbTimer = new JLabel();
+        myLbTimer.setBounds(370, 280, 80, 70);
+        myLbTimer.setText("00:60");
+        mySecond = 60;
+        myMinute = 0;
+        countingTimer();
+        myTimer.start();
+
+        myMainFrame.add(myLbTimer);
         myMainFrame.add(myTaQuestion);
         myMainFrame.add(myRadioBtA);
         myMainFrame.add(myRadioBtB);
@@ -75,9 +97,9 @@ public class RoomTFView extends JFrame {
         myGroupRadio.add(myRadioBtA);
         myGroupRadio.add(myRadioBtB);
 
-
         myMainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent){
+                myTimer.stop();
                 myMainFrame.dispose();
                 //System.exit(0);
             }
@@ -96,6 +118,18 @@ public class RoomTFView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(myBtnSwitch,"Your question is going to switch!");
+                Random rand = new Random();
+                int max = 12;
+                int min = 1;
+                int id = rand.nextInt(max + 1 - min) + min;
+                myId = id;
+                myCate = "TFE";
+                //System.out.println("id random: " + id);
+                myTaQuestion.setText(displayQuestionExtra(myCate, id));
+                myArrChoice = displayChoicesExtra(myCate, id);
+                myRadioBtA.setText(myArrChoice.get(0));
+                myRadioBtB.setText(myArrChoice.get(1));
+                mySwitch = true;
 
             }
         });
@@ -105,6 +139,10 @@ public class RoomTFView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String corrAns = displayAnswer(myCate, myId);
                 String userAns = "";
+
+                if(mySwitch == true){
+                    corrAns = displayAnswerExtra(myCate, myId);
+                }
 
                 for (int i = 0; i < 4; i++) {
                     if (myRadioBtA.isSelected()) {
@@ -121,16 +159,38 @@ public class RoomTFView extends JFrame {
                 }
                 else if(userAns.equals(corrAns)){
                     JOptionPane.showMessageDialog(myBtnSubmit, "It's correct. You're pass!");
-                    RoomMCView.index++;
+                    //RoomMCView.index++;
                     myCheckAns = true;
                 }
                 else {
                     JOptionPane.showMessageDialog(myBtnSubmit, "It's not correct. Please, try other door!");
                     myCheckAns = false;
                 }
+                myTimer.stop();
                 myMainFrame.dispose();
                 //System.exit(0);
 
+            }
+        });
+    }
+
+    private void countingTimer(){
+        myTimer = new Timer(1000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(myMinute ==0 && mySecond ==0) {
+                    myTimer.stop();
+
+                }
+                else{
+                    mySecond--;
+                    myddSecond = mydFormat.format(mySecond);
+                    myddMinute = mydFormat.format(myMinute);
+                    myLbTimer.setText(myddMinute + ":"+ myddSecond);
+
+                }
             }
         });
     }

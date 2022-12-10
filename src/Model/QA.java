@@ -30,7 +30,7 @@ public class QA extends Inventory implements Serializable{
         myFileCSV_QTFE = new File("Database/QATrueFalseExtra.csv");
         myCategory = "";
         myConn = null;
-        //connect();
+        connect();
     }
 
     public QA(String theCate, int theId){
@@ -59,7 +59,7 @@ public class QA extends Inventory implements Serializable{
         return myConn;
     }
 
-    public  void insertTableMC(){
+    public void insertTableMC(){
         String sql = "INSERT INTO tableMC(IDQuest,Category, Question, ChoiceA, ChoiceB, ChoiceC, ChoiceD, CorrectAnswer)" +
                 " VALUES(?, ?,?, ?, ?, ?, ? , ?)";
 

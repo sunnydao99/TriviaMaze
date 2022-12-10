@@ -106,7 +106,7 @@ public class MainMenuGUI {
         JButton instructButton = new JButton("Instructions");
 
         JPanel panel4 = new JPanel();
-        panel4.setBackground(Color.getHSBColor(240,100,74));
+        panel4.setBackground(Color.getHSBColor(240,100,79));
         JButton helpButton = new JButton("Help");
 
         JPanel panel5 = new JPanel();

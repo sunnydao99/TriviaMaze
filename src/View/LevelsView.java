@@ -284,7 +284,7 @@ public class LevelsView extends JFrame {
     private void actionWinner() {
 
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("/Common/winner.wav"));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("Assets/winner.wav"));
             final Clip clip = AudioSystem.getClip();
             clip.open(ais);
             clip.setFramePosition(0);

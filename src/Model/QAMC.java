@@ -33,8 +33,8 @@ public class QAMC extends QA implements Serializable {
         myCorrAnsMC = "";
         myConn = null;
         connect();
-
-
+        myId = 0;
+        myCategory = "";
     }
 
     private Connection connect() {

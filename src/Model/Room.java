@@ -17,7 +17,6 @@ public class Room implements Serializable {
         QA bankQA = new QA();
         bankQA.connection();
 
-
     }
 
     public static int randomID() {

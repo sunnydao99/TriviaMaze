@@ -28,7 +28,7 @@ public class QAMC extends QA implements Serializable {
         getOptionForRedChoice(theCate, theId);*/
     }
 
-    public void QAMC() {
+    public QAMC() {
         myQuesMC = "";
         myCorrAnsMC = "";
         myConn = null;

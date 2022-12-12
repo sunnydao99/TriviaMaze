@@ -16,9 +16,10 @@ public class QASA extends QA implements Serializable {
     public QASA(String theCate, int theId) {
         myCategory = theCate;
         myId = theId;
+        connect();
     }
 
-    public void QASA() {
+    public  QASA() {
         myQuesSA = "";
         myCorrAnsSA = "";
         myHint = "";

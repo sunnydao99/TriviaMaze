@@ -19,7 +19,7 @@ public class QATF extends QA implements Serializable {
 
     }
 
-    public void QATF() {
+    public QATF() {
         myQuesTF = "";
         myCorrAnsTF = "";
         myConn = null;

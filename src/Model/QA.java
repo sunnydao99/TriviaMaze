@@ -45,7 +45,7 @@ public class QA extends Inventory implements Serializable{
     }
 
     private Connection connect() {
-        // SQLite connection string
+        // SQLite connectionDB string
         String url = "jdbc:sqlite:Database_QA.db";
 
         try {

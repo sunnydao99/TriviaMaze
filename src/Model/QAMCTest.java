@@ -7,6 +7,12 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+/**
+ * @author: An Nguyen
+ * @version: 12/10/2022
+ *
+ */
+
 public class QAMCTest {
 
     private QAMC bankMC;

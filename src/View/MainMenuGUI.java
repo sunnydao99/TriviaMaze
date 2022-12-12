@@ -4,12 +4,13 @@
  */
 package View;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import javax.sound.sampled.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * This class displays the main menu that the user will interact with on a new Jframe window
@@ -20,7 +21,12 @@ public class MainMenuGUI {
     private JLabel myHeaderLabel;
     private JLabel myStatusLabel;
     private JPanel myControlPanel;
-
+    private JPanel myHeaderPanel;
+    private boolean soundOn = true;
+    private String myBgMusicFile = "Assets/soundBG.wav";
+    private AudioInputStream myBackgroundMusic = AudioSystem.getAudioInputStream(new File(myBgMusicFile));
+    private Clip clip = AudioSystem.getClip();
+    private long myMusicPauseTime = 0;
     static GraphicsDevice device = GraphicsEnvironment
             .getLocalGraphicsEnvironment().getScreenDevices()[0];
 
@@ -31,7 +37,9 @@ public class MainMenuGUI {
      * @throws LineUnavailableException to make sure data is in bounds
      */
     public MainMenuGUI() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
         prepareGUI();
+        playMusic();
     }
 
     /**
@@ -43,11 +51,7 @@ public class MainMenuGUI {
      */
     private void prepareGUI() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         myMainFrame = new JFrame("Trivia Maze");
-        //String myBgMusicFile = "soundBG.wav";
-        AudioInputStream myBackgroundMusic = AudioSystem.getAudioInputStream(new File("Assets/soundBG.wav"));
-        Clip clip = AudioSystem.getClip();
-        clip.open(myBackgroundMusic);
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+
 
         //ImageIcon gif = new ImageIcon("http://doc.gold.ac.uk/compartsblog/wp-content/uploads/2017/05/frames.gif");
 
@@ -58,8 +62,8 @@ public class MainMenuGUI {
         myMainFrame.setSize(700, 600);
         myMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //BufferedImage myPicture = ImageIO.read(new File("TriviaMaze.iml"));
-        //JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+//        Image myPicture = ImageIO.read(new File("maze.avif"));
+//        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 
 
         myHeaderLabel = new JLabel("",JLabel.CENTER );
@@ -72,14 +76,33 @@ public class MainMenuGUI {
                 System.exit(0);
             }
         });
+
+//        myHeaderPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+//        myHeaderPanel.setLayout(new BorderLayout());
+
+        //myHeaderPanel.add( );
+
         myControlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         myControlPanel.setLayout(new GridLayout(6,1));
         //myMainFrame.add(myGifFrame);
         myMainFrame.add(myHeaderLabel);
+        //myMainFrame.add(myHeaderPanel);
+        //myMainFrame.add(picLabel);
         myMainFrame.add(myControlPanel);
         myMainFrame.add(myStatusLabel);
         //myGifFrame.setVisible(true);
         myMainFrame.setVisible(true);
+    }
+    private void playMusic() throws IOException, LineUnavailableException {
+        if(soundOn) {
+            clip.open(myBackgroundMusic);
+            clip.setMicrosecondPosition(myMusicPauseTime);
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }else{
+            myMusicPauseTime = clip.getMicrosecondLength();
+            clip.stop();
+        }
     }
 
     /**
@@ -88,7 +111,9 @@ public class MainMenuGUI {
      * instantiates the correct classes based on user input
      */
     public void showActionListener(){
-        //myHeaderLabel.setText("Welcome to Trivia Maze!");
+        myHeaderLabel.setFont(new Font("Big Font", Font.BOLD, 30));
+        myHeaderLabel.setForeground(Color.RED);
+        myHeaderLabel.setText("Welcome to Trivia Maze!");
 
         JPanel panel1 = new JPanel();
         panel1.setBackground(Color.CYAN);
@@ -106,24 +131,19 @@ public class MainMenuGUI {
         JButton instructButton = new JButton("Instructions");
 
         JPanel panel4 = new JPanel();
-        panel4.setBackground(Color.getHSBColor(240,100,79));
+        panel4.setBackground(Color.getHSBColor(100,50,74));
         JButton helpButton = new JButton("Help");
 
         JPanel panel5 = new JPanel();
         panel5.setBackground(Color.getHSBColor(240,100,76));
         JButton aboutButton = new JButton("About");
 
-//        JPanel panel6 = new JPanel();
-//        panel6.setBackground(Color.getHSBColor(240,100,78));
-//        JButton exitButton = new JButton("Exit");
-        //panel6.setBackground(Color.getHSBColor(240,100,80));
+        JPanel panel6 = new JPanel();
+        panel6.setBackground(Color.getHSBColor(240,100,78));
+        JButton musicButton = new JButton("Music On/Off");
+        panel6.setBackground(Color.getHSBColor(240,100,80));
 
-//        mainMenuButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                PlayGameView myPG = new PlayGameView();
-//            }
-//        });
+
         panel1.add(mainMenuButton);
         mainMenuButton.addActionListener(e -> {
             {
@@ -151,21 +171,39 @@ public class MainMenuGUI {
             About myAbout = new About();
             myAbout.prepareGUI();
         });
-//        panel6.add(exitButton);
-//        aboutButton.add(new WindowAdapter() {
-//            @Override
-//            public void windowClosing() {
-//                windowClosing(null);
-//            }
-//
-//        });
-//
+        panel6.add(musicButton);
+        aboutButton.addActionListener(e -> {
+            //clip.stop();
+            if(soundOn){
+                soundOn = false;
+                try {
+                    playMusic();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (LineUnavailableException ex) {
+                    throw new RuntimeException(ex);
+                }
+//                myMusicPauseTime = clip.getMicrosecondLength();
+//                clip.stop();
+            }else{
+                soundOn = true;
+                try {
+                    playMusic();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (LineUnavailableException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+
+        });
+
         myControlPanel.add(panel1);
         myControlPanel.add(panel2);
         myControlPanel.add(panel3);
         myControlPanel.add(panel4);
         myControlPanel.add(panel5);
-        //myControlPanel.add(panel6);
+        myControlPanel.add(panel6);
         //myGifFrame.setVisible(true);
         myMainFrame.setVisible(true);
     }

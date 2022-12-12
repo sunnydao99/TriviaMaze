@@ -3,39 +3,40 @@ import org.sqlite.SQLiteDataSource;
 
 import java.sql.*;
 
+/**
+ * @author: An Nguyen
+ * @version: 10/27/2022
+ *
+ */
+
+/**
+ * This class displays create Database, connect Database, and create four empty tables.
+ * tableMC presents for Multiple Choice
+ * tableTF presents for True/False
+ * tableSA presents for Short Answer
+ * tableTFExtra presents for True/False Extra will be used switch question.
+ */
 public abstract class Inventory {
     private String myUrl;
     private Connection myConnIven;
     private String myFileName;
     private SQLiteDataSource ds = null;
 
-    //should be change public instance vars into private  vars and create getter() and setter() methods
-
+    /**
+     * Constructor: void
+     * Initialized @myUrl, @myConnIven, @myFileName
+     */
     public Inventory() {
         myUrl = "jdbc:sqlite:";
         myConnIven = null;
         myFileName = "jdbc:sqlite:Database_QA.db";
     }
 
-    public Inventory(String theFileName) {
-        try {
-            // create a connection to the database
-           /* myConnIven = DriverManager.getConnection(myUrl);
-            System.out.println("Connection to SQLite has been established.");*/
-
-            ds = new SQLiteDataSource();
-            ds.setUrl(myFileName);
-
-        }  catch ( Exception e ) {
-            e.printStackTrace();
-            System.exit(0);
-        }
-
-        System.out.println( "Opened database successfully" );
-    }
-
-
-    public void createDB() {
+    /**
+     * createDB(): void
+     * Create database
+     */
+    public final void createDB() {
         try {
             ds = new SQLiteDataSource();
             ds.setUrl(myFileName);
@@ -52,15 +53,16 @@ public abstract class Inventory {
         }
     }
 
-    public final void connection(){
+    /**
+     * connectionDB(): void
+     * Create connectionDB database
+     */
+    public final void connectionDB(){
         try {
-            // create a connection to the database
-            //myConnIven = DriverManager.getConnection(myFileName);
             ds = new SQLiteDataSource();
             ds.setUrl(myFileName);
             System.out.println("ds "+ ds);
             myConnIven = ds.getConnection();
-            System.out.println("from Inventoyry: " + myConnIven);
             System.out.println( "Connected database successfully" );
 
         } catch (SQLException e) {
@@ -68,6 +70,10 @@ public abstract class Inventory {
         }
     }
 
+    /**
+     * createTableMC(): void
+     * Create tableMC for Multiple Choice
+     */
     public final void createTableMC() {
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS tableMC (\n"
@@ -92,8 +98,11 @@ public abstract class Inventory {
         }
     }
 
+    /**
+     * createTableTF(): void
+     * Create tableTF for True/False
+     */
     public final void createTableTF() {
-        // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS tableTF (\n"
                 + " IDQuest text PRIMARY KEY,\n"
                 + " Category text NOT NULL,\n"
@@ -114,8 +123,11 @@ public abstract class Inventory {
 
     }
 
+    /**
+     * createTableSA(): void
+     * Create tableSA for Short Answer
+     */
     public final void createTableSA() {
-        // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS tableSA (\n"
                 + " IDQuest text PRIMARY KEY,\n"
                 + " Category text NOT NULL,\n"
@@ -134,8 +146,11 @@ public abstract class Inventory {
         }
     }
 
+    /**
+     * createTableTFExtra(): void
+     * Create tableTFExtra for True/False Extra
+     */
     public final void createTableTFExtra() {
-        // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS tableTFExtra (\n"
                 + " IDQuest text PRIMARY KEY,\n"
                 + " Category text NOT NULL,\n"

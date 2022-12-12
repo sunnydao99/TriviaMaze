@@ -96,6 +96,9 @@ public class RoomMCView extends JFrame {
         myRadioBtC.setBounds(12, 220, 400, 80);
         myRadioBtD.setBounds(12, 270, 400, 80);
 
+
+
+
         myFont1 = new Font("Arial", Font.PLAIN, 50);
         myLbTimer = new JLabel();
         myLbTimer.setBounds(360, 350, 80, 70);
@@ -105,6 +108,18 @@ public class RoomMCView extends JFrame {
         countingTimer();
         myTimer.start();
 
+        //Add image
+        JLabel background1 = new JLabel(new ImageIcon("Assets/treasureMazeBG.jpeg"));
+
+       /* ImageIcon background=new ImageIcon("Assets/treasureMazeBG.jpeg");
+        Image img=background.getImage();
+        Image temp=img.getScaledInstance(200,300,Image.SCALE_SMOOTH);
+        background=new ImageIcon(temp);*/
+
+
+        //myMainFrame.setIconImage(background.getImage());
+        myMainFrame.add(background1);
+
         myMainFrame.add(myLbTimer);
         myMainFrame.add(myTaQuestion);
         myMainFrame.add(myRadioBtA);
@@ -113,6 +128,8 @@ public class RoomMCView extends JFrame {
         myMainFrame.add(myRadioBtD);
         myMainFrame.add(myBtnHelper50);
         myMainFrame.add(myBtnSubmit);
+
+ 
 
 
         myGroupRadio.add(myRadioBtA);
@@ -166,6 +183,7 @@ public class RoomMCView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String corrAns = displayAnswer(myCate, myId);
                 String userAns = "";
+                String text = "";
 
                 for (int i = 0; i < 4; i++) {
                     if (myRadioBtA.isSelected()) {
@@ -186,13 +204,18 @@ public class RoomMCView extends JFrame {
                     JOptionPane.showMessageDialog(myBtnSubmit, "Please, select your answer!");
                 }
                 else if(userAns.equals(corrAns)){
-                    JOptionPane.showMessageDialog(myBtnSubmit, "It's correct. You're pass!");
                     myCheckAns = true;
+                    text = "It's correct. You're pass!";
+                    ImageIcon icon = new ImageIcon("Assets/correct.jpeg");
+                    JOptionPane.showMessageDialog(myBtnSubmit, text, "Check^^", JOptionPane.INFORMATION_MESSAGE, icon);
                     //index++;
                 }
                 else {
-                    JOptionPane.showMessageDialog(myBtnSubmit, "It's not correct. Please, try other door!");
                     myCheckAns = false;
+                    text = "It's not correct. Please, try other door!";
+                    ImageIcon icon = new ImageIcon("Assets/wrong.png");
+                    JOptionPane.showMessageDialog(myBtnSubmit, text, "Check^^",JOptionPane.INFORMATION_MESSAGE, icon);
+
                 }
                 //System.out.println("index: " + index);
                 myTimer.stop();
@@ -204,8 +227,8 @@ public class RoomMCView extends JFrame {
     }
 
     private void countingTimer(){
-        myTimer = new Timer(1000, new ActionListener() {
 
+        myTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -219,30 +242,13 @@ public class RoomMCView extends JFrame {
                     myddMinute = mydFormat.format(myMinute);
                     myLbTimer.setText(myddMinute + ":"+ myddSecond);
 
+
                 }
             }
         });
+
     }
 
-    private void musicCounting() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-
-        AudioInputStream ais = AudioSystem.getAudioInputStream(new File("Common/winSound.mp3"));
-        final Clip clip = AudioSystem.getClip();
-        clip.open(ais);
-
-        JButton button = new JButton("Play Clip");
-        button.addActionListener( new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent ae)
-            {
-                clip.setFramePosition(0);
-                clip.start();
-            }
-        });
-
-        JOptionPane.showMessageDialog(null, button);
-    }
 
     public String displayQuestion(String theCate, int theId) {
         String ques = myBank.getQuestion(theCate, theId);

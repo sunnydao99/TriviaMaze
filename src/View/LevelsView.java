@@ -2,6 +2,7 @@ package View;
 
 import Model.Room;
 
+import javax.imageio.ImageIO;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,11 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author: An Nguyen
+ * @version: 12/22/2022
+ *
+ */
 
 public class LevelsView extends JFrame {
 
@@ -49,10 +55,6 @@ public class LevelsView extends JFrame {
 
 
     public LevelsView() {
-        /*setTitle("Simple Maze");
-        setSize(640, 480);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 
         myViewMC = new RoomMCView();
         myViewSA = new RoomSAView();
@@ -84,7 +86,6 @@ public class LevelsView extends JFrame {
 
         //draw the maze
         int check = 0;
-
 
         for (int row = 0; row < MAZE.length; row++) {
             for (int col = 0; col < MAZE[0].length; col++) {
@@ -119,7 +120,6 @@ public class LevelsView extends JFrame {
                     g.setColor(Color.PINK);
                     g.fillOval(RECT_SIZE * col, RECT_SIZE * row, RECT_SIZE, RECT_SIZE);
                 }
-
 
             }
         }
@@ -260,7 +260,7 @@ public class LevelsView extends JFrame {
     private void actionGameOver() {
 
         try {
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("Assets/winner.wav"));
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("Assets/gameover.wav"));
             final Clip clip = AudioSystem.getClip();
             clip.open(ais);
             clip.setFramePosition(0);

@@ -11,7 +11,7 @@ public class TriviaMaze {
 
        /* QA bankQA = new QA("MC", 1);*/
         /*bankQA.createDB("Database_QA.db");*/
-      /*  bankQA.connection();*/
+      /*  bankQA.connectionDB();*/
        /* bankQA.createTableMC();
         bankQA.createTableTF();
         bankQA.createTableSA();*/
@@ -65,7 +65,7 @@ public class TriviaMaze {
 
 
        /* QA bk = new QA();
-        bk.connection();*/
+        bk.connectionDB();*/
 
         //Test View
         /*RoomMCView rwMC = new RoomMCView("MC", 8);
@@ -94,19 +94,10 @@ public class TriviaMaze {
             }
         });*/
 
-        //testing for counter timer
-        /*CountdownTimer cnttimer = new CountdownTimer();
-        cnttimer.countdownTimer();*/
-        //testing for QATFE
-       /* QA bankExtra = new QA();
-        bankExtra.connection();*/
-        //bankExtra.insertTableTFExtra();
-        //QATFExtra extra = new QATFExtra();
-       /* QATFExtra tfExtra = new QATFExtra("TFE", 3);
-        tfExtra.getQuestion("TFE", 3);
-        tfExtra.getAnswer("TFE", 3);
-        tfExtra.getChoices("TFE", 3);
-*/
+
+        /*RoomMCView testMC = new RoomMCView("MC",1);
+        testMC.roomShow();*/
+        //LevelsView lv = new LevelsView();
 
 
         //Test for About, Help...

@@ -139,6 +139,7 @@ public class RoomTFView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String corrAns = displayAnswer(myCate, myId);
                 String userAns = "";
+                String text = "";
 
                 if(mySwitch == true){
                     corrAns = displayAnswerExtra(myCate, myId);
@@ -158,12 +159,16 @@ public class RoomTFView extends JFrame {
                     JOptionPane.showMessageDialog(myBtnSubmit, "Please, select your answer!");
                 }
                 else if(userAns.equals(corrAns)){
-                    JOptionPane.showMessageDialog(myBtnSubmit, "It's correct. You're pass!");
+                    text = "It's correct. You're pass!";
+                    ImageIcon icon = new ImageIcon("Assets/correct.jpeg");
+                    JOptionPane.showMessageDialog(myBtnSubmit, text, "Check^^", JOptionPane.INFORMATION_MESSAGE, icon);
                     //RoomMCView.index++;
                     myCheckAns = true;
                 }
                 else {
-                    JOptionPane.showMessageDialog(myBtnSubmit, "It's not correct. Please, try other door!");
+                    text = "It's not correct. Please, try other door!";
+                    ImageIcon icon = new ImageIcon("Assets/wrong.png");
+                    JOptionPane.showMessageDialog(myBtnSubmit, text, "Check^^",JOptionPane.INFORMATION_MESSAGE, icon);
                     myCheckAns = false;
                 }
                 myTimer.stop();

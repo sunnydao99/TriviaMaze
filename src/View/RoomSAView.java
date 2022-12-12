@@ -127,14 +127,18 @@ public class RoomSAView extends JFrame {
                 myCorrAns = displayAnswer(myCate, myId);
                 if(temp.toUpperCase().equals(myCorrAns.toUpperCase())){
                     text = "It's correct. You're pass!";
-                    //RoomMCView.index++;
+                    ImageIcon icon = new ImageIcon("Assets/correct.jpeg");
+                    JOptionPane.showMessageDialog(myBtnSubmit, text, "Check^^", JOptionPane.INFORMATION_MESSAGE, icon);
+                    //index++;
                     myCheckAns = true;
                 }
                 else{
                     text = "It's not correct. Please, try other door!";
+                    ImageIcon icon = new ImageIcon("Assets/wrong.png");
+                    JOptionPane.showMessageDialog(myBtnSubmit, text, "Check^^",JOptionPane.INFORMATION_MESSAGE, icon);
                     myCheckAns = false;
                 }
-                JOptionPane.showMessageDialog(myBtnSubmit,text);
+
                 myTimer.stop();
                 myMainFrame.dispose();
             }

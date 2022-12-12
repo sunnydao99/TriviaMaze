@@ -2,7 +2,6 @@ package Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class Room implements Serializable {
@@ -15,7 +14,7 @@ public class Room implements Serializable {
         myIdList = new ArrayList<Integer>();
         myCategoryList = new ArrayList<String>();
         QA bankQA = new QA();
-        bankQA.connection();
+        bankQA.connectionDB();
 
     }
 

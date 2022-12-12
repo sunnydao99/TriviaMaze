@@ -366,7 +366,7 @@ public class QATFTest {
     }
 
     /**
-     * Test for getChoices("", 20): test for different, and
+     * Test for getChoices("SA", 20): test for different, and
      * ID is out of bound
      */
     @Test

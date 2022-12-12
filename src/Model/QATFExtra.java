@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * @author: An Nguyen
+ * @version: 12/11/2022
+ *
+ */
+
 public class QATFExtra extends QA implements Serializable {
     Connection myConn;
     private String myQuesTFE;
@@ -28,7 +34,7 @@ public class QATFExtra extends QA implements Serializable {
 
 
     private Connection connect() {
-        // SQLite connection string
+        // SQLite connectionDB string
         String url = "jdbc:sqlite:Database_QA.db";
 
         try {

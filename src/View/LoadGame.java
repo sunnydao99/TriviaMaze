@@ -9,7 +9,7 @@ public class LoadGame implements Serializable {
     private JFrame myLoadFrame;
     private JPanel myButtonHolder;
     int[][] mySavedMaze;
-    int mySavedX, mySavedY, mySavedDifficulty;
+    int mySavedX, mySavedY, mySavedLevel;
     private String fileName = "StoredData.mze";
     public LoadGame(){
         prepareGUI();
@@ -36,9 +36,9 @@ public class LoadGame implements Serializable {
                 mySavedMaze = (int[][])in.readObject();
                 mySavedX = (int)in.readObject();
                 mySavedY = (int)in.readObject();
-                mySavedDifficulty = (int)in.readObject();
+                //mySavedLevel = (int)in.readObject();
 
-                GameView mySavedGame = new GameView(mySavedDifficulty,mySavedMaze,mySavedX,mySavedY);
+                GameView mySavedGame = new GameView(mySavedMaze,mySavedX,mySavedY);
 
             } catch (FileNotFoundException ex) {
                 throw new RuntimeException(ex);

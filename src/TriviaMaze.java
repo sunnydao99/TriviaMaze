@@ -103,6 +103,10 @@ public class TriviaMaze {
         //Test for About, Help...
         setupGUI();
 
+        //GameView game = new GameView(1);
+
+        //LevelsView level = new LevelsView();
+
 
     }
     public static void setupGUI() throws IOException, UnsupportedAudioFileException, LineUnavailableException {

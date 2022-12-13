@@ -9,8 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * @author: An Nguyen
@@ -74,6 +73,7 @@ public class LevelsView extends JFrame {
         this.setSize(640, 480);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         this.setVisible(true);
 
 

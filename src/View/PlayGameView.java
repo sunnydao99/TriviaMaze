@@ -19,11 +19,6 @@ public class PlayGameView {
     private String myCate;
     private int myId;
 
-//    public PlayGameView(){
-//
-//        prepareGUI();
-//        showEventDemo();
-//    }
 
     void prepareGUI(){
         myMainFrame = new JFrame("Levels");

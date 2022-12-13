@@ -25,22 +25,29 @@ public class PlayGameView {
         myMainFrame.setSize(500,400);
         //myMainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         myMainFrame.setLayout(null);
-
+        JLabel lbPanel = new JLabel("Please, select a level!");
+        lbPanel.setFont(new Font("Big Font", Font.CENTER_BASELINE, 20));
+        lbPanel.setForeground(Color.BLUE);
+        lbPanel.setBounds(130, 20, 250, 80);
         myPanelRoom = new Panel(new GridBagLayout());
+
         myBtnLevelEasy = new JButton("Beginner");
         myBtnLevelEasy.setBounds(190, 120, 130,40);
         myBtnLevelMedium = new JButton("Intermediate");
         myBtnLevelMedium.setBounds(235, 120, 130,40);
         myBtnLevelHard = new JButton("Expert");
         myBtnLevelHard.setBounds(280, 120, 130,40);
+
+
         myPanelRoom.add(myBtnLevelEasy);
         myPanelRoom.add(myBtnLevelMedium);
         myPanelRoom.add(myBtnLevelHard);
 
-        myPanelRoom.setBounds(40,80, 400,130);
+        myPanelRoom.setBounds(40,80, 400,100);
         myPanelRoom.setBackground(Color.PINK);
 
         myMainFrame.add(myPanelRoom);
+        myMainFrame.add(lbPanel);
 
         myMainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent){

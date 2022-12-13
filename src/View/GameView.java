@@ -50,7 +50,10 @@ public class GameView extends JFrame implements Serializable {
             myMaze[7][11] = 4;
             myMaze[8][8] = 4;
             myMaze[2][4] = 1;
-        }if(x == 2){
+
+            this.setTitle("Welcome to Trivia Maze for Expert");
+        }
+        if(x == 2){
             myGameLevel = x;
             myMaze[5][1] = 4;
             myMaze[5][3] = 4;
@@ -58,6 +61,11 @@ public class GameView extends JFrame implements Serializable {
             //myMaze[7][11] = 4;
             myMaze[8][8] = 4;
             myMaze[2][4] = 1;
+
+            this.setTitle("Welcome to Trivia Maze for Medium");
+        }
+        if(x == 1){
+            this.setTitle("Welcome to Trivia Maze for Beginner");
         }
 
         prepareGUI();
@@ -117,7 +125,7 @@ public class GameView extends JFrame implements Serializable {
     }
 
     private void prepareGUI() {
-        this.setTitle("Welcome to Trivia Maze");
+
         this.setSize(900, 800);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  * @author: An Nguyen
@@ -29,7 +30,7 @@ public class LevelsView extends JFrame {
     private final int E_DEST = 6;
 
 
-    private  int[][] MAZE =
+    private  int[][] maze =
             {       {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                     {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
                     {1, 0, 1, 0, 0, 0, 0, 4, 1, 1, 1, 0, 1},
@@ -51,10 +52,14 @@ public class LevelsView extends JFrame {
     private RoomTFView myViewTF;
     private String myCate;
     private int myId;
-
+    private String fileName = "Assets/StoredData.txt";
+    private ArrayList<String> myQues;
+    private String myAns;
+    private ArrayList<String>  myCorrectAns;
 
     public LevelsView() {
-
+        myQues = new ArrayList<String>();
+        myCorrectAns = new ArrayList<String>();
         myViewMC = new RoomMCView();
         myViewSA = new RoomSAView();
         myViewTF = new RoomTFView();
@@ -76,6 +81,44 @@ public class LevelsView extends JFrame {
 
         this.setVisible(true);
 
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(LevelsView.super.getOwner(),
+                        "Would you like to save your game?", "Save Game?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                    try {
+                        FileOutputStream file = new FileOutputStream(fileName);
+                        ObjectOutputStream out = new ObjectOutputStream(file);
+
+                        out.writeObject(maze);
+                        out.writeObject(myCurrentX);
+                        out.writeObject(myCurrentY);
+
+                        String st = printQues();
+                        char ch[] = st.toCharArray();
+                        for (int i = 0; i < st.length(); i++) {
+
+                            // we will write the string by writing each
+                            // character one by one to file
+                            out.writeObject(ch[i]);
+                        }
+
+                        //out.writeObject(myGameLevel);
+
+                        out.close();
+                        file.close();
+                    } catch (FileNotFoundException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            }
+        });
+
     }
 
     public void paint(Graphics g) {
@@ -86,10 +129,10 @@ public class LevelsView extends JFrame {
         //draw the maze
         int check = 0;
 
-        for (int row = 0; row < MAZE.length; row++) {
-            for (int col = 0; col < MAZE[0].length; col++) {
+        for (int row = 0; row < maze.length; row++) {
+            for (int col = 0; col < maze[0].length; col++) {
                 Color color;
-                switch (MAZE[row][col]) {
+                switch (maze[row][col]) {
                     case E_WALL:
                         color = Color.GRAY;
                         break;
@@ -130,7 +173,7 @@ public class LevelsView extends JFrame {
 
         for (int row = 0; row < theMaze.length; row++) {
             for (int col = 0; col < theMaze[0].length; col++) {
-                MAZE[row][col] = theMaze[row][col];
+                maze[row][col] = theMaze[row][col];
             }
         }
 
@@ -147,36 +190,36 @@ public class LevelsView extends JFrame {
 
         if (myCate.equals("MC")) {
             if (myViewMC.getMyCheckAns() == false) {
-                MAZE[myCurrentY][myCurrentX] = E_FAIL;
+                maze[myCurrentY][myCurrentX] = E_FAIL;
                 myCurrentX = myPreX;
                 myCurrentY = myPreY;
             }
             else {
-                MAZE[myCurrentY][myCurrentX] = E_PASS;
+                maze[myCurrentY][myCurrentX] = E_PASS;
             }
 
             reDraw = true;
             myCate = "";
         } else if (myCate.equals("TF")) {
             if (myViewTF.myCheckAns == false) {
-                MAZE[myCurrentY][myCurrentX] = E_FAIL;
+                maze[myCurrentY][myCurrentX] = E_FAIL;
                 myCurrentX = myPreX;
                 myCurrentY = myPreY;
             }
             else {
-                MAZE[myCurrentY][myCurrentX] = E_PASS;
+                maze[myCurrentY][myCurrentX] = E_PASS;
             }
 
             reDraw = true;
             myCate = "";
         } else if (myCate.equals("SA")) {
             if (myViewSA.myCheckAns == false) {
-                MAZE[myCurrentY][myCurrentX] = E_FAIL;
+                maze[myCurrentY][myCurrentX] = E_FAIL;
                 myCurrentX = myPreX;
                 myCurrentY = myPreY;
             }
             else {
-                MAZE[myCurrentY][myCurrentX] = E_PASS;
+                maze[myCurrentY][myCurrentX] = E_PASS;
             }
 
             reDraw = true;
@@ -185,7 +228,7 @@ public class LevelsView extends JFrame {
 
         if (ke.getKeyCode() == KeyEvent.VK_UP) {
             if (myCurrentY > 0) {
-                if(canGo(MAZE[myCurrentY - 1][myCurrentX])) {
+                if(canGo(maze[myCurrentY - 1][myCurrentX])) {
                     myPreX = myCurrentX;
                     myPreY = myCurrentY;
                     myCurrentY -= 1;
@@ -193,8 +236,8 @@ public class LevelsView extends JFrame {
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_DOWN) {
-            if (myCurrentY < MAZE.length - 1) {
-                if(canGo(MAZE[myCurrentY + 1][myCurrentX])) {
+            if (myCurrentY < maze.length - 1) {
+                if(canGo(maze[myCurrentY + 1][myCurrentX])) {
                     myPreX = myCurrentX;
                     myPreY = myCurrentY;
                     myCurrentY += 1;
@@ -203,7 +246,7 @@ public class LevelsView extends JFrame {
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_LEFT) {
             if (myCurrentX > 0) {
-                if(canGo(MAZE[myCurrentY][myCurrentX - 1])) {
+                if(canGo(maze[myCurrentY][myCurrentX - 1])) {
                     myPreX = myCurrentX;
                     myPreY = myCurrentY;
                     myCurrentX -= 1;
@@ -211,8 +254,8 @@ public class LevelsView extends JFrame {
                 }
             }
         } else if (ke.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (myCurrentX < MAZE[0].length - 1) {
-                if(canGo(MAZE[myCurrentY][myCurrentX + 1])) {
+            if (myCurrentX < maze[0].length - 1) {
+                if(canGo(maze[myCurrentY][myCurrentX + 1])) {
                     myPreX = myCurrentX;
                     myPreY = myCurrentY;
                     myCurrentX += 1;
@@ -227,11 +270,11 @@ public class LevelsView extends JFrame {
                 actionGameOver();
             }
 
-            if(MAZE[myCurrentY][myCurrentX] == E_DOOR) {
+            if(maze[myCurrentY][myCurrentX] == E_DOOR) {
                 displayQuestion();
 
             }
-            else if(MAZE[myCurrentY][myCurrentX] == E_DEST){
+            else if(maze[myCurrentY][myCurrentX] == E_DEST){
                 actionWinner();
             }
 
@@ -242,17 +285,27 @@ public class LevelsView extends JFrame {
         Room.randomIDCategory();
         myId = Room.getLastID();
         myCate = Room.getLastCategory();
-
+        String tempQues = "";
+        String tempCorrect = "";
         if (myCate.equals("MC")) {
             myViewMC = new RoomMCView(myCate, myId);
             myViewMC.roomShow();
+            tempQues = myViewMC.displayQuestion(myCate, myId);
+            tempCorrect = myViewMC.displayAnswer(myCate, myId);
+
         } else if (myCate.equals("TF")) {
             myViewTF = new RoomTFView(myCate, myId);
             myViewTF.roomShow();
+            tempQues = myViewTF.displayQuestion(myCate, myId);
+            tempCorrect = myViewTF.displayAnswer(myCate, myId);
         } else {
             myViewSA = new RoomSAView(myCate, myId);
             myViewSA.roomShow();
+            tempQues = myViewSA.displayQuestion(myCate, myId);
+            tempCorrect = myViewSA.displayAnswer(myCate, myId);
         }
+        myQues.add(tempQues);
+        myCorrectAns.add(tempCorrect);
     }
 
 
@@ -265,7 +318,9 @@ public class LevelsView extends JFrame {
             clip.setFramePosition(0);
             clip.start();
 
-            JOptionPane.showMessageDialog(null, "Game Over!");
+            String text = "Game Over!";
+            ImageIcon icon = new ImageIcon("Assets/gameover.png");
+            JOptionPane.showMessageDialog(null, text, "Check^^", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         catch (LineUnavailableException ln){
             System.out.println(ln);
@@ -289,7 +344,9 @@ public class LevelsView extends JFrame {
             clip.setFramePosition(0);
             clip.start();
 
-            JOptionPane.showMessageDialog(null, "Congratulations! You're win");
+            String text = "Congratulations! You're win";
+            ImageIcon icon = new ImageIcon("Assets/championEdit1.jpeg");
+            JOptionPane.showMessageDialog(null, text, "Check^^", JOptionPane.INFORMATION_MESSAGE, icon);
         }
         catch (LineUnavailableException ln){
             System.out.println(ln);
@@ -314,15 +371,15 @@ public class LevelsView extends JFrame {
     public boolean searchPath() {
         int nDir, row, col;
         boolean done = false;
-        int[][] temp = new int[MAZE.length][MAZE[0].length];
-        for (row = 0; row < MAZE.length; row++) {
-            for (col = 0; col < MAZE[0].length; col++) {
-                temp[row][col] = MAZE[row][col];
+        int[][] temp = new int[maze.length][maze[0].length];
+        for (row = 0; row < maze.length; row++) {
+            for (col = 0; col < maze[0].length; col++) {
+                temp[row][col] = maze[row][col];
             }
         }
 
-       /* System.out.println("MAZE: ");
-        print(MAZE);*/
+       /* System.out.println("maze: ");
+        print(maze);*/
 
         while(!done) {
             done = true;
@@ -389,4 +446,35 @@ public class LevelsView extends JFrame {
             System.out.println();
         }
     }
+
+    public String printQues() {
+        String temp = "";
+        for (int i = 0; i < myQues.size(); i++) {
+
+            if (i == (myQues.size() - 1)) {
+                System.out.print(temp + myQues.get(myQues.size() - 1));
+            } else {
+                System.out.print(temp + myQues.get(i) + ", ");
+            }
+        }
+        temp = "";
+        System.out.println(temp);
+        return temp;
+    }
+
+    public String printCorrect() {
+        String temp = "";
+        for (int i = 0; i < myCorrectAns.size(); i++) {
+
+            if (i == (myCorrectAns.size() - 1)) {
+                System.out.print(temp + myCorrectAns.get(myCorrectAns.size() - 1));
+            } else {
+                System.out.print(temp + myCorrectAns.get(i) + ", ");
+            }
+        }
+        temp = "";
+        System.out.println(temp);
+        return temp;
+    }
+
 }

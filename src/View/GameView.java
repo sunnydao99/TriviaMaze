@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.*;
+import java.util.ArrayList;
 
 
 public class GameView extends JFrame implements Serializable {
@@ -28,12 +29,19 @@ public class GameView extends JFrame implements Serializable {
     private RoomTFView myViewTF;
     private String myCate = "";
     private int myId, myGameLevel;
+    private ArrayList<String> myQues;
+    private String myAns;
+    private ArrayList<String>  myCorrectAns;
+
     int[][] myMaze = Model.Maze.getMAZE();
     private int myRectSize = Maze.myRectSize();
     private String fileName = "Assets/StoredData.txt";//mze
     private static final long serialVersionUID = 1234567890L;
 
     public GameView(int x) throws FileNotFoundException {
+        myQues = new ArrayList<String>();
+        myCorrectAns = new ArrayList<String>();
+
         if(x == 3){
             myGameLevel = x;
             myMaze[5][1] = 4;
@@ -71,6 +79,16 @@ public class GameView extends JFrame implements Serializable {
                         out.writeObject(myMaze);
                         out.writeObject(myCurrentX);
                         out.writeObject(myCurrentY);
+
+                        String st = printQues();
+                        char ch[] = st.toCharArray();
+                        for (int i = 0; i < st.length(); i++) {
+
+                            // we will write the string by writing each
+                            // character one by one to file
+                            out.writeObject(ch[i]);
+                        }
+
                         //out.writeObject(myGameLevel);
 
                         out.close();
@@ -80,9 +98,11 @@ public class GameView extends JFrame implements Serializable {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+
                 }
             }
         });
+
 
     }
 
@@ -259,17 +279,27 @@ public class GameView extends JFrame implements Serializable {
         Room.randomIDCategory();
         myId = Room.getLastID();
         myCate = Room.getLastCategory();
-
+        String tempQues = "";
+        String tempCorrect = "";
         if (myCate.equals("MC")) {
             myViewMC = new RoomMCView(myCate, myId);
             myViewMC.roomShow();
+            tempQues = myViewMC.displayQuestion(myCate, myId);
+            tempCorrect = myViewMC.displayAnswer(myCate, myId);
+
         } else if (myCate.equals("TF")) {
             myViewTF = new RoomTFView(myCate, myId);
             myViewTF.roomShow();
+            tempQues = myViewTF.displayQuestion(myCate, myId);
+            tempCorrect = myViewTF.displayAnswer(myCate, myId);
         } else {
             myViewSA = new RoomSAView(myCate, myId);
             myViewSA.roomShow();
+            tempQues = myViewSA.displayQuestion(myCate, myId);
+            tempCorrect = myViewSA.displayAnswer(myCate, myId);
         }
+        myQues.add(tempQues);
+        myCorrectAns.add(tempCorrect);
     }
 
     private void actionGameOver() {
@@ -407,6 +437,36 @@ public class GameView extends JFrame implements Serializable {
             }
             System.out.println();
         }
+    }
+
+    public String printQues() {
+        String temp = "";
+        for (int i = 0; i < myQues.size(); i++) {
+
+            if (i == (myQues.size() - 1)) {
+                System.out.print(temp + myQues.get(myQues.size() - 1));
+            } else {
+                System.out.print(temp + myQues.get(i) + ", ");
+            }
+        }
+        temp = "";
+        System.out.println(temp);
+        return temp;
+    }
+
+    public String printCorrect() {
+        String temp = "";
+        for (int i = 0; i < myCorrectAns.size(); i++) {
+
+            if (i == (myCorrectAns.size() - 1)) {
+                System.out.print(temp + myCorrectAns.get(myCorrectAns.size() - 1));
+            } else {
+                System.out.print(temp + myCorrectAns.get(i) + ", ");
+            }
+        }
+        temp = "";
+        System.out.println(temp);
+        return temp;
     }
     
 }

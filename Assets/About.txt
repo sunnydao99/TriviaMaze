@@ -1,0 +1,2 @@
+This program was developed by An Nguyen, Satinder Singh, Xuan Dao(Sunny) for TCSS 360 Software Development And Quality Assurance Techniques
+Professor Tom Capaul, University of Washington Tacoma

@@ -17,12 +17,8 @@ import java.io.IOException;
  */
 public class MainMenuGUI {
     private JFrame myMainFrame;
-    //private JFrame myGifFrame;
     private JLabel myHeaderLabel;
-    private JLabel myStatusLabel;
-    private JLabel myLabelGif;
     private Panel myControlPanel;
-    private JPanel myHeaderPanel;
     private boolean soundOn = true;
     private String myBgMusicFile = "Assets/soundBG.wav";
     private Clip clip;
@@ -77,34 +73,17 @@ public class MainMenuGUI {
             myHeaderLabel.setForeground(Color.RED);
             myHeaderLabel.setText("Welcome to Trivia Maze!");
 
-            /*myStatusLabel = new JLabel("", JLabel.CENTER);
-            myStatusLabel.setSize(350, 400);*/
-
             myMainFrame.addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent windowEvent) {
                     System.exit(0);
                 }
             });
 
-//        myHeaderPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-//        myHeaderPanel.setLayout(new BorderLayout());
-
-            //myHeaderPanel.add( );
-
             myControlPanel = new Panel(new GridBagLayout());
             myControlPanel.setBounds(100, 80, 900, 400);
-            //myControlPanel.setLayout(new GridLayout(6, 1));
-
-
 
             myMainFrame.add(myHeaderLabel);
-            //myMainFrame.add(myHeaderPanel);
-            //myMainFrame.add(picLabel);
             myMainFrame.add(myControlPanel);
-            //myMainFrame.add(myLabelGif);
-            //myMainFrame.add(myStatusLabel);
-            //myGifFrame.setVisible(true);
-
 
             myMainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             myMainFrame.setVisible(true);
@@ -140,8 +119,6 @@ public class MainMenuGUI {
 
         JPanel panel1 = new JPanel();
         panel1.setBackground(Color.CYAN);
-        //panel1.setSize(500,150);
-        //panel1.setLayout(myBL);
         JButton mainMenuButton = new JButton("Play Game");
 
         JPanel panel2 = new JPanel();
@@ -149,7 +126,6 @@ public class MainMenuGUI {
         JButton loadButton = new JButton("Load Game");
 
         JPanel panel3 = new JPanel();
-        //panel3.setPreferredSize(new Dimension(200,100));
         panel3.setBackground(Color.getHSBColor(240,100,72));
         JButton instructButton = new JButton("Instructions");
 
@@ -215,7 +191,7 @@ public class MainMenuGUI {
         myControlPanel.add(panel4);
         myControlPanel.add(panel5);
         myControlPanel.add(panel6);
-        //myGifFrame.setVisible(true);
+
         myMainFrame.setVisible(true);
     }
 }

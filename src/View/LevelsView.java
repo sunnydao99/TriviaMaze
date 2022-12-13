@@ -76,7 +76,6 @@ public class LevelsView extends JFrame {
 
         this.setVisible(true);
 
-
     }
 
     public void paint(Graphics g) {

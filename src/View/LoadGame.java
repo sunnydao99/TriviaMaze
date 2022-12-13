@@ -7,27 +7,35 @@ import java.io.*;
 public class LoadGame implements Serializable {
     private static final long serialVersionUID = 1234567890L;
     private JFrame myLoadFrame;
-    private JPanel myButtonHolder;
+    private JPanel myPannelHolder;
     int[][] mySavedMaze;
     int mySavedX, mySavedY, mySavedLevel;
-    private String fileName = "StoredData.mze";
+    private String fileName = "StoredData.txt";
     public LoadGame(){
+
         prepareGUI();
     }
     private void prepareGUI() {
         myLoadFrame = new JFrame("Click the saved game button to load game");
         myLoadFrame.setSize(400, 300);
-        myLoadFrame.setLayout(new BorderLayout());
-        //myLoadFrame.setBackground(Color.getHSBColor(240,100,70));
+        myLoadFrame.setLayout(null);
+        //myLoadFrame.setLayout(new BorderLayout());
         myLoadFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         myLoadFrame.setVisible(true);
 
-        myButtonHolder = new JPanel(new GridLayout());
-        myButtonHolder.setBackground(Color.red);
-        JButton mySavedGameButton = new JButton("Saved Game");
+        myPannelHolder = new JPanel();
+        myPannelHolder.setBackground(Color.RED);
+        myPannelHolder.setToolTipText("Please, click the saved game button to load game");
+        //myPannelHolder.setBounds(100, 60, 200, 100);
+        myPannelHolder.setBounds( 120, 100, 130, 40);
 
-        myButtonHolder.add(mySavedGameButton);
-        myLoadFrame.add(myButtonHolder);
+        JButton mySavedGameButton = new JButton("Saved Game");
+        mySavedGameButton.setBounds(120, 120, 90, 30);
+        mySavedGameButton.setBackground(Color.yellow);
+
+
+        myPannelHolder.add(mySavedGameButton);
+        myLoadFrame.add(myPannelHolder);
         mySavedGameButton.addActionListener(e -> {
             try{
                 FileInputStream file = new FileInputStream(fileName);

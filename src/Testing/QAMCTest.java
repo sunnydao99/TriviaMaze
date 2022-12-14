@@ -1,7 +1,8 @@
-package Model;
+package Testing;
 
 import static org.junit.Assert.*;
 
+import Model.QAMC;
 import org.junit.Before;
 import org.junit.Test;
 

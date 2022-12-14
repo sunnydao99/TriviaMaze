@@ -4,6 +4,15 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Random;
+/**
+ * @author: An Nguyen
+ * @version: 10/30/2022
+ *
+ */
+
+/**
+ * QATF class gets questions, get correct answers, get choices for True/False question.
+ */
 
 public class QATF extends QA implements Serializable {
     Connection myConn;
@@ -28,7 +37,6 @@ public class QATF extends QA implements Serializable {
     }
 
     private Connection connect() {
-        // SQLite connectionDB string
         String url = "jdbc:sqlite:Database_QA.db";
 
         try {
@@ -38,8 +46,6 @@ public class QATF extends QA implements Serializable {
         }
         return myConn;
     }
-
-    //get question from tableTF
 
     @Override
     public String  getQuestion(String theCategory, int theId) {
@@ -62,9 +68,8 @@ public class QATF extends QA implements Serializable {
                 question = rs.getString("Question");
             }
             myQuesTF = question;
-
-            //System.out.println("from QATF: " + question + "- " + theId);
             return question;
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -89,7 +94,6 @@ public class QATF extends QA implements Serializable {
 
             }
             myCorrAnsTF = corrAns;
-            //System.out.println("from QATF: " + corrAns);
             return corrAns;
 
         } catch (SQLException e) {
@@ -121,7 +125,6 @@ public class QATF extends QA implements Serializable {
 
             }
             myArrChoiceTF.addAll(choices);
-            //System.out.println("from QATF: choices created");
 
             return choices;
         } catch (SQLException e) {

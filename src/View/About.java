@@ -24,8 +24,6 @@ public class About {
      */
     void prepareGUI(){
         myAboutFrame = new JFrame("About Page");
-        //myAboutFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //myAboutFrame.setUndecorated(true);
         myAboutFrame.setSize(800,700);
         myAboutFrame.setLayout(new BorderLayout());
         myAboutFrame.setBackground(Color.getHSBColor(240,100,76));

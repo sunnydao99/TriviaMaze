@@ -5,7 +5,15 @@ import java.lang.reflect.Array;
 import java.sql.*;
 
 import java.util.*;
+/**
+ * @author: An Nguyen
+ * @version: 10/27/2022
+ *
+ */
 
+/**
+ * This class reads data from CSV file and insert data into all tables
+ */
 public class QA extends Inventory implements Serializable{
 
     private File myFileCSV_QMC;
@@ -44,13 +52,16 @@ public class QA extends Inventory implements Serializable{
 
     }
 
+    /**
+     * connect(): connect Database
+     * @return: Connection
+     */
     private Connection connect() {
         // SQLite connectionDB string
         String url = "jdbc:sqlite:Database_QA.db";
 
         try {
             myConn = DriverManager.getConnection(url);
-            //myConn = ds.getConnection();
             System.out.println("myConn: " + myConn);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -59,6 +70,10 @@ public class QA extends Inventory implements Serializable{
         return myConn;
     }
 
+    /**
+     * insertTableMC(): void
+     * This method inserts data into tableMC
+     */
     public void insertTableMC(){
         String sql = "INSERT INTO tableMC(IDQuest,Category, Question, ChoiceA, ChoiceB, ChoiceC, ChoiceD, CorrectAnswer)" +
                 " VALUES(?, ?,?, ?, ?, ?, ? , ?)";
@@ -115,6 +130,10 @@ public class QA extends Inventory implements Serializable{
         }
     }
 
+    /**
+     * insertTableTF(): void
+     * This method inserts data into tableTF
+     */
     @Override
     public void insertTableTF() {
         String sql = "INSERT INTO tableTF(IDQuest,Category,Question,ChoiceA,ChoiceB,CorrectAnswer) " +
@@ -135,7 +154,7 @@ public class QA extends Inventory implements Serializable{
             String correctAnswer = "";
 
             myScanTF.nextLine();
-            while (myScanTF.hasNext())  //returns a boolean value
+            while (myScanTF.hasNext())
             {
                 line = myScanTF.nextLine();
                 String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
@@ -165,6 +184,9 @@ public class QA extends Inventory implements Serializable{
         }
     }
 
+    /**
+     * insertTableSA(): This method inserts data into tableSA
+     */
     @Override
     public void insertTableSA() {
         String sql = "INSERT INTO tableSA(IDQuest,Category, Question, CorrectAnswer, Hints ) VALUES(?, ?,?, ?, ?)";
@@ -184,7 +206,7 @@ public class QA extends Inventory implements Serializable{
             String hints = "";
 
             myScanQS.nextLine();
-            while (myScanQS.hasNext())  //returns a boolean value
+            while (myScanQS.hasNext())
             {
                 line = myScanQS.nextLine();
                 String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
@@ -213,6 +235,10 @@ public class QA extends Inventory implements Serializable{
         }
     }
 
+    /**
+     * insertTableTFExtra(): void
+     * This method inserts data into tableTFExtra
+     */
     public void insertTableTFExtra() {
         String sql = "INSERT INTO tableTFExtra(IDQuest,Category,Question,ChoiceA,ChoiceB,CorrectAnswer) " +
                 "VALUES(?, ?,?, ?, ?, ?)";
@@ -222,7 +248,6 @@ public class QA extends Inventory implements Serializable{
             myScanTFE.useDelimiter(",\n");   //sets the delimiter pattern
 
             String line =  "";
-
             PreparedStatement statement = connect().prepareStatement(sql);
 
             String iDQuest = "";
@@ -233,7 +258,7 @@ public class QA extends Inventory implements Serializable{
             String correctAnswer = "";
 
             myScanTFE.nextLine();
-            while (myScanTFE.hasNext())  //returns a boolean value
+            while (myScanTFE.hasNext())
             {
                 line = myScanTFE.nextLine();
                 String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
@@ -263,16 +288,36 @@ public class QA extends Inventory implements Serializable{
         }
     }
 
+    /**
+     * getQuestion(String, int): from category Question and ID, this method return Question
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     public  String getQuestion(String theCate, int theId){
         myCate = theCate;
         myId = theId;
         return null;
     }
+
+    /**
+     * getAnswer(String, int): from category Question and ID, this method return Answer
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     public String getAnswer(String theCate, int theId){
         myCate = theCate;
         myId = theId;
         return null;
     }
+
+    /**
+     * getChoices(String, int): from category Question and ID, this method return choices
+     * @param theCate: category
+     * @param theId: id
+     * @return: ArrayList<string>
+     */
     public ArrayList<String> getChoices(String theCate, int theId){
         myCate = theCate;
         myId = theId;

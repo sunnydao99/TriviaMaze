@@ -5,6 +5,17 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * @author: An Nguyen
+ * @version: 10/28/2022
+ *
+ */
+
+/**
+ * QAMC class get questions, get correct answers, get choices,
+ * and create random Reduce Choices for multiple choice question.
+ */
+
 public class QAMC extends QA implements Serializable {
     Connection myConn;
     private String myQuesMC;
@@ -14,6 +25,11 @@ public class QAMC extends QA implements Serializable {
     private String myCategory;
     private int myId;
 
+    /**
+     * QAMC(String, int): this constructor passes two parameters category question and ID
+     * @param theCate: category question
+     * @param theId: ID
+     */
     public QAMC(String theCate, int theId) {
         myQuesMC = "";
         myCorrAnsMC = "";
@@ -21,11 +37,6 @@ public class QAMC extends QA implements Serializable {
         connect();
         myCategory = theCate;
         myId = theId;
-        /*getQuestion(theCate, theId);
-        getChoices(theCate, theId);
-        getAnswer(theCate, theId);
-        getArrRedChoiceMC(theCate, theId);
-        getOptionForRedChoice(theCate, theId);*/
     }
 
     public QAMC() {
@@ -38,7 +49,6 @@ public class QAMC extends QA implements Serializable {
     }
 
     private Connection connect() {
-        // SQLite connectionDB string
         String url = "jdbc:sqlite:Database_QA.db";
 
         try {
@@ -49,13 +59,10 @@ public class QAMC extends QA implements Serializable {
         return myConn;
     }
 
-    //get question from tableMC
-    //get question from tableMC
     @Override
     public String getQuestion(String theCate, int theId) {
         myCategory = theCate;
         myId = theId;
-        //System.out.println(theCate + " - " + theId);
         String sql = "SELECT IDQuest,Category,Question "
                 + "FROM tableMC WHERE IDQuest = ? AND Category = ?";
         String question = "";
@@ -72,13 +79,12 @@ public class QAMC extends QA implements Serializable {
 
             }
             myQuesMC = question;
-            //System.out.println("from QAMC: "+ question);
             return question;
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
-        //System.out.println("from QAMC: not "+ question);
         return question;
     }
 
@@ -100,8 +106,8 @@ public class QAMC extends QA implements Serializable {
 
             }
             myCorrAnsMC = corrAns;
-            //System.out.println("from QAMC: " + corrAns);
             return corrAns;
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -121,7 +127,7 @@ public class QAMC extends QA implements Serializable {
             pstmt.setInt(1, theId);
             pstmt.setString(2, theCategory);
             ResultSet rs = pstmt.executeQuery();
-            // loop through the result set
+
             myArrChoiceMC = new ArrayList<String>();
             while (rs.next()) {
                 String choiceA = rs.getString("ChoiceA");
@@ -135,7 +141,6 @@ public class QAMC extends QA implements Serializable {
 
             }
             myArrChoiceMC.addAll(choices);
-            //System.out.println("from QAMC: choices created");
             return choices;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -165,7 +170,6 @@ public class QAMC extends QA implements Serializable {
                 break;
             }
         }
-        //System.out.println("corr Ans: " + corrAns);
         //Random reduce choices
         int temp1, temp2;
         Random rand = new Random();
@@ -175,7 +179,6 @@ public class QAMC extends QA implements Serializable {
         }while (temp1 == temp2 || (temp1 == corrAns || temp2 == corrAns));
         myArrRedChoiceMC.add(myArrChoiceMC.get(temp1));
         myArrRedChoiceMC.add(myArrChoiceMC.get(temp2));
-        //printChoicesMC();
         return myArrRedChoiceMC;
     }
 
@@ -193,7 +196,7 @@ public class QAMC extends QA implements Serializable {
                 temp2 = i;
             }
         }
-        //printRedChoiceMC();
+
         arrOpt.add(temp1);
         arrOpt.add(temp2);
         return arrOpt;

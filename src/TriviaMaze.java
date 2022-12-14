@@ -95,7 +95,7 @@ public class TriviaMaze {
         });*/
 
 
-        /*RoomMCView testMC = new RoomMCView("MC",1);
+        /*RoomMCView testMC = new RoomMCView("MC",2);
         testMC.roomShow();*/
         //LevelsView lv = new LevelsView();
 
@@ -106,6 +106,9 @@ public class TriviaMaze {
         //GameView game = new GameView(1);
 
         //LevelsView level = new LevelsView();
+
+        //DisplayDataView view = new DisplayDataView();
+
 
 
     }

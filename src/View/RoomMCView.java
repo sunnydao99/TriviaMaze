@@ -129,9 +129,6 @@ public class RoomMCView extends JFrame {
         myMainFrame.add(myBtnHelper50);
         myMainFrame.add(myBtnSubmit);
 
- 
-
-
         myGroupRadio.add(myRadioBtA);
         myGroupRadio.add(myRadioBtB);
         myGroupRadio.add(myRadioBtC);
@@ -234,7 +231,7 @@ public class RoomMCView extends JFrame {
 
                 if(myMinute ==0 && mySecond ==0) {
                     myTimer.stop();
-
+                    myMainFrame.dispose();
                 }
                 else{
                     mySecond--;

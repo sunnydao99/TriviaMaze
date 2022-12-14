@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Maze implements Serializable {
-    private static final int RECT_SIZE = 35;
+    private static final int RECT_SIZE = 60;
 
     public static int myRectSize() {
         return RECT_SIZE;
     }
-
 
     public static int[][] getMAZE() {
         return MAZE;

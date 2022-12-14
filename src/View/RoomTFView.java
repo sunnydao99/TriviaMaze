@@ -187,7 +187,7 @@ public class RoomTFView extends JFrame {
 
                 if(myMinute ==0 && mySecond ==0) {
                     myTimer.stop();
-
+                    myMainFrame.dispose();
                 }
                 else{
                     mySecond--;

@@ -32,22 +32,10 @@ public class About {
         myAboutFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         myAboutFrame.setVisible(true);
 
-        String help = "";
-        /*
-        " This program was developed by \n" +
+        String help =  " This program was developed by \n" +
                 " An Nguyen, Satinder Singh, Xuan Dao(Sunny)\n" +
                 " for TCSS 360 Software Development And Quality Assurance Techniques\n" +
                 " Professor Tom Capaul, University of Washington Tacoma";
-         */
-        try {
-            Scanner scan = new Scanner(new File("Assets/About.txt"));
-            while(scan.hasNext()){
-                help = scan.nextLine();
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
         JTextArea textArea = new JTextArea(help);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);

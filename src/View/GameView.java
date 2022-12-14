@@ -22,7 +22,7 @@ import java.util.Scanner;
  *
  */
 
-public class GameView1 extends JFrame implements Serializable {
+public class GameView extends JFrame implements Serializable {
 
     private final int RECT_SIZE = 35;
     private final int E_PATH = 0;
@@ -49,7 +49,7 @@ public class GameView1 extends JFrame implements Serializable {
     private String fileName = "Assets/StoredData.txt";//mze
     private static final long serialVersionUID = 1234567890L;
 
-    public GameView1(int x) throws FileNotFoundException {
+    public GameView(int x) throws FileNotFoundException {
         myQues = new ArrayList<String>();
         myCorrectAns = new ArrayList<String>();
 
@@ -87,7 +87,7 @@ public class GameView1 extends JFrame implements Serializable {
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                if (JOptionPane.showConfirmDialog(GameView1.super.getOwner(),
+                if (JOptionPane.showConfirmDialog(GameView.super.getOwner(),
                         "Would you like to save your game?", "Save Game?",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
@@ -108,8 +108,6 @@ public class GameView1 extends JFrame implements Serializable {
                             out.writeObject(ch[i]);
                         }
 
-
-
                         out.close();
                         file.close();
                     } catch (FileNotFoundException ex) {
@@ -122,31 +120,17 @@ public class GameView1 extends JFrame implements Serializable {
             }
         });
 
-
     }
 
-    public String  readData()  {
-        String st = "";
-        try {
-
-            Scanner scan = new Scanner(new File("Assets/StoredData.txt"));
-            st = scan.nextLine();
-            while(scan.hasNext()){
-                st = scan.nextLine();
-            }
-            return st;
-        }
-        catch (FileNotFoundException e){
-            System.out.println(e);
-        }
-        return st;
-
-    }
-
-    public GameView1(int[][] mySavedMaze, int mySavedX, int mySavedY) {
+    public GameView(int[][] mySavedMaze, int mySavedX, int mySavedY) {
         this.myMaze = mySavedMaze;
         this.myCurrentX = mySavedX;
         this.myCurrentY = mySavedY;
+        myQues = new ArrayList<String>();
+        myCorrectAns = new ArrayList<String>();
+
+
+
         prepareGUI();
         myViewMC = new RoomMCView();
         myViewSA = new RoomSAView();
@@ -318,6 +302,7 @@ public class GameView1 extends JFrame implements Serializable {
         myCate = Room.getLastCategory();
         String tempQues = "";
         String tempCorrect = "";
+
         if (myCate.equals("MC")) {
             myViewMC = new RoomMCView(myCate, myId);
             myViewMC.roomShow();
@@ -505,5 +490,6 @@ public class GameView1 extends JFrame implements Serializable {
         System.out.println(temp);
         return temp;
     }
-    
+
+
 }

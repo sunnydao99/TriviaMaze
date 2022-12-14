@@ -29,8 +29,7 @@ public class Help {
         myHelpFrame.setVisible(true);
 
         String help = " True/False questions display two choice, True or False\n" +
-                " Using the Extends Time button will give you an extra 30 seconds\n" +
-                " to answer before marking the question as wrong. \n" +
+                " For True/False, there is a Switch Question button to swap question\n" +
                 " Multiple Choice questions have a helper method to reduce choices\n" +
                 " by 50% by clicking the Help button\n" +
                 " Short Choice questions can display hints\n" +

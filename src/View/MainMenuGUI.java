@@ -59,14 +59,6 @@ public class MainMenuGUI {
             myMainFrame.setContentPane(new JLabel(new ImageIcon("Assets/pictureBG.png")));
             myMainFrame.setLayout(new FlowLayout());
 
-           /* ImageIcon background = new ImageIcon("Assets/pictureBG.png");
-            Image img=background.getImage();
-            Image temp=img.getScaledInstance(800,600,Image.SCALE_SMOOTH);
-            background=new ImageIcon(temp);
-            myLabelGif = new JLabel(background);
-            myLabelGif.setLayout(null);
-            myLabelGif.setBounds(20, 30, 800, 700);*/
-
             myHeaderLabel = new JLabel();
             myHeaderLabel.setBounds(50, 10, 410, 110);
             myHeaderLabel.setFont(new Font("Big Font", Font.BOLD, 30));
@@ -138,10 +130,8 @@ public class MainMenuGUI {
         JButton aboutButton = new JButton("About");
 
         JPanel panel6 = new JPanel();
-        //panel6.setBackground(Color.getHSBColor(240,100,78));
         JButton musicButton = new JButton("Music On/Off");
         panel6.setBackground(Color.getHSBColor(240,100,80));
-
 
         panel1.add(mainMenuButton);
         mainMenuButton.addActionListener(e -> {
@@ -176,8 +166,7 @@ public class MainMenuGUI {
             if(soundOn){
                 soundOn = false;
                 playMusic();
-                //                myMusicPauseTime = clip.getMicrosecondLength();
-//                clip.stop();
+
             }else{
                 soundOn = true;
                 playMusic();

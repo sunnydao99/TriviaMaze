@@ -10,16 +10,14 @@ public class LoadGame implements Serializable {
     private JPanel myPannelHolder;
     int[][] mySavedMaze;
     int mySavedX, mySavedY, mySavedLevel;
-    private String fileName = "StoredData.txt";
+    private String fileName = "Assets/StoredData.txt";
     public LoadGame(){
-
         prepareGUI();
     }
     private void prepareGUI() {
         myLoadFrame = new JFrame("Click the saved game button to load game");
         myLoadFrame.setSize(400, 300);
         myLoadFrame.setLayout(null);
-        //myLoadFrame.setLayout(new BorderLayout());
         myLoadFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         myLoadFrame.setVisible(true);
 
@@ -27,15 +25,14 @@ public class LoadGame implements Serializable {
         myPannelHolder.setBackground(Color.RED);
         myPannelHolder.setToolTipText("Please, click the saved game button to load game");
         //myPannelHolder.setBounds(100, 60, 200, 100);
-        myPannelHolder.setBounds( 120, 100, 130, 40);
+        myPannelHolder.setBounds(120, 100, 130, 40);
 
         JButton mySavedGameButton = new JButton("Saved Game");
         mySavedGameButton.setBounds(120, 120, 90, 30);
-        mySavedGameButton.setBackground(Color.yellow);
-
 
         myPannelHolder.add(mySavedGameButton);
         myLoadFrame.add(myPannelHolder);
+
         mySavedGameButton.addActionListener(e -> {
             try{
                 FileInputStream file = new FileInputStream(fileName);

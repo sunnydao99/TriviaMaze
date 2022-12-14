@@ -72,7 +72,8 @@ public class PlayGameView {
                         try {
                             GameView lvEasy = new GameView(1);
                         } catch (FileNotFoundException ex) {
-                            throw new RuntimeException(ex);
+                            System.out.println(ex);
+                            //throw new RuntimeException(ex);
                         }
 
                     }

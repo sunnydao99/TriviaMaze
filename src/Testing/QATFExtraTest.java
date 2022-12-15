@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 /**
+ *  This class test for QATFExtra class
  * @author: Xuan Dao (Sunny)
  * @version: 12/12/2022
  *
- */
-
-/**
- * This class test for QATFExtra class
  */
 public class QATFExtraTest {
 
@@ -22,11 +19,10 @@ public class QATFExtraTest {
     public final void setup(){
         bankTFE = new QATFExtra();
     }
-
-    @Test
     /**
-     * Test for getQuestion("TFE", 1): tests for different category
+     * Test for getQuestion("TFE", 1)
      */
+    @Test
     public final void getQuestion_0() {
         bankTFE = new QATFExtra("TFE", 1);
         String expected = "Classes in the same package are implicitly imported into the main " ;
@@ -35,11 +31,10 @@ public class QATFExtraTest {
         question = bankTFE.getQuestion("TFE", 1);
         assertEquals(expected,question);
     }
-
-    @Test
     /**
      * Test for getQuestion("SA", 2): test for different category
      */
+    @Test
     public final void getQuestion_1() {
         bankTFE = new QATFExtra("SA", 2);
         String expected = "";
@@ -49,10 +44,10 @@ public class QATFExtraTest {
         assertEquals(expected,question);
     }
 
-    @Test
     /**
      * Test for getQuestion("", 1): tests for empty category
      */
+    @Test
     public final void getQuestion_2() {
         bankTFE = new QATFExtra("", 1);
         String expected = "";
@@ -61,10 +56,11 @@ public class QATFExtraTest {
         question = bankTFE.getQuestion("", 1);
         assertEquals(expected,question);
     }
-    @Test
+
     /**
-     * Test for getQuestion("MC", 20): tests for ID out of range
+     * Test for getQuestion("TFE", 20): tests for ID out of range
      */
+    @Test
     public final void getQuestion_3() {
         bankTFE = new QATFExtra("TFE", 20);
         String expected = "";
@@ -74,10 +70,10 @@ public class QATFExtraTest {
         assertEquals("",question);
     }
 
-    @Test
     /**
-     * Test for getQuestion("", 4)
+     * Test for getQuestion("TFE", 4)
      */
+    @Test
     public final void getQuestion_4() {
         bankTFE = new QATFExtra("TFE", 4);
         String expected = "Parentheses () would not be used to clarify a dangling-else.";
@@ -87,10 +83,10 @@ public class QATFExtraTest {
         assertEquals(expected,question);
     }
 
-    @Test
     /**
-     * Test for getQuestion("", -2): tests for ID is negative
+     * Test for getQuestion("", -2): tests for ID is negative and category is empty
      */
+    @Test
     public final void getQuestion_5() {
         bankTFE = new QATFExtra("", -2);
         String expected = "";
@@ -100,10 +96,10 @@ public class QATFExtraTest {
         assertEquals("",question);
     }
 
-    @Test
     /**
      * Test for getQuestion("TFE", 0): tests for ID is 0
      */
+    @Test
     public final void getQuestion_6() {
         bankTFE = new QATFExtra("TFE", 0);
         String expected = "";
@@ -128,23 +124,22 @@ public class QATFExtraTest {
     }
 
     /**
-     * Test for getQuestion("SA", 2): tests for ID is out of bound,
-     * and different category
+     * Test for getQuestion("SA", 2): tests for different category
      */
     @Test
     public final void getQuestion_8() {
-        bankTFE = new QATFExtra("SA", 20);
+        bankTFE = new QATFExtra("SA", 2);
         String expected = "";
 
         String question = "";
-        question = bankTFE.getQuestion("SA", 20);
+        question = bankTFE.getQuestion("SA", 2);
         assertEquals(expected,question);
     }
 
-    @Test
     /**
      * Test for getAnswer("TFE", 1)
      */
+    @Test
     public final void getAnswer_0() {
         bankTFE = new QATFExtra("TFE", 1);
         String expected = "FALSE ";
@@ -154,10 +149,10 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getAnswer("TFE", 2)
      */
+    @Test
     public final void getAnswer_1() {
         bankTFE = new QATFExtra("TFE", 2);
         String expected = "FALSE ";
@@ -167,10 +162,10 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getAnswer("SA", 2): tests for different category
      */
+    @Test
     public final void getAnswer_2() {
         bankTFE = new QATFExtra("SA", 2);
         String expected = "";
@@ -180,10 +175,10 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getAnswer("TFE", 20): tests for ID is out of range
      */
+    @Test
     public final void getAnswer_3() {
         bankTFE = new QATFExtra("TFE", 20);
         String expected = "";
@@ -193,23 +188,23 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getAnswer("", 2): tests for empty category
      */
+    @Test
     public final void getAnswer_4() {
-        bankTFE = new QATFExtra("", -2);
+        bankTFE = new QATFExtra("", 2);
         String expected = "";
 
         String ans = "";
-        ans = bankTFE.getAnswer("", -2);
+        ans = bankTFE.getAnswer("", 2);
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getAnswer("TFE", -2): tests for ID is negative
      */
+    @Test
     public final void getAnswer_5() {
         bankTFE = new QATFExtra("TFE", -2);
         String expected = "";
@@ -260,13 +255,10 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-
-
-
-    @Test
     /**
      * Test for getChoices("TFE", 1)
      */
+    @Test
     public final void getChoices_0() {
         bankTFE = new QATFExtra("TFE", 1);
         ArrayList<String> expected = new ArrayList<String>();
@@ -277,10 +269,10 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("TFE", 2)
      */
+    @Test
     public final void getChoices_1() {
         bankTFE = new QATFExtra("TFE", 2);
         ArrayList<String> expected = new ArrayList<String>();
@@ -292,10 +284,10 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
-     * Test for getChoices("SA", 2)
+     * Test for getChoices("SA", 2): tests for the different category
      */
+    @Test
     public final void getChoices_2() {
         bankTFE = new QATFExtra("SA", 2);
         ArrayList<String> expected = new ArrayList<String>();
@@ -305,23 +297,24 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("TFE", 20): test for ID out of bound
      */
+    @Test
     public final void getChoices_3() {
         bankTFE = new QATFExtra("TFE", 20);
         ArrayList<String> expected = new ArrayList<String>();
 
         ArrayList<String> ans;
-        ans = bankTFE.getChoices("TF", 20);
+        ans = bankTFE.getChoices("TFE", 20);
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
-     * Test for getChoices("", 2): test for empty category
+     * Test for getChoices("", 2): test for empty category and index
+     * is out of range
      */
+    @Test
     public final void getChoices_4() {
         bankTFE = new QATFExtra("", 20);
         ArrayList<String> expected = new ArrayList<String>();
@@ -331,10 +324,10 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("TFE", -2): test for ID is negative
      */
+    @Test
     public final void getChoices_5() {
         bankTFE = new QATFExtra("TFE", -2);
         ArrayList<String> expected = new ArrayList<String>();
@@ -344,10 +337,10 @@ public class QATFExtraTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("TFE", 0): test for ID is 0
      */
+    @Test
     public final void getChoices_6() {
         bankTFE = new QATFExtra("TFE", 0);
         ArrayList<String> expected = new ArrayList<String>();
@@ -372,7 +365,7 @@ public class QATFExtraTest {
     }
 
     /**
-     * Test for getChoices("SA", 20): test for different, and
+     * Test for getChoices("SA", 20): test for different category, and
      * ID is out of bound
      */
     @Test

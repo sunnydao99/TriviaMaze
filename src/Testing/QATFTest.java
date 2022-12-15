@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @author: Xuan Dao (Sunny)
- * @version: 12/12/2022
+ * This class for test True False questions class
+ * @author Xuan Dao (Sunny)
+ * @version 12.12.22
  *
- */
-
-/**
- * This class for test QATF class
  */
 
 public class QATFTest {
@@ -26,11 +23,10 @@ public class QATFTest {
         expected  = new ArrayList<String>();
     }
 
-
-    @Test
     /**
      * Test for getQuestion("TF", 1)
      */
+    @Test
     public final void getQuestion_0() {
         bankTF = new QATF("TF", 1);
         String expected = '"' + "System.in is the input stream connected to the console," + '"' ;
@@ -40,10 +36,10 @@ public class QATFTest {
         assertEquals(expected,question);
     }
 
-    @Test
     /**
      * Test for getQuestion("TF", 2)
      */
+    @Test
     public final void getQuestion_1() {
         bankTF = new QATF("TF", 2);
         String expected = "String is primitive data type";
@@ -53,10 +49,10 @@ public class QATFTest {
         assertEquals(expected,question);
     }
 
-    @Test
     /**
      * Test for getQuestion("", 1): tests for empty category
      */
+    @Test
     public final void getQuestion_2() {
         bankTF = new QATF("", 1);
         String expected = "";
@@ -65,10 +61,12 @@ public class QATFTest {
         question = bankTF.getQuestion("", 1);
         assertEquals(expected,question);
     }
-    @Test
+
     /**
      * Test for getQuestion("MC", 20): tests for ID out of range
+     * and different category
      */
+    @Test
     public final void getQuestion_3() {
         bankTF = new QATF("TFE", 20);
         String expected = "";
@@ -78,10 +76,10 @@ public class QATFTest {
         assertEquals("",question);
     }
 
-    @Test
     /**
      * Test for getQuestion("TF", 4): test for different category
      */
+    @Test
     public final void getQuestion_4() {
         bankTF = new QATF("MC", 4);
         String expected = "";
@@ -91,10 +89,10 @@ public class QATFTest {
         assertEquals("",question);
     }
 
-    @Test
     /**
      * Test for getQuestion("", -2): tests for ID is negative
      */
+    @Test
     public final void getQuestion_5() {
         bankTF = new QATF("", -2);
         String expected = "";
@@ -104,10 +102,10 @@ public class QATFTest {
         assertEquals("",question);
     }
 
-    @Test
     /**
      * Test for getQuestion("TFE", 0): tests for ID is 0
      */
+    @Test
     public final void getQuestion_6() {
         bankTF = new QATF("TF", 0);
         String expected = "";
@@ -145,10 +143,10 @@ public class QATFTest {
         assertEquals(expected,question);
     }
 
-    @Test
     /**
-     * Test for getAnswer("TFE", 1)
+     * Test for getAnswer("TF", 1)
      */
+    @Test
     public final void getAnswer_0() {
         bankTF = new QATF("TF", 1);
         String expected = "TRUE";
@@ -158,10 +156,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getAnswer("TF", 2)
      */
+    @Test
     public final void getAnswer_1() {
         bankTF = new QATF("TF", 2);
         String expected = "FALSE";
@@ -184,10 +182,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
-     * Test for getAnswer("TFE", 20): tests for ID is out of range
+     * Test for getAnswer("TF", 20): tests for ID is out of range
      */
+    @Test
     public final void getAnswer_3() {
         bankTF = new QATF("TF", 20);
         String expected = "";
@@ -197,10 +195,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getAnswer("", 2): tests for empty category
      */
+    @Test
     public final void getAnswer_4() {
         bankTF = new QATF("", 2);
         String expected = "";
@@ -209,10 +207,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
-     * Test for getAnswer("TFE", -2): tests for ID is negative
+     * Test for getAnswer("TF", -2): tests for ID is negative
      */
+    @Test
     public final void getAnswer_5() {
         bankTF = new QATF("TF", -2);
         String expected = "";
@@ -223,7 +221,7 @@ public class QATFTest {
     }
 
     /**
-     * Test for getAnswer("TFE", 0): tests for ID is 0
+     * Test for getAnswer("TF", 0): tests for ID is 0
      */
     @Test
     public final void getAnswer_6() {
@@ -263,13 +261,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-
-
-
-    @Test
     /**
      * Test for getChoices("TF", 1)
      */
+    @Test
     public final void getChoices_0() {
         bankTF = new QATF("TF", 1);
         expected = new ArrayList<String>();
@@ -280,10 +275,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("TF", 2)
      */
+    @Test
     public final void getChoices_1() {
         bankTF = new QATF("TF", 2);
         expected = new ArrayList<String>();
@@ -295,10 +290,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("SA", 2)
      */
+    @Test
     public final void getChoices_2() {
         bankTF = new QATF("SA", 2);
         expected = new ArrayList<String>();
@@ -308,12 +303,12 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("TF", 20): test for ID out of bound
      */
+    @Test
     public final void getChoices_3() {
-        bankTF = new QATF("TFE", 20);
+        bankTF = new QATF("TF", 20);
         expected = new ArrayList<String>();
 
         ArrayList<String> ans;
@@ -321,10 +316,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("", 2): test for empty category
      */
+    @Test
     public final void getChoices_4() {
         bankTF = new QATF("", 2);
         expected = new ArrayList<String>();
@@ -334,10 +329,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("TF", -2): test for ID is negative
      */
+    @Test
     public final void getChoices_5() {
         bankTF = new QATF("TF", -2);
         expected = new ArrayList<String>();
@@ -347,10 +342,10 @@ public class QATFTest {
         assertEquals(expected,ans);
     }
 
-    @Test
     /**
      * Test for getChoices("TF", 0): test for ID is 0
      */
+    @Test
     public final void getChoices_6() {
         bankTF = new QATF("TF", 0);
         expected = new ArrayList<String>();
@@ -387,8 +382,6 @@ public class QATFTest {
         ans = bankTF.getChoices("SA", 20);
         assertEquals(expected,ans);
     }
-
-
 }
 
 

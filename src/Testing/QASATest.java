@@ -7,14 +7,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * This class test for Short Answer Question class
  * @author: An Nguyen
- * @version: 12/10/2022
+ * @version: 12.10.22
  *
  */
 
-/**
- * This class test for QASA class
- */
 public class QASATest {
     private QASA bankSA;
     @Before
@@ -75,7 +73,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getQuestion("", 1): test for empty category
+     * Test for getQuestion("", 2): test for empty category
      */
     @Test
     public final void getQuestion_4() {
@@ -101,7 +99,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getQuestion("SA", -2): tests for ID is 0
+     * Test for getQuestion("SA", 0): tests for ID is 0
      */
     @Test
     public final void getQuestion_6() {
@@ -128,7 +126,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getQuestion("SA", -2): tests for different category, and
+     * Test for getQuestion("SA", 20): tests for different category, and
      * ID is out of bound
      */
     @Test
@@ -181,7 +179,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getAnswer("SA", 10): tests for ID is out of bound
+     * Test for getAnswer("SA", 20): tests for ID is out of bound
      */
     @Test
     public final void getAnswer_3() {
@@ -247,7 +245,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getAnswer("", 100): tests for different category, and
+     * Test for getAnswer("MC", 100): tests for different category, and
      * ID is out of bound
      */
     @Test
@@ -287,7 +285,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getHintSA("MC", 1): tests for different category
+     * Test for getHintSA("MC", 10): tests for different category
      */
     @Test
     public final void getHintSA_2() {
@@ -300,7 +298,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getHintSA("MC", 1): tests for ID is out of bound
+     * Test for getHintSA("SA", 20): tests for ID is out of bound
      */
     @Test
     public final void getHintSA_3() {
@@ -326,7 +324,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getHintSA("MC", 1): tests for ID is negative
+     * Test for getHintSA("SA", -2): tests for ID is negative
      */
     @Test
     public final void getHintSA_5() {
@@ -339,7 +337,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getHintSA("SA", 1): tests for ID is 0
+     * Test for getHintSA("SA", 0): tests for ID is 0
      */
     @Test
     public final void getHintSA_6() {
@@ -352,7 +350,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getHintSA("SA", 1): test for empty category, and
+     * Test for getHintSA("", 100): test for empty category, and
      * ID is out of bound
      */
     @Test
@@ -366,7 +364,7 @@ public class QASATest {
     }
 
     /**
-     * Test for getHintSA("SA", 1): test for different category, and
+     * Test for getHintSA("TR", 100): test for different category, and
      * ID is out of bound
      */
     @Test

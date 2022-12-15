@@ -9,14 +9,12 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 /**
+ * This class test for Multiple choices class
  * @author: An Nguyen
- * @version: 12/10/2022
+ * @version: 12.10.22
  *
  */
 
-/**
- * This class test for QAMC class
- */
 
 public class QAMCTest {
 

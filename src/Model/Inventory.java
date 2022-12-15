@@ -4,18 +4,12 @@ import org.sqlite.SQLiteDataSource;
 import java.sql.*;
 
 /**
+ * This class  create Database, four empty tables and the connection to Database.
  * @author: An Nguyen
  * @version: 10/27/2022, updated 12/11/2022
  *
  */
 
-/**
- * This class  create Database, connect Database, and create four empty tables.
- * tableMC presents for Multiple Choice
- * tableTF presents for True/False
- * tableSA presents for Short Answer
- * tableTFExtra presents for True/False Extra will be used switch question.
- */
 public abstract class Inventory {
     private String myUrl;
     private Connection myConnIven;
@@ -23,7 +17,7 @@ public abstract class Inventory {
     private SQLiteDataSource ds = null;
 
     /**
-     * Constructor: void
+     * Initialize the connection and file name
      * Initialized @myUrl, @myConnIven, @myFileName
      */
     public Inventory() {
@@ -33,8 +27,8 @@ public abstract class Inventory {
     }
 
     /**
-     * createDB(): void
-     * Create database
+     * This method is used to create database
+     * @exception SQLException if the connection isn't created
      */
     public final void createDB() {
         try {
@@ -54,8 +48,8 @@ public abstract class Inventory {
     }
 
     /**
-     * connectionDB(): void
-     * Create connectionDB database
+     * Create a connection to database
+     * @exception SQLException if the connection to database failed
      */
     public final void connectionDB(){
         try {
@@ -71,8 +65,8 @@ public abstract class Inventory {
     }
 
     /**
-     * createTableMC(): void
-     * Create tableMC for Multiple Choice
+     * Create the data table for multiple choices
+     * @exception SQLException if the table is not created or error
      */
     public final void createTableMC() {
         // SQL statement for creating a new table
@@ -98,8 +92,8 @@ public abstract class Inventory {
     }
 
     /**
-     * createTableTF(): void
-     * Create tableTF for True/False
+     * Create the data table for True/False type
+     * @exception SQLException if the table is not created or error
      */
     public final void createTableTF() {
         String sql = "CREATE TABLE IF NOT EXISTS tableTF (\n"
@@ -123,8 +117,8 @@ public abstract class Inventory {
     }
 
     /**
-     * createTableSA(): void
-     * Create tableSA for Short Answer
+     * Create the data table for short questions and answers
+     * @exception SQLException if the table is not created or error
      */
     public final void createTableSA() {
         String sql = "CREATE TABLE IF NOT EXISTS tableSA (\n"
@@ -146,8 +140,8 @@ public abstract class Inventory {
     }
 
     /**
-     * createTableTFExtra(): void
-     * Create tableTFExtra for True/False Extra
+     * Create the data table  for True/False Extra questions
+     * @exception SQLException if the table is not created or error
      */
     public final void createTableTFExtra() {
         String sql = "CREATE TABLE IF NOT EXISTS tableTFExtra (\n"
@@ -171,22 +165,22 @@ public abstract class Inventory {
     }
 
     /**
-     * insertTableMC(): create abstract method
+     *  create abstract method to insert table multiple choices
      */
     public abstract void insertTableMC();
 
     /**
-     * insertTableTF(): create abstract method
+     *  create abstract method to insert table True or False
      */
     public abstract void insertTableTF();
 
     /**
-     * insertTableSA(): create abstract method
+     * create abstract method to insert table Short Answer
      */
     public abstract void insertTableSA();
 
     /**
-     * insertTableTFExtra(): create abstract method
+     *  create abstract method to insert table True or False extra
      */
     public abstract void insertTableTFExtra();
 

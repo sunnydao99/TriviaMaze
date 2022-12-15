@@ -5,15 +5,12 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * @author: An Nguyen
- * @version: 10/27/2022
+ * This class is created to read data from CSV file and insert data into all tables
+ * @version: 10.27.22
+ * @author: An Nguyen, Satinder Singh
  *
  */
 
-/**
- * This class reads data from CSV file and insert data into all tables
- * This class will extend Inventory class
- */
 public class QA extends Inventory implements Serializable{
 
     private File myFileCSV_QMC;
@@ -32,7 +29,7 @@ public class QA extends Inventory implements Serializable{
     private Connection myConn;
 
     /**
-     * QA(): constructor declares four files for 4 tables
+     * This constructor is used to declare four files for 4 tables
      */
     public QA(){
         myFileCSV_QMC = new File("Database/QAMultiple.csv");
@@ -45,9 +42,10 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * QA(): constructor declares four files for 4 tables  and passing two parameters
-     * @param theCate: category
-     * @param theId: id
+     * This constructor is built to declare four files for 4 tables
+     * and pass two parameters - Category and ID
+     * @param theCate the category
+     * @param theId  The ID
      */
     public QA(String theCate, int theId){
         myCate = theCate;
@@ -61,8 +59,9 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * connect(): connect Database
-     * @return: Connection
+     * This method is created to make a connection to Database
+     * @exception SQLException in the case it cannot get the connection
+     * @return Connection the connection to database
      */
     public Connection connect() {
         // SQLite connectionDB string
@@ -79,9 +78,12 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableMC(): overrider insertTableMC() from Inventory class
-     * This method inserts data into tableMC
+     * This class is overrider from  insertTableMC() of Inventory class
+     * @exception SQLException if it cannot get the connection
+     * @exception FileNotFoundException if the file cannot be found
+     * @exception IOException if the input or output failed to read or get
      */
+    @Override
     public void insertTableMC(){
         String sql = "INSERT INTO tableMC(IDQuest,Category, Question, ChoiceA, ChoiceB, ChoiceC, ChoiceD, CorrectAnswer)" +
                 " VALUES(?, ?,?, ?, ?, ?, ? , ?)";
@@ -139,8 +141,10 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableTF(): overrider insertTableTF() from Inventory class
-     * This method inserts data into tableTF
+     * This class is overrider from  insertTableTF() of Inventory class
+     * @exception SQLException if it cannot get the connection
+     * @exception FileNotFoundException if the file cannot be found
+     * @exception IOException if the input or output failed to read or get
      */
     @Override
     public void insertTableTF() {
@@ -193,8 +197,10 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableSA(): overrider insertTableSA() from Inventory class
-     * This method inserts data into tableSA
+     * This class is overrider from  insertTableSA() of Inventory class
+     * @exception SQLException if it cannot get the connection
+     * @exception FileNotFoundException if the file cannot be found
+     * @exception IOException if the input or output failed to read or get
      */
     @Override
     public void insertTableSA() {
@@ -245,8 +251,10 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableTFExtra(): overrider insertTableTFExtra() from Inventory class
-     * This method inserts data into tableTFExtra
+     * This class is overrider from  insertTableTFExtra() of Inventory class
+     * @exception SQLException if it cannot get the connection
+     * @exception FileNotFoundException if the file cannot be found
+     * @exception IOException if the input or output failed to read or get
      */
     public void insertTableTFExtra() {
         String sql = "INSERT INTO tableTFExtra(IDQuest,Category,Question,ChoiceA,ChoiceB,CorrectAnswer) " +
@@ -298,10 +306,11 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * getQuestion(String, int): from category Question and ID, this method return Question
-     * @param theCate: category
-     * @param theId: id
-     * @return: String
+     * This method is used to get the question from the
+     * given category and ID, and return it
+     * @param theCate The category of question
+     * @param theId The ID of category
+     * @return String The question
      */
     public  String getQuestion(String theCate, int theId){
         myCate = theCate;
@@ -310,10 +319,11 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * getAnswer(String, int): from category Question and ID, this method return Answer
-     * @param theCate: category
-     * @param theId: id
-     * @return: String
+     * This method is built to get the answer from category Question and ID,
+     * and return it
+     * @param theCate The category of answer
+     * @param theId  The ID of answer
+     * @return String The answer
      */
     public String getAnswer(String theCate, int theId){
         myCate = theCate;
@@ -322,10 +332,11 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * getChoices(String, int): from category Question and ID, this method return choices
-     * @param theCate: category
-     * @param theId: id
-     * @return: ArrayList<string>
+     * This method is used to get a list of choices from given category Question and ID,
+     * return the list of choices
+     * @param theCate The category of choices
+     * @param theId The ID of choices
+     * @return ArrayList<String> A list of choices
      */
     public ArrayList<String> getChoices(String theCate, int theId){
         myCate = theCate;

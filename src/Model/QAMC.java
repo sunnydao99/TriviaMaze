@@ -56,7 +56,7 @@ public class QAMC extends QA implements Serializable {
      * connect(): connect database and return connection
      * @return: Connection
      */
-    private Connection connect() {
+    public Connection connect() {
         String url = "jdbc:sqlite:Database_QA.db";
 
         try {

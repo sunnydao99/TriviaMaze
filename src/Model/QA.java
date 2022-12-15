@@ -1,7 +1,6 @@
 package Model;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.*;
 
@@ -22,7 +21,7 @@ public class QA extends Inventory implements Serializable{
     private File myFileCSV_QTF;
     private File myFileCSV_QTFE;
     private Scanner myScanMC;
-    private Scanner myScanQS;
+    private Scanner myScanSA;
     private Scanner myScanTF;
     private Scanner myScanTFE;
     private String myCategory;
@@ -65,7 +64,7 @@ public class QA extends Inventory implements Serializable{
      * connect(): connect Database
      * @return: Connection
      */
-    private Connection connect() {
+    public Connection connect() {
         // SQLite connectionDB string
         String url = "jdbc:sqlite:Database_QA.db";
 
@@ -203,8 +202,8 @@ public class QA extends Inventory implements Serializable{
 
         try{
 
-            myScanQS = new Scanner(myFileCSV_QAS);
-            myScanQS.useDelimiter(",\n");   //sets the delimiter pattern
+            myScanSA = new Scanner(myFileCSV_QAS);
+            myScanSA.useDelimiter(",\n");   //sets the delimiter pattern
 
             String line =  "";
             PreparedStatement statement = connect().prepareStatement(sql);
@@ -215,10 +214,10 @@ public class QA extends Inventory implements Serializable{
             String correctAnswer = "";
             String hints = "";
 
-            myScanQS.nextLine();
-            while (myScanQS.hasNext())
+            myScanSA.nextLine();
+            while (myScanSA.hasNext())
             {
-                line = myScanQS.nextLine();
+                line = myScanSA.nextLine();
                 String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 
                 iDQuest = data[0];

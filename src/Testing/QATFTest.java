@@ -4,8 +4,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
+
+/**
+ * @author: Xuan Dao (Sunny)
+ * @version: 12/12/2022
+ *
+ */
+
+/**
+ * This class for test QATF class
+ */
 
 public class QATFTest {
 
@@ -195,7 +204,6 @@ public class QATFTest {
     public final void getAnswer_4() {
         bankTF = new QATF("", 2);
         String expected = "";
-
         String ans = "";
         ans = bankTF.getAnswer("", 2);
         assertEquals(expected,ans);

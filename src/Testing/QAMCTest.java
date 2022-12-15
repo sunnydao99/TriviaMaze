@@ -14,6 +14,10 @@ import java.util.ArrayList;
  *
  */
 
+/**
+ * This class test for QAMC class
+ */
+
 public class QAMCTest {
 
     private QAMC bankMC;

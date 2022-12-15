@@ -5,7 +5,7 @@ import java.sql.*;
 
 /**
  * @author: An Nguyen
- * @version: 10/27/2022
+ * @version: 10/27/2022, updated 12/11/2022
  *
  */
 
@@ -170,9 +170,24 @@ public abstract class Inventory {
 
     }
 
+    /**
+     * insertTableMC(): create abstract method
+     */
     public abstract void insertTableMC();
+
+    /**
+     * insertTableTF(): create abstract method
+     */
     public abstract void insertTableTF();
+
+    /**
+     * insertTableSA(): create abstract method
+     */
     public abstract void insertTableSA();
+
+    /**
+     * insertTableTFExtra(): create abstract method
+     */
     public abstract void insertTableTFExtra();
 
 

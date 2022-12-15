@@ -13,6 +13,12 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * @author: Satinder singh
+ * @version 12/4/2022
+ *
+ */
+
+/**
  * This class displays the main menu that the user will interact with on a new Jframe window
  */
 public class MainMenuGUI {
@@ -39,7 +45,7 @@ public class MainMenuGUI {
     }
 
     /**
-     * This method displays the choices for the player to navigate the program
+     * prepareGUI():This method displays the choices for the player to navigate the program
      * this also plays the background music
      * @throws IOException to see if the file exists
      * @throws UnsupportedAudioFileException to make sure the format is correct
@@ -90,9 +96,12 @@ public class MainMenuGUI {
             System.out.println(e);
         }
     }
+
+    /**
+     * playMusic(): display sound
+     */
     private void playMusic()  {
         if (soundOn) {
-            //clip.open(myBackgroundMusic);
             clip.setMicrosecondPosition(myMusicPauseTime);
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -103,9 +112,9 @@ public class MainMenuGUI {
     }
 
     /**
-     * @return void
-     * This method handles the actionListeners of the main menu and
+     * showActionListener(): This method handles the actionListeners of the main menu and
      * instantiates the correct classes based on user input
+     * @return: void
      */
     public void showActionListener(){
 
@@ -137,7 +146,6 @@ public class MainMenuGUI {
         mainMenuButton.addActionListener(e -> {
             {
                 PlayGameView myPG = new PlayGameView();
-                myPG.prepareGUI();
                 myPG.showEventDemo();
             }
         });
@@ -162,7 +170,7 @@ public class MainMenuGUI {
         });
         panel6.add(musicButton);
         musicButton.addActionListener(e -> {
-            //clip.stop();
+
             if(soundOn){
                 soundOn = false;
                 playMusic();

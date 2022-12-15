@@ -50,7 +50,7 @@ public class TriviaMaze {
         bankMC.getArrRedChoiceMC("MC", 2);
         System.out.println("print Array Reduce Choice:")
         bankMC.printRedChoiceMC();;*/
-       /* bankMC.getOptionForRedChoice("MC", 2);*/
+       /* bankMC.getIndexForRedChoice("MC", 2);*/
 
 
         //Test for RoomSAView

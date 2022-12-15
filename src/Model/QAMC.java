@@ -14,6 +14,7 @@ import java.util.Random;
 /**
  * QAMC class get questions, get correct answers, get choices,
  * and create random Reduce Choices for multiple choice question.
+ * This class will extend QA class
  */
 
 public class QAMC extends QA implements Serializable {
@@ -39,6 +40,9 @@ public class QAMC extends QA implements Serializable {
         myId = theId;
     }
 
+    /**
+     * QAMC(): default construct
+     */
     public QAMC() {
         myQuesMC = "";
         myCorrAnsMC = "";
@@ -48,7 +52,11 @@ public class QAMC extends QA implements Serializable {
         myCategory = "";
     }
 
-    private Connection connect() {
+    /**
+     * connect(): connect database and return connection
+     * @return: Connection
+     */
+    public Connection connect() {
         String url = "jdbc:sqlite:Database_QA.db";
 
         try {
@@ -59,6 +67,13 @@ public class QAMC extends QA implements Serializable {
         return myConn;
     }
 
+    /**
+     * getQuestion(String, int): overrider getQuestion() from QA class.
+     * get question from tableMC and return question
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     @Override
     public String getQuestion(String theCate, int theId) {
         myCategory = theCate;
@@ -88,6 +103,14 @@ public class QAMC extends QA implements Serializable {
         return question;
     }
 
+    /**
+     * getAnswer(String, int): overrider getAnswer() from QA class.
+     * return answer from tableMC
+     * @param theCategory: category
+     * @param theId: id
+     * @return: String
+     */
+    @Override
     public String getAnswer(String theCategory, int theId){
         myCategory = theCategory;
         myId = theId;
@@ -114,6 +137,14 @@ public class QAMC extends QA implements Serializable {
         return corrAns;
     }
 
+    /**
+     * getChoices(String, int): overrider getChoices() from QA class.
+     * returns options list from tableMC
+     * @param theCategory: category
+     * @param theId: id
+     * @return: ArrayList<String>
+     */
+    @Override
     public ArrayList<String> getChoices(String theCategory, int theId){
         myCategory = theCategory;
         myId = theId;
@@ -148,6 +179,12 @@ public class QAMC extends QA implements Serializable {
         return choices;
     }
 
+    /**
+     * getArrRedChoiceMC(String, int): uses random to reduce two choices and store them into a list
+     * @param theCategory: category
+     * @param theId: id
+     * @return: ArrayList<String>
+     */
     public ArrayList<String> getArrRedChoiceMC(String theCategory, int theId) {
         myCategory = theCategory;
         myId = theId;
@@ -182,7 +219,13 @@ public class QAMC extends QA implements Serializable {
         return myArrRedChoiceMC;
     }
 
-    public ArrayList<Integer> getOptionForRedChoice(String theCate, int theId){
+    /**
+     * getIndexForRedChoice(String, int): get indexs from myArrRedChoiceMC list and store them into a list
+     * @param theCate: category
+     * @param theId: id
+     * @return: ArrayList<Integer>
+     */
+    public ArrayList<Integer> getIndexForRedChoice(String theCate, int theId){
         int temp1 = 0;
         int temp2 = 0;
         ArrayList<Integer> arrOpt = new ArrayList<Integer>();
@@ -196,13 +239,16 @@ public class QAMC extends QA implements Serializable {
                 temp2 = i;
             }
         }
-
         arrOpt.add(temp1);
         arrOpt.add(temp2);
         return arrOpt;
 
     }
 
+    /**
+     * printChoicesMC(): void
+     * To print myArrChoiceMC list
+     */
     public void printChoicesMC() {
         System.out.print("[");
         for (int i = 0; i < myArrChoiceMC.size(); i++) {
@@ -216,6 +262,10 @@ public class QAMC extends QA implements Serializable {
         System.out.println("]");
     }
 
+    /**
+     * printRedChoiceMC(): void
+     * To print reduce choice list
+     */
     public void printRedChoiceMC() {
         System.out.print("[");
         for (int i = 0; i < myArrRedChoiceMC.size(); i++) {

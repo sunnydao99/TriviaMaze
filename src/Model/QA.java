@@ -1,10 +1,9 @@
 package Model;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.sql.*;
-
 import java.util.*;
+
 /**
  * @author: An Nguyen
  * @version: 10/27/2022
@@ -13,6 +12,7 @@ import java.util.*;
 
 /**
  * This class reads data from CSV file and insert data into all tables
+ * This class will extend Inventory class
  */
 public class QA extends Inventory implements Serializable{
 
@@ -21,7 +21,7 @@ public class QA extends Inventory implements Serializable{
     private File myFileCSV_QTF;
     private File myFileCSV_QTFE;
     private Scanner myScanMC;
-    private Scanner myScanQS;
+    private Scanner myScanSA;
     private Scanner myScanTF;
     private Scanner myScanTFE;
     private String myCategory;
@@ -31,6 +31,9 @@ public class QA extends Inventory implements Serializable{
 
     private Connection myConn;
 
+    /**
+     * QA(): constructor declares four files for 4 tables
+     */
     public QA(){
         myFileCSV_QMC = new File("Database/QAMultiple.csv");
         myFileCSV_QAS = new File("Database/QAShort.csv");
@@ -41,6 +44,11 @@ public class QA extends Inventory implements Serializable{
         connect();
     }
 
+    /**
+     * QA(): constructor declares four files for 4 tables  and passing two parameters
+     * @param theCate: category
+     * @param theId: id
+     */
     public QA(String theCate, int theId){
         myCate = theCate;
         myId = theId;
@@ -56,7 +64,7 @@ public class QA extends Inventory implements Serializable{
      * connect(): connect Database
      * @return: Connection
      */
-    private Connection connect() {
+    public Connection connect() {
         // SQLite connectionDB string
         String url = "jdbc:sqlite:Database_QA.db";
 
@@ -71,7 +79,7 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableMC(): void
+     * insertTableMC(): overrider insertTableMC() from Inventory class
      * This method inserts data into tableMC
      */
     public void insertTableMC(){
@@ -131,7 +139,7 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableTF(): void
+     * insertTableTF(): overrider insertTableTF() from Inventory class
      * This method inserts data into tableTF
      */
     @Override
@@ -185,7 +193,8 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableSA(): This method inserts data into tableSA
+     * insertTableSA(): overrider insertTableSA() from Inventory class
+     * This method inserts data into tableSA
      */
     @Override
     public void insertTableSA() {
@@ -193,8 +202,8 @@ public class QA extends Inventory implements Serializable{
 
         try{
 
-            myScanQS = new Scanner(myFileCSV_QAS);
-            myScanQS.useDelimiter(",\n");   //sets the delimiter pattern
+            myScanSA = new Scanner(myFileCSV_QAS);
+            myScanSA.useDelimiter(",\n");   //sets the delimiter pattern
 
             String line =  "";
             PreparedStatement statement = connect().prepareStatement(sql);
@@ -205,10 +214,10 @@ public class QA extends Inventory implements Serializable{
             String correctAnswer = "";
             String hints = "";
 
-            myScanQS.nextLine();
-            while (myScanQS.hasNext())
+            myScanSA.nextLine();
+            while (myScanSA.hasNext())
             {
-                line = myScanQS.nextLine();
+                line = myScanSA.nextLine();
                 String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 
                 iDQuest = data[0];
@@ -236,7 +245,7 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableTFExtra(): void
+     * insertTableTFExtra(): overrider insertTableTFExtra() from Inventory class
      * This method inserts data into tableTFExtra
      */
     public void insertTableTFExtra() {

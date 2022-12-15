@@ -9,6 +9,15 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.*;
 
+/**
+ * @author: An Nguyen, Satinder
+ * @version: 11/20/2022, updated 12/14/2022
+ *
+ */
+
+/**
+ * GameView class create maze and create action for Arrow keyboards
+ */
 public class GameView extends JFrame implements Serializable {
 
     private final int E_PATH = 0;
@@ -27,11 +36,27 @@ public class GameView extends JFrame implements Serializable {
     private RoomTFView myViewTF;
     private String myCate = "";
     private int myId;
-    int[][] myMaze = Model.Maze.getMAZE();
+    int[][] myMaze = new int[][]{
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
+            {1, 0, 1, 0, 0, 0, 0, 4, 1, 1, 1, 0, 1},
+            {1, 0, 4, 0, 1, 1, 0, 0, 0, 0, 4, 0, 1},
+            {1, 0, 1, 0, 0, 0, 4, 0, 1, 1, 1, 0, 1},
+            {1, 0, 1, 0, 1, 1, 1, 0, 4, 0, 0, 4, 1},
+            {1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1},
+            {1, 0, 1, 4, 1, 1, 1, 4, 1, 4, 0, 0, 1},
+            {1, 4, 0, 0, 0, 4, 0, 0, 0, 0, 1, 6, 1},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
     private int myRectSize = Maze.myRectSize();
     private String fileName = "Assets/StoredData.txt";
     private static final long serialVersionUID = 1234567890L;
 
+    /**
+     * GameView(int): constructor pass index x to initialize level of maze
+     * @param x: level
+     * @throws FileNotFoundException
+     */
     public GameView(int x) throws FileNotFoundException {
         if(x == 3){
             myMaze = new int[][]{
@@ -50,7 +75,6 @@ public class GameView extends JFrame implements Serializable {
 
         }if(x == 2){
 
-
             myMaze = new int[][]{
                     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                     {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
@@ -66,18 +90,6 @@ public class GameView extends JFrame implements Serializable {
             this.setTitle("Welcome to Trivia Maze for Medium");
         }
         if(x == 1){
-            myMaze = new int[][]{
-                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                    {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
-                    {1, 0, 1, 0, 0, 0, 0, 4, 1, 1, 1, 0, 1},
-                    {1, 0, 4, 0, 1, 1, 0, 0, 0, 0, 4, 0, 1},
-                    {1, 0, 1, 0, 0, 0, 4, 0, 1, 1, 1, 0, 1},
-                    {1, 0, 1, 0, 1, 1, 1, 0, 4, 0, 0, 4, 1},
-                    {1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1},
-                    {1, 0, 1, 4, 1, 1, 1, 4, 1, 4, 0, 0, 1}, // 10x13
-                    {1, 4, 0, 0, 0, 4, 0, 0, 0, 0, 1, 6, 1}, // at position 11,8
-                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-            };
             this.setTitle("Welcome to Trivia Maze for Beginner");
         }
 
@@ -114,6 +126,14 @@ public class GameView extends JFrame implements Serializable {
 
     }
 
+    /**
+     * GameView(int[][], int, int): Constructor pass three parameters such as
+     * maze, position x, and position y
+     * @param mySavedMaze: maze
+     * @param mySavedX: saved position x
+     * @param mySavedY: saved position y
+     * @throws FileNotFoundException
+     */
     public GameView(int[][] mySavedMaze, int mySavedX, int mySavedY) throws FileNotFoundException {
         this.myMaze = mySavedMaze;
         this.myCurrentX = mySavedX;
@@ -124,15 +144,22 @@ public class GameView extends JFrame implements Serializable {
         myViewTF = new RoomTFView();
     }
 
+    /**
+     * prepareGUI(): set attribute of main frame
+     */
     private void prepareGUI() {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
-
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
 
     }
 
+
+    /**
+     * paint(): to draw maze by using Graphic
+     * @param g
+     */
     public void paint(Graphics g) {
         super.paint(g);
 
@@ -178,6 +205,10 @@ public class GameView extends JFrame implements Serializable {
 
     }
 
+    /**
+     * processKeyEvent(KeyEvent): overrider processKeyEvent to move keyboard and display Question
+     * @param ke
+     */
     @Override
     protected void processKeyEvent(KeyEvent ke) {
 
@@ -279,6 +310,9 @@ public class GameView extends JFrame implements Serializable {
         }
     }
 
+    /**
+     * actionGameOver(): display sound and icon when game over
+     */
     private void actionGameOver() {
 
         try {
@@ -302,9 +336,11 @@ public class GameView extends JFrame implements Serializable {
             System.out.println(un);
         }
 
-
     }
 
+    /**
+     * actionWinner(): display sound and icon when players win
+     */
     private void actionWinner() {
 
         try {
@@ -329,7 +365,12 @@ public class GameView extends JFrame implements Serializable {
 
     }
 
-
+    /**
+     * canGo(int): if position have path, player can move so return true;
+     * otherwise, return false
+     * @param position
+     * @return
+     */
     public boolean canGo(int position) {
         if(position > E_FAIL || position == E_PATH)
             return true;
@@ -337,6 +378,14 @@ public class GameView extends JFrame implements Serializable {
             return false;
     }
 
+    /**
+     * searchPath(): search path for player and return true if still have path, and otherwise return false.
+     * Copy current maze into temporary maze ,
+     * and then check all directions North, South, East, West.
+     * If player can go, increase position by 1. If not, position will be filled by WALL
+     *
+     * @return: boolean
+     */
     public boolean searchPath() {
         int nDir, row, col;
         boolean done = false;
@@ -401,10 +450,12 @@ public class GameView extends JFrame implements Serializable {
         return temp[row][col] == E_DEST;
     }
 
-
+    /**
+     * displayQuestion(): get all information of question after random both category and ID from Room class
+     */
     public void displayQuestion() {
         Room.randomIDCategory();
-        myId = Room.getLastID(); // every random, item will insert last so get last
+        myId = Room.getLastID();
         myCate = Room.getLastCategory();
 
         if (myCate.equals("MC")) {

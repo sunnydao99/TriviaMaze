@@ -4,6 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
+/**
+ * @author: Satinder singh
+ * @version 12/11/2022
+ *
+ */
+
+/**
+ * LoadGame class save status of maze
+ */
 public class LoadGame implements Serializable {
     private static final long serialVersionUID = 1234567890L;
     private JFrame myLoadFrame;
@@ -11,9 +20,17 @@ public class LoadGame implements Serializable {
     int[][] mySavedMaze;
     int mySavedX, mySavedY, mySavedLevel;
     private String fileName = "Assets/StoredData.txt";
+
+    /**
+     * LoadGame(): constructor
+     */
     public LoadGame(){
         prepareGUI();
     }
+
+    /**
+     * prepareGUI(): set up for components
+     */
     private void prepareGUI() {
         myLoadFrame = new JFrame("Click the saved game button to load game");
         myLoadFrame.setSize(400, 300);
@@ -24,7 +41,6 @@ public class LoadGame implements Serializable {
         myPannelHolder = new JPanel();
         myPannelHolder.setBackground(Color.RED);
         myPannelHolder.setToolTipText("Please, click the saved game button to load game");
-        //myPannelHolder.setBounds(100, 60, 200, 100);
         myPannelHolder.setBounds(120, 100, 130, 40);
 
         JButton mySavedGameButton = new JButton("Saved Game");
@@ -41,7 +57,6 @@ public class LoadGame implements Serializable {
                 mySavedMaze = (int[][])in.readObject();
                 mySavedX = (int)in.readObject();
                 mySavedY = (int)in.readObject();
-                //mySavedLevel = (int)in.readObject();
 
                 GameView mySavedGame = new GameView(mySavedMaze,mySavedX,mySavedY);
 

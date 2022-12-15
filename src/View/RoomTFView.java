@@ -13,6 +13,15 @@ import javax.swing.*;
 import static java.awt.Color.BLUE;
 import static java.awt.Color.RED;
 
+/**
+ * @author: An Nguyen, Sunny
+ * @version: 11/10/2022, updated 12/13/2022
+ *
+ */
+
+/**
+ * RoomTFView class use GUI to design and display for True/False question.
+ */
 public class RoomTFView extends JFrame {
     private JFrame myMainFrame;
     private JTextArea myTaQuestion;
@@ -38,7 +47,12 @@ public class RoomTFView extends JFrame {
     private QA myBank;
     private boolean mySwitch;
 
-    // Constructor to setup GUI components and event handlers
+    /**
+     * RoomTFView(String, int): this is constructor passing two parameters
+     * to set up GUI components and event handlers
+     * @param theCate: category
+     * @param theId: id
+     */
     public RoomTFView(String theCate, int theId) {
         myCate = theCate;
         myId = theId;
@@ -47,10 +61,22 @@ public class RoomTFView extends JFrame {
         myCheckAns = false;
         mySwitch = false;
     }
-    public RoomTFView(){
 
+    /**
+     * RoomTFView(): default constructor
+     */
+    public RoomTFView(){
+        myCate = "";
+        myId = 0;
+        myCheckAns = false;
+        mySwitch = false;
     }
 
+    /**
+     * prepareGUI(String, int): set up components
+     * @param theCate: category
+     * @param theId: id
+     */
     private void prepareGUI(String theCate, int theId){
         myMainFrame = new JFrame("Welcome to challenge^^");
         myMainFrame.setSize(500,400);
@@ -101,17 +127,27 @@ public class RoomTFView extends JFrame {
             public void windowClosing(WindowEvent windowEvent){
                 myTimer.stop();
                 myMainFrame.dispose();
-                //System.exit(0);
             }
         });
 
         showEventDemo();
     }
 
+    /**
+     * roomShow(): set mainframe is visible
+     */
     public void roomShow(){
         myMainFrame.setVisible(true);
     }
 
+    /**
+     * showEventDemo(): create action listener for Helper Switch Question button, and submit button
+     * For Switch button, just replace current question, correct answer, and choices
+     * into other True/False question in tableTFExtra.
+     * ID will be created random
+     * For submit button, if players answer correct answer will display the message dialog
+     * that confirm passing this door. Otherwise, the message dialog display no passing this door.
+     */
     public void showEventDemo(){
 
         myBtnSwitch.addActionListener(new ActionListener() {
@@ -124,7 +160,6 @@ public class RoomTFView extends JFrame {
                 int id = rand.nextInt(max + 1 - min) + min;
                 myId = id;
                 myCate = "TFE";
-                //System.out.println("id random: " + id);
                 myTaQuestion.setText(displayQuestionExtra(myCate, id));
                 myArrChoice = displayChoicesExtra(myCate, id);
                 myRadioBtA.setText(myArrChoice.get(0));
@@ -162,7 +197,6 @@ public class RoomTFView extends JFrame {
                     text = "It's correct. You're pass!";
                     ImageIcon icon = new ImageIcon("Assets/correct.jpeg");
                     JOptionPane.showMessageDialog(myBtnSubmit, text, "Check^^", JOptionPane.INFORMATION_MESSAGE, icon);
-                    //RoomMCView.index++;
                     myCheckAns = true;
                 }
                 else {
@@ -173,12 +207,14 @@ public class RoomTFView extends JFrame {
                 }
                 myTimer.stop();
                 myMainFrame.dispose();
-                //System.exit(0);
 
             }
         });
     }
 
+    /**
+     * countingTimer(): set timer displays 60 second, after timer reach 0 the window will be closed
+     */
     private void countingTimer(){
         myTimer = new Timer(1000, new ActionListener() {
 
@@ -200,12 +236,24 @@ public class RoomTFView extends JFrame {
         });
     }
 
+    /**
+     * displayQuestion(String, int): get question from tableMC and return question.
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     public String displayQuestion(String theCate, int theId) {
         String ques = myBank.getQuestion(theCate, theId);
         //System.out.println(ques);
         return ques;
     }
 
+    /**
+     * displayChoices(String, int): display all options from tableTF and return list choices
+     * @param theCate: category
+     * @param theId: id
+     * @return: ArrayList<String>
+     */
     public ArrayList<String> displayChoices(String theCate, int theId) {
         myArrChoice = new ArrayList<String>();
         ArrayList<String> temp = new ArrayList<String>();
@@ -214,19 +262,39 @@ public class RoomTFView extends JFrame {
         return myArrChoice;
     }
 
+    /**
+     * displayAnswer(String, int): get correct answer and return answer
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     public String displayAnswer(String theCate, int theId) {
         String ans = myBank.getAnswer(theCate, theId);
         myCorrAns = ans;
-        //System.out.println(ans);
         return ans;
     }
 
+    /**
+     * displayQuestionExtra(String, int): this method is for Switch button.
+     * It returns question from tableTFExtra
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     public String displayQuestionExtra(String theCate, int theId){
         myBank = new QATFExtra(theCate, theId);
         String quesE = myBank.getQuestion(theCate, theId);
         return quesE;
 
     }
+
+    /**
+     * displayChoicesExtra(String, int): this method is for Switch button.
+     * It returns list choices from tableTFExtra
+     * @param theCate: id
+     * @param theId: id
+     * @return: ArrayList<String>
+     */
     public ArrayList<String> displayChoicesExtra (String theCate, int theId) {
         myBank = new QATFExtra(theCate, theId);
         myArrChoice = new ArrayList<String>();
@@ -236,11 +304,17 @@ public class RoomTFView extends JFrame {
         return myArrChoice;
     }
 
+    /**
+     * displayAnswerExtra(String, int): this method is for Switch button.
+     * It returns answer from tableTFExtra
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     public String displayAnswerExtra (String theCate, int theId) {
         myBank = new QATFExtra(theCate, theId);
         String ans = myBank.getAnswer(theCate, theId);
         myCorrAns = ans;
-        //System.out.println(ans);
         return ans;
     }
 

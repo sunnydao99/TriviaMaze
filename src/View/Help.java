@@ -20,8 +20,6 @@ public class Help {
      */
     void prepareGUI(){
         myHelpFrame = new JFrame("Help Page");
-        //myHelpFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //myHelpFrame.setUndecorated(true);
         myHelpFrame.setSize(800,700);
         myHelpFrame.setLayout(new BorderLayout());
         myHelpFrame.setBackground(Color.getHSBColor(240,100,74));

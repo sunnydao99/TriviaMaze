@@ -4,10 +4,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author: Xuan Dao (Sunny)
+ * @version: 12/12/2022
+ *
+ */
 
+/**
+ * This class test for QATFExtra class
+ */
 public class QATFExtraTest {
 
     private QATFExtra bankTFE;

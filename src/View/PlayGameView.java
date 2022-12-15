@@ -9,7 +9,15 @@ import java.awt.event.WindowEvent;
 import java.awt.GridBagLayout;
 import java.io.FileNotFoundException;
 
+/**
+ * @author: An Nguyen
+ * @version: 11/30/2022
+ *
+ */
 
+/**
+ * PlayGameView class create three buttons to display Beginner, Medium, Expert Level
+ */
 public class PlayGameView {
     private JFrame myMainFrame;
     private JButton myBtnLevelEasy;
@@ -19,11 +27,19 @@ public class PlayGameView {
     private String myCate;
     private int myId;
 
+    /**
+     * PlayGameView(): constructor
+     */
+    public PlayGameView(){
+        prepareGUI();
+    }
 
+    /**
+     * prepareGUI(): set up components
+     */
     void prepareGUI(){
         myMainFrame = new JFrame("Levels");
         myMainFrame.setSize(500,400);
-        //myMainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         myMainFrame.setLayout(null);
         JLabel lbPanel = new JLabel("Please, select a level!");
         lbPanel.setFont(new Font("Big Font", Font.CENTER_BASELINE, 20));
@@ -58,13 +74,15 @@ public class PlayGameView {
         myMainFrame.setVisible(true);
     }
 
+    /**
+     * showEventDemo(): create action listener for three buttons Beginner, Medium, Expert
+     */
     public void showEventDemo(){
 
         myBtnLevelEasy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(myBtnLevelEasy,"Navigate using keyboard to exit to win!");
-                //Instructions inst = new Instructions();
                 SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run() {
@@ -73,7 +91,6 @@ public class PlayGameView {
                             GameView lvEasy = new GameView(1);
                         } catch (FileNotFoundException ex) {
                             System.out.println(ex);
-                            //throw new RuntimeException(ex);
                         }
 
                     }
@@ -85,7 +102,6 @@ public class PlayGameView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(myBtnLevelMedium,"Navigate using keyboard to exit to win!");
-                //Instructions inst = new Instructions();
                 SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run() {

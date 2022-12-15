@@ -4,14 +4,13 @@ import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 /**
- * @author: An Nguyen
- * @version: 10/29/2022
+ * QASA class is built to get questions, correct answers, and hints
+ * for short answer question.
+ * @version: 10.29.22
+ * @author: An Nguyen, Satinder Singh
  *
  */
 
-/**
- * QASA class get questions, get correct answers, get hints for short answer question.
- */
 public class QASA extends QA implements Serializable {
     Connection myConn;
     private String myQuesSA;
@@ -22,9 +21,10 @@ public class QASA extends QA implements Serializable {
     private int myId;
 
     /**
-     * QASA(String, int): this constructor passes two parameters category question and ID
-     * @param theCate: category
-     * @param theId: Id
+     * This constructor is used to pass two parameters which are
+     * category question and ID
+     * @param theCate The category
+     * @param theId  The ID
      */
     public QASA(String theCate, int theId) {
         myCategory = theCate;
@@ -33,7 +33,7 @@ public class QASA extends QA implements Serializable {
     }
 
     /**
-     * QASA(): default construct
+     * This is the default constructor
      */
     public  QASA() {
         myQuesSA = "";
@@ -45,8 +45,9 @@ public class QASA extends QA implements Serializable {
     }
 
     /**
-     * connect(): connect database and return connection
-     * @return: Connection
+     * This method is used to make a connection to the database
+     * and return it
+     * @return Connection the connection to the database
      */
     public Connection connect() {
         String url = "jdbc:sqlite:Database_QA.db";
@@ -60,11 +61,12 @@ public class QASA extends QA implements Serializable {
     }
 
     /**
-     * getQuestion(String, int): overrider getChoices() from QA class.
-     * get question from tableSA and return question
-     * @param theCategory: category
-     * @param theId: id
-     * @return: String
+     * This method is overrider from getQuestion() method of QA class.
+     * to get question from tableSA and return it
+     * @param theCategory The category of question
+     * @param theId The ID of the question
+     * @exception SQLException if it cannot get the question and return it
+     * @return String The question
      */
     @Override
     public String getQuestion(String theCategory, int theId){
@@ -95,11 +97,12 @@ public class QASA extends QA implements Serializable {
     }
 
     /**
-     * getAnswer(String, int): overrider getChoices() from QA class.
-     * returns answer from tableSA
-     * @param theCategory: category
-     * @param theId: id
-     * @return: String
+     * This method is overrider from getAnswer() method of QA class.
+     * to get answer from tableSA and return it
+     * @param theCategory The category of answer
+     * @param theId The ID of the answer
+     * @exception SQLException if it cannot get the answer and return it
+     * @return String The question
      */
     @Override
     public String getAnswer(String theCategory, int theId){
@@ -130,10 +133,11 @@ public class QASA extends QA implements Serializable {
 
 
     /**
-     * getHintSA(String, int): returns hints from tableSA
-     * @param theCategory: category
-     * @param theId: id
-     * @return: String
+     * This method is built to get the hints from the tableSA and
+     * returns it
+     * @param theCategory The category of hint
+     * @param theId The ID of hint
+     * @return String The hint
      */
     public String getHintSA(String theCategory, int theId){
         String sql = "SELECT IDQuest,Category,Hints "

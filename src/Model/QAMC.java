@@ -6,15 +6,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * @author: An Nguyen
- * @version: 10/28/2022
+ * QAMC class is used to get questions, correct answers, choices,
+ * and create Reduce Choices for helping players to get right answer.
+ * This class will extend to the QA class
+ * @author: An Nguyen, Satinder Singh
+ * @version: 10.28.22
  *
- */
-
-/**
- * QAMC class get questions, get correct answers, get choices,
- * and create random Reduce Choices for multiple choice question.
- * This class will extend QA class
  */
 
 public class QAMC extends QA implements Serializable {
@@ -27,9 +24,10 @@ public class QAMC extends QA implements Serializable {
     private int myId;
 
     /**
-     * QAMC(String, int): this constructor passes two parameters category question and ID
-     * @param theCate: category question
-     * @param theId: ID
+     * This constructor is used to pass two parameters which are
+     * category question and ID
+     * @param theCate The category of question
+     * @param theId The ID of category of question
      */
     public QAMC(String theCate, int theId) {
         myQuesMC = "";
@@ -41,7 +39,7 @@ public class QAMC extends QA implements Serializable {
     }
 
     /**
-     * QAMC(): default construct
+     * This is the default construct
      */
     public QAMC() {
         myQuesMC = "";
@@ -53,8 +51,9 @@ public class QAMC extends QA implements Serializable {
     }
 
     /**
-     * connect(): connect database and return connection
-     * @return: Connection
+     * This method is created to make a connection to database
+     * and return it
+     * @return Connection the connection to the database
      */
     public Connection connect() {
         String url = "jdbc:sqlite:Database_QA.db";
@@ -68,11 +67,12 @@ public class QAMC extends QA implements Serializable {
     }
 
     /**
-     * getQuestion(String, int): overrider getQuestion() from QA class.
-     * get question from tableMC and return question
-     * @param theCate: category
-     * @param theId: id
-     * @return: String
+     * This method is being overrider from getQuestion() of QA class
+     *  and used to get and return the question from tableMC
+     * @param theCate The category of question
+     * @param theId The ID of question
+     * @exception SQLException if it cannot get the question to return
+     * @return String The question
      */
     @Override
     public String getQuestion(String theCate, int theId) {
@@ -104,11 +104,12 @@ public class QAMC extends QA implements Serializable {
     }
 
     /**
-     * getAnswer(String, int): overrider getAnswer() from QA class.
-     * return answer from tableMC
-     * @param theCategory: category
-     * @param theId: id
-     * @return: String
+     * This method is overrider from getAnswer() method of QA class.
+     * to return answer from tableMC
+     * @param theCategory The category of question
+     * @param theId The ID of question
+     * @exception SQLException if it cannot get the answer and return
+     * @return String The answer
      */
     @Override
     public String getAnswer(String theCategory, int theId){
@@ -138,11 +139,12 @@ public class QAMC extends QA implements Serializable {
     }
 
     /**
-     * getChoices(String, int): overrider getChoices() from QA class.
-     * returns options list from tableMC
-     * @param theCategory: category
-     * @param theId: id
-     * @return: ArrayList<String>
+     * This method is overrider from getChoices() method of QA class
+     * to return a list of choices from tableMC
+     * @param theCategory The category of question
+     * @param theId The ID of question
+     * @exception SQLException if it cannot get the choices and return it
+     * @return ArrayList A String arraylist of choices
      */
     @Override
     public ArrayList<String> getChoices(String theCategory, int theId){
@@ -180,10 +182,10 @@ public class QAMC extends QA implements Serializable {
     }
 
     /**
-     * getArrRedChoiceMC(String, int): uses random to reduce two choices and store them into a list
-     * @param theCategory: category
-     * @param theId: id
-     * @return: ArrayList<String>
+     * This method is built to reduce two choices and store them into a list
+     * @param theCategory The category of choices
+     * @param theId The ID of choices
+     * @return ArrayList A String arraylist of choices
      */
     public ArrayList<String> getArrRedChoiceMC(String theCategory, int theId) {
         myCategory = theCategory;
@@ -220,10 +222,11 @@ public class QAMC extends QA implements Serializable {
     }
 
     /**
-     * getIndexForRedChoice(String, int): get indexs from myArrRedChoiceMC list and store them into a list
-     * @param theCate: category
-     * @param theId: id
-     * @return: ArrayList<Integer>
+     * This method is created to get indexes from myArrRedChoiceMC list
+     * and store them into a list
+     * @param theCate category of choices
+     * @param theId The ID of choices
+     * @return ArrayList<Integer> A list of integer
      */
     public ArrayList<Integer> getIndexForRedChoice(String theCate, int theId){
         int temp1 = 0;
@@ -246,8 +249,7 @@ public class QAMC extends QA implements Serializable {
     }
 
     /**
-     * printChoicesMC(): void
-     * To print myArrChoiceMC list
+     * This method is used to print the choices for multiple choices question
      */
     public void printChoicesMC() {
         System.out.print("[");
@@ -263,8 +265,7 @@ public class QAMC extends QA implements Serializable {
     }
 
     /**
-     * printRedChoiceMC(): void
-     * To print reduce choice list
+     * This method is used to print the choices after reducing options
      */
     public void printRedChoiceMC() {
         System.out.print("[");

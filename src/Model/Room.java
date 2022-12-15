@@ -20,6 +20,9 @@ public class Room implements Serializable {
     private static ArrayList<String> myCategoryList;
     private ArrayList<String> myRooms;
 
+    /**
+     * Room(): constructor
+     */
     public Room() {
         myIdList = new ArrayList<Integer>();
         myCategoryList = new ArrayList<String>();
@@ -82,7 +85,7 @@ public class Room implements Serializable {
     }
 
     /**
-     * getLastID(): This method gets last ID after random
+     * getLastID(): return last ID after random
      * @return: int
      */
     public static int getLastID() {
@@ -90,7 +93,7 @@ public class Room implements Serializable {
     }
 
     /**
-     * getLastCategory(): This method gets last category after random
+     * getLastCategory(): return last category after random
      * @return: String
      */
     public static String getLastCategory() {

@@ -6,14 +6,6 @@ import java.util.List;
 public class Maze implements Serializable {
     private static final int RECT_SIZE = 60;
 
-    public static int myRectSize() {
-        return RECT_SIZE;
-    }
-
-    public static int[][] getMAZE() {
-        return MAZE;
-    }
-
     private static final int[][] MAZE =
             {       {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                     {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
@@ -26,5 +18,45 @@ public class Maze implements Serializable {
                     {1, 4, 0, 0, 0, 4, 0, 0, 0, 0, 1, 6, 1}, // at position 11,8
                     {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
             };
+
+    private static final int[][] MAZE_MEDIUM =
+            {       {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
+                    {1, 0, 1, 0, 0, 0, 0, 4, 1, 1, 1, 0, 1},
+                    {1, 0, 4, 0, 1, 1, 0, 0, 0, 0, 4, 0, 1},
+                    {1, 0, 1, 0, 0, 0, 4, 0, 1, 1, 1, 0, 1},
+                    {1, 0, 1, 0, 1, 1, 1, 0, 4, 0, 0, 4, 1},
+                    {1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1},
+                    {1, 0, 1, 4, 1, 1, 1, 4, 1, 4, 0, 0, 1}, // 10x13
+                    {1, 4, 0, 0, 0, 4, 0, 0, 0, 0, 1, 6, 1}, // at position 11,8
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+            };
+
+    private static final int[][] MAZE_HARD =
+            {       {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
+                    {1, 0, 1, 0, 1, 0, 0, 4, 1, 1, 1, 0, 1},
+                    {1, 0, 4, 0, 1, 1, 0, 0, 4, 0, 4, 0, 1},
+                    {1, 0, 1, 0, 0, 0, 4, 0, 1, 1, 1, 0, 1},
+                    {1, 4, 1, 4, 1, 1, 1, 0, 4, 0, 0, 4, 1},
+                    {1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1},
+                    {1, 0, 1, 4, 1, 1, 1, 4, 1, 4, 0, 4, 1}, // 10x13
+                    {1, 4, 0, 0, 0, 4, 0, 0, 0, 0, 1, 6, 1}, // at position 11,8
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+            };
+
+    public static int myRectSize() {
+        return RECT_SIZE;
+    }
+
+    public static int[][] getMAZE() {
+        return MAZE;
+    }
+    public static int[][] getMAZE_MEDIUM() {
+        return MAZE_MEDIUM;
+    }
+    public static int[][] getMAZE_HARD() {
+        return MAZE_HARD;
+    }
 
 }

@@ -5,6 +5,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author: An Nguyen
+ * @version: 12/10/2022
+ *
+ */
+
+/**
+ * This class test for QASA class
+ */
 public class QASATest {
     private QASA bankSA;
     @Before

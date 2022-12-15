@@ -3,8 +3,8 @@ package Model;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.sql.*;
-
 import java.util.*;
+
 /**
  * @author: An Nguyen
  * @version: 10/27/2022
@@ -13,6 +13,7 @@ import java.util.*;
 
 /**
  * This class reads data from CSV file and insert data into all tables
+ * This class will extend Inventory class
  */
 public class QA extends Inventory implements Serializable{
 
@@ -31,6 +32,9 @@ public class QA extends Inventory implements Serializable{
 
     private Connection myConn;
 
+    /**
+     * QA(): constructor declares four files for 4 tables
+     */
     public QA(){
         myFileCSV_QMC = new File("Database/QAMultiple.csv");
         myFileCSV_QAS = new File("Database/QAShort.csv");
@@ -41,6 +45,11 @@ public class QA extends Inventory implements Serializable{
         connect();
     }
 
+    /**
+     * QA(): constructor declares four files for 4 tables  and passing two parameters
+     * @param theCate: category
+     * @param theId: id
+     */
     public QA(String theCate, int theId){
         myCate = theCate;
         myId = theId;
@@ -71,7 +80,7 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableMC(): void
+     * insertTableMC(): overrider insertTableMC() from Inventory class
      * This method inserts data into tableMC
      */
     public void insertTableMC(){
@@ -131,7 +140,7 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableTF(): void
+     * insertTableTF(): overrider insertTableTF() from Inventory class
      * This method inserts data into tableTF
      */
     @Override
@@ -185,7 +194,8 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableSA(): This method inserts data into tableSA
+     * insertTableSA(): overrider insertTableSA() from Inventory class
+     * This method inserts data into tableSA
      */
     @Override
     public void insertTableSA() {
@@ -236,7 +246,7 @@ public class QA extends Inventory implements Serializable{
     }
 
     /**
-     * insertTableTFExtra(): void
+     * insertTableTFExtra(): overrider insertTableTFExtra() from Inventory class
      * This method inserts data into tableTFExtra
      */
     public void insertTableTFExtra() {

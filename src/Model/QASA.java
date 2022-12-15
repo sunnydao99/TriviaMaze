@@ -21,12 +21,20 @@ public class QASA extends QA implements Serializable {
     private String myCategory;
     private int myId;
 
+    /**
+     * QASA(String, int): this constructor passes two parameters category question and ID
+     * @param theCate: category
+     * @param theId: Id
+     */
     public QASA(String theCate, int theId) {
         myCategory = theCate;
         myId = theId;
         connect();
     }
 
+    /**
+     * QASA(): default construct
+     */
     public  QASA() {
         myQuesSA = "";
         myCorrAnsSA = "";
@@ -36,6 +44,10 @@ public class QASA extends QA implements Serializable {
 
     }
 
+    /**
+     * connect(): connect database and return connection
+     * @return: Connection
+     */
     private Connection connect() {
         String url = "jdbc:sqlite:Database_QA.db";
 
@@ -47,6 +59,14 @@ public class QASA extends QA implements Serializable {
         return myConn;
     }
 
+    /**
+     * getQuestion(String, int): overrider getChoices() from QA class.
+     * get question from tableSA and return question
+     * @param theCategory: category
+     * @param theId: id
+     * @return: String
+     */
+    @Override
     public String getQuestion(String theCategory, int theId){
         myCategory = theCategory;
         myId = theId;
@@ -74,6 +94,14 @@ public class QASA extends QA implements Serializable {
         return question;
     }
 
+    /**
+     * getAnswer(String, int): overrider getChoices() from QA class.
+     * returns answer from tableSA
+     * @param theCategory: category
+     * @param theId: id
+     * @return: String
+     */
+    @Override
     public String getAnswer(String theCategory, int theId){
         myCategory = theCategory;
         myId = theId;
@@ -101,6 +129,12 @@ public class QASA extends QA implements Serializable {
     }
 
 
+    /**
+     * getHintSA(String, int): returns hints from tableSA
+     * @param theCategory: category
+     * @param theId: id
+     * @return: String
+     */
     public String getHintSA(String theCategory, int theId){
         String sql = "SELECT IDQuest,Category,Hints "
                 + "FROM tableSA WHERE IDQuest = ? AND Category = ?";

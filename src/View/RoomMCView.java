@@ -2,20 +2,23 @@ package View;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import javax.sound.sampled.*;
 import javax.swing.*;
-
 import Model.QA;
 import Model.QAMC;
 
 import static java.awt.Color.*;
 
+/**
+ * @author: An Nguyen
+ * @version: 11/5/2022
+ *
+ */
+
+/**
+ * RoomMCView class use GUI to design and display for multiple choice question.
+ */
 public class RoomMCView extends JFrame {
     private JFrame myMainFrame;
     private JTextArea myTaQuestion;
@@ -26,7 +29,6 @@ public class RoomMCView extends JFrame {
     private ButtonGroup myGroupRadio;
     private JButton myBtnHelper50;
     private JButton myBtnSubmit;
-
     private  JLabel myLbTimer;
     private  Font myFont1;
     Timer myTimer;
@@ -34,38 +36,48 @@ public class RoomMCView extends JFrame {
     private String myddSecond, myddMinute;
     DecimalFormat mydFormat = new DecimalFormat("00");
 
-    //public static int index;
     private boolean myCheckAns;
-
     private String myCate;
     private int myId;
-
     private String myCorrAns;
     private ArrayList<String> myArrChoice;
-    private ArrayList<String> myArrRedChoice;
     private ArrayList<String> myArrOpt50;
     private QA myBank;
 
-    // Constructor to setup GUI components and event handlers
+    /**
+     * RoomMCView(String, int): this is constructor passing two parameters
+     * to set up GUI components and event handlers
+     * @param theCate: category
+     * @param theId: id
+     */
     public RoomMCView(String theCate, int theId) {
         myCate = theCate;
         myId = theId;
         myBank = new QAMC(theCate, theId);
-        //index = 0;
         prepareGUI(theCate, theId);
         myCheckAns = false;
 
     }
 
+    /**
+     * RoomMCView(): constructor
+     */
     public RoomMCView() {
+        myCate = "";
+        myId= 0;
+        myCorrAns = "";
 
     }
 
+    /**
+     * prepareGUI(String, int): set up components
+     * @param theCate: category
+     * @param theId: id
+     */
     private void prepareGUI(String theCate, int theId) {
         myMainFrame = new JFrame("Welcome to challenge^^");
         myMainFrame.setSize(500, 450);
         myMainFrame.setLayout(null);
-
 
         myTaQuestion = new JTextArea("");
         myTaQuestion.setBounds(17, 33, 450, 90);
@@ -96,8 +108,10 @@ public class RoomMCView extends JFrame {
         myRadioBtC.setBounds(12, 220, 400, 80);
         myRadioBtD.setBounds(12, 270, 400, 80);
 
-
-
+        myGroupRadio.add(myRadioBtA);
+        myGroupRadio.add(myRadioBtB);
+        myGroupRadio.add(myRadioBtC);
+        myGroupRadio.add(myRadioBtD);
 
         myFont1 = new Font("Arial", Font.PLAIN, 50);
         myLbTimer = new JLabel();
@@ -108,18 +122,9 @@ public class RoomMCView extends JFrame {
         countingTimer();
         myTimer.start();
 
-        //Add image
         JLabel background1 = new JLabel(new ImageIcon("Assets/treasureMazeBG.jpeg"));
 
-       /* ImageIcon background=new ImageIcon("Assets/treasureMazeBG.jpeg");
-        Image img=background.getImage();
-        Image temp=img.getScaledInstance(200,300,Image.SCALE_SMOOTH);
-        background=new ImageIcon(temp);*/
-
-
-        //myMainFrame.setIconImage(background.getImage());
         myMainFrame.add(background1);
-
         myMainFrame.add(myLbTimer);
         myMainFrame.add(myTaQuestion);
         myMainFrame.add(myRadioBtA);
@@ -129,30 +134,31 @@ public class RoomMCView extends JFrame {
         myMainFrame.add(myBtnHelper50);
         myMainFrame.add(myBtnSubmit);
 
-        myGroupRadio.add(myRadioBtA);
-        myGroupRadio.add(myRadioBtB);
-        myGroupRadio.add(myRadioBtC);
-        myGroupRadio.add(myRadioBtD);
-
         myMainFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent windowEvent) {
                 myTimer.stop();
                 myMainFrame.dispose();
-                //System.exit(0);
             }
         });
-
 
         showEventDemo();
 
     }
 
+    /**
+     * roomShow(): set mainframe is visible
+     */
     public void roomShow(){
         myMainFrame.setVisible(true);
     }
 
+    /**
+     * showEventDemo(): create action listener for Helper 50/50 button, and submit button
+     * For helper 50/50 button, no display 2 choices
+     * For submit button, if players answer correct answer will display the message dialog
+     * that confirm passing this door. Otherwise, the message dialog display no passing this door.
+     */
     public void showEventDemo() {
-
 
         myBtnHelper50.addActionListener(new ActionListener() {
             @Override
@@ -173,7 +179,6 @@ public class RoomMCView extends JFrame {
 
             }
         });
-
 
         myBtnSubmit.addActionListener(new ActionListener() {
             @Override
@@ -214,7 +219,7 @@ public class RoomMCView extends JFrame {
                     JOptionPane.showMessageDialog(myBtnSubmit, text, "Check^^",JOptionPane.INFORMATION_MESSAGE, icon);
 
                 }
-                //System.out.println("index: " + index);
+
                 myTimer.stop();
                 myMainFrame.dispose();
                 //System.exit(0);
@@ -223,12 +228,14 @@ public class RoomMCView extends JFrame {
 
     }
 
+    /**
+     * countingTimer(): set timer displays 60 second, after timer reach 0 the window will be closed
+     */
     private void countingTimer(){
 
         myTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 if(myMinute ==0 && mySecond ==0) {
                     myTimer.stop();
                     myMainFrame.dispose();
@@ -239,20 +246,29 @@ public class RoomMCView extends JFrame {
                     myddMinute = mydFormat.format(myMinute);
                     myLbTimer.setText(myddMinute + ":"+ myddSecond);
 
-
                 }
             }
         });
 
     }
 
-
+    /**
+     * displayQuestion(String, int): get question from tableMC and return question.
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     public String displayQuestion(String theCate, int theId) {
         String ques = myBank.getQuestion(theCate, theId);
-        //System.out.println(ques);
         return ques;
     }
 
+    /**
+     * displayChoices(String, int): display all options from tableMC and return list choices
+     * @param theCate: category
+     * @param theId: id
+     * @return: ArrayList<String>
+     */
     public ArrayList<String> displayChoices(String theCate, int theId) {
         myArrChoice = new ArrayList<String>();
         ArrayList<String> temp = new ArrayList<String>();
@@ -261,19 +277,29 @@ public class RoomMCView extends JFrame {
         return myArrChoice;
     }
 
+    /**
+     * displayAnswer(String, int): get correct answer and return answer
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     public String displayAnswer(String theCate, int theId) {
         String ans = myBank.getAnswer(theCate, theId);
         myCorrAns = ans;
-        //System.out.println(ans);
         return ans;
     }
 
+    /**
+     * disappearHalfChoice(String, int): return reduce choices
+     * @param theCate: category
+     * @param theId: id
+     * @return: String
+     */
     public ArrayList<String> disappearHalfChoice(String theCate, int theId) {
         myArrOpt50 = new ArrayList<String>();
         ArrayList<Integer> temp = new ArrayList<Integer>();
         ArrayList<String> optList = new ArrayList<String>();
-        temp = ((QAMC) myBank).getOptionForRedChoice(theCate, theId);
-
+        temp = ((QAMC) myBank).getIndexForRedChoice(theCate, theId);
 
         String st = "";
         for (int i = 0; i < temp.size(); i++) {
@@ -294,6 +320,10 @@ public class RoomMCView extends JFrame {
         return optList;
     }
 
+    /**
+     * getMyCheckAns(): return answer
+     * @return: boolean
+     */
     public boolean getMyCheckAns(){
         return myCheckAns;
     }

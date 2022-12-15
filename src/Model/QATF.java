@@ -12,6 +12,7 @@ import java.util.Random;
 
 /**
  * QATF class gets questions, get correct answers, get choices for True/False question.
+ * This class will extend QA class
  */
 
 public class QATF extends QA implements Serializable {
@@ -22,12 +23,20 @@ public class QATF extends QA implements Serializable {
     private String myCategory;
     private int myId;
 
+    /**
+     * QATF(String, int): this constructor passes two parameters category question and ID
+     * @param theCate: category question
+     * @param theId: ID
+     */
     public QATF(String theCate, int theId) {
         myCategory = theCate;
         myId = theId;
 
     }
 
+    /**
+     * QATF(): default construct
+     */
     public QATF() {
         myQuesTF = "";
         myCorrAnsTF = "";
@@ -36,6 +45,10 @@ public class QATF extends QA implements Serializable {
 
     }
 
+    /**
+     * connect(): connect database and return connection
+     * @return: Connection
+     */
     private Connection connect() {
         String url = "jdbc:sqlite:Database_QA.db";
 
@@ -47,6 +60,13 @@ public class QATF extends QA implements Serializable {
         return myConn;
     }
 
+    /**
+     * getQuestion(String, int): overrider getQuestion() from QA class.
+     * get question from tableTF and return question
+     * @param theCategory: category
+     * @param theId: id
+     * @return: String
+     */
     @Override
     public String  getQuestion(String theCategory, int theId) {
         myCategory = theCategory;
@@ -76,6 +96,13 @@ public class QATF extends QA implements Serializable {
         return question;
     }
 
+    /**
+     * getAnswer(String, int): overrider getAnswer() from QA class.
+     * return answer from tableTF
+     * @param theCategory: category
+     * @param theId: id
+     * @return: String
+     */
     public String getAnswer(String theCategory, int theId){
         myCategory = theCategory;
         myId = theId;
@@ -102,6 +129,13 @@ public class QATF extends QA implements Serializable {
         return corrAns;
     }
 
+    /**
+     * getChoices(String, int): overrider getChoices() from QA class.
+     * return options list from tableTF
+     * @param theCategory: category
+     * @param theId: id
+     * @return: ArrayList<String>
+     */
     public ArrayList<String> getChoices(String theCategory, int theId){
         myCategory = theCategory;
         myId = theId;
@@ -133,6 +167,9 @@ public class QATF extends QA implements Serializable {
         return choices;
     }
 
+    /**
+     * printChoicesTF(): print myArrChoiceTF list
+     */
     public void printChoicesTF() {
         System.out.print("[");
         for (int i = 0; i < myArrChoiceTF.size(); i++) {

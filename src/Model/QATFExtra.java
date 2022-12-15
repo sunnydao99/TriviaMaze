@@ -5,15 +5,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * @author: An Nguyen
- * @version: 12/11/2022
+ * QATFExtra class is a child of QA class, used to get questions, correct answers, and choices
+ * for True/False question.
+ * This class only uses for switch question button
+ * @author: An Nguyen, Satinder Singh
+ * @version: 12.11.22
  */
 
-/**
- * QATFExtra class get questions, get correct answers, get choices for True/False question.
- * This class uses for switch question button
- * This class will extend QA class
- */
 public class QATFExtra extends QA implements Serializable {
     Connection myConn;
     private String myQuesTFE;
@@ -23,9 +21,9 @@ public class QATFExtra extends QA implements Serializable {
     private int myId;
 
     /**
-     * QATFExtra(String, int): constructor pass two parameters
-     * @param theCate: category
-     * @param theId: id
+     * The constructor passes two parameters -  the category and ID
+     * @param theCate The category
+     * @param theId The ID
      */
     public QATFExtra(String theCate, int theId) {
         myCategory = theCate;
@@ -34,7 +32,7 @@ public class QATFExtra extends QA implements Serializable {
     }
 
     /**
-     * QATFExtra(): default constructor
+     * This is the default construct
      */
     public QATFExtra() {
         myQuesTFE = "";
@@ -44,8 +42,10 @@ public class QATFExtra extends QA implements Serializable {
     }
 
     /**
-     * connect(): connect database and return connection
-     * @return: Connection
+     * This method is built to make connect to the database
+     * and return connection
+     * @exception SQLException if it cannot get connect to the database
+     * @return Connection The connection to the database
      */
     public Connection connect() {
         String url = "jdbc:sqlite:Database_QA.db";
@@ -60,11 +60,12 @@ public class QATFExtra extends QA implements Serializable {
 
 
     /**
-     * getQuestion(String, int): overrider getQuestion() from QA class.
-     * get question from tableTFExtra and return question
-     * @param theCategory: category
-     * @param theId: id
-     * @return: String
+     * This method is overrider from getQuestion() method of QA class, and
+     * used to get question from tableTFE and return it
+     * @exception SQLException if it cannot get the choices and return it
+     * @param theCategory The category of question
+     * @param theId The ID of the question
+     * @return String The question
      */
     @Override
     public String  getQuestion(String theCategory, int theId) {
@@ -93,11 +94,12 @@ public class QATFExtra extends QA implements Serializable {
     }
 
     /**
-     * getAnswer(String, int): overrider getAnswer() from QA class.
-     * return answer from tableTFExtra
-     * @param theCategory: category
-     * @param theId: id
-     * @return: String
+     * This method is overrider from getAnswer() method of QA class, and
+     * used to get answer from tableTFE and return it
+     * @exception SQLException if it cannot get the choices and return it
+     * @param theCategory The category of answer
+     * @param theId The ID of the answer
+     * @return String The answer
      */
     @Override
     public String getAnswer(String theCategory, int theId){
@@ -127,11 +129,12 @@ public class QATFExtra extends QA implements Serializable {
     }
 
     /**
-     * getChoices(String, int): overrider getChoices() from QA class.
-     * return options list from tableTFExtra
-     * @param theCategory: category
-     * @param theId: id
-     * @return: ArrayList<String>
+     * This method is overrider from getChoices() method of QA class, and
+     * used to get a list of choices from tableTFE and return it
+     * @exception SQLException if it cannot get the choices and return it
+     * @param theCategory The category of choices
+     * @param theId The ID of the choices
+     * @return ArrayList<String> A list of choices
      */
     public ArrayList<String> getChoices(String theCategory, int theId){
         myCategory = theCategory;
@@ -165,7 +168,7 @@ public class QATFExtra extends QA implements Serializable {
     }
 
     /**
-     * printChoicesTF(): print myArrChoiceTFE list
+     * This method is built to print the choices for True or False Extra questions
      */
     public void printChoicesTF() {
         System.out.print("[");

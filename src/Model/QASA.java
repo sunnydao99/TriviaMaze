@@ -3,7 +3,15 @@ package Model;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
+/**
+ * @author: An Nguyen
+ * @version: 10/29/2022
+ *
+ */
 
+/**
+ * QASA class get questions, get correct answers, get hints for short answer question.
+ */
 public class QASA extends QA implements Serializable {
     Connection myConn;
     private String myQuesSA;
@@ -29,7 +37,6 @@ public class QASA extends QA implements Serializable {
     }
 
     private Connection connect() {
-        // SQLite connectionDB string
         String url = "jdbc:sqlite:Database_QA.db";
 
         try {
@@ -39,8 +46,6 @@ public class QASA extends QA implements Serializable {
         }
         return myConn;
     }
-
-    //get question from tableSA
 
     public String getQuestion(String theCategory, int theId){
         myCategory = theCategory;
@@ -52,18 +57,16 @@ public class QASA extends QA implements Serializable {
         try {
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            // set the value
+
             pstmt.setInt(1, theId);
             pstmt.setString(2, theCategory);
             ResultSet rs = pstmt.executeQuery();
-            // loop through the result set
 
             while (rs.next()) {
                 question = rs.getString("Question");
             }
 
             myQuesSA = question;
-            //System.out.println("from SA: question " + question);
             return question;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -86,11 +89,9 @@ public class QASA extends QA implements Serializable {
 
             while (rs.next()) {
                 corrAns = rs.getString("CorrectAnswer");
-
             }
 
             myCorrAnsSA = corrAns;
-            //System.out.println("from SA: ans " + corrAns);
             return corrAns;
 
         } catch (SQLException e) {

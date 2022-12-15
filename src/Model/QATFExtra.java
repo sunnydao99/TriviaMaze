@@ -10,6 +10,10 @@ import java.util.ArrayList;
  *
  */
 
+/**
+ * QATFExtra class get questions, get correct answers, get choices for True/False question.
+ * This class uses for switch question button
+ */
 public class QATFExtra extends QA implements Serializable {
     Connection myConn;
     private String myQuesTFE;
@@ -31,10 +35,7 @@ public class QATFExtra extends QA implements Serializable {
         connect();
     }
 
-
-
     private Connection connect() {
-        // SQLite connectionDB string
         String url = "jdbc:sqlite:Database_QA.db";
 
         try {
@@ -45,7 +46,6 @@ public class QATFExtra extends QA implements Serializable {
         return myConn;
     }
 
-    //get question from tableTF
 
     @Override
     public String  getQuestion(String theCategory, int theId) {
@@ -58,17 +58,14 @@ public class QATFExtra extends QA implements Serializable {
         try {
             Connection conn = this.connect();
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            // set the value
             pstmt.setInt(1, theId);
             pstmt.setString(2, theCategory);
             ResultSet rs = pstmt.executeQuery();
-            // loop through the result set
 
             while (rs.next()) {
                 question = rs.getString("Question");
             }
             myQuesTFE = question;
-            //System.out.println("from QATFExtra: " + question);
             return question;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,7 +91,6 @@ public class QATFExtra extends QA implements Serializable {
 
             }
             myCorrAnsTFE = corrAns;
-            //System.out.println("from QATFEtra: " + corrAns);
             return corrAns;
 
         } catch (SQLException e) {
@@ -126,7 +122,6 @@ public class QATFExtra extends QA implements Serializable {
 
             }
             myArrChoiceTFE.addAll(choices);
-            //System.out.println("from QATFExtra: choices created");
 
             return choices;
         } catch (SQLException e) {

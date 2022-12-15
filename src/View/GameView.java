@@ -8,23 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-/**
- * @author: An Nguyen, Satinder Singh
- * @version: 12/22/2022
- *
- */
-
-/**
- * This class create Event and draw maze.
- *
- */
 
 public class GameView extends JFrame implements Serializable {
 
-    private final int RECT_SIZE = 35;
     private final int E_PATH = 0;
     private final int E_WALL = 1;
     private final int E_FAIL = 2;
@@ -32,6 +18,7 @@ public class GameView extends JFrame implements Serializable {
     private final int E_DOOR = 4;
     private final int E_BEGIN = 5;
     private final int E_DEST = 6;
+
     private int myPreX, myPreY = 1;
     private int myCurrentX = 1, myCurrentY = 1;
 
@@ -39,43 +26,58 @@ public class GameView extends JFrame implements Serializable {
     private RoomSAView myViewSA;
     private RoomTFView myViewTF;
     private String myCate = "";
-    private int myId, myGameLevel;
-    private ArrayList<String> myQues;
-    private String myAns;
-    private ArrayList<String>  myCorrectAns;
-
+    private int myId;
     int[][] myMaze = Model.Maze.getMAZE();
     private int myRectSize = Maze.myRectSize();
-    private String fileName = "Assets/StoredData.txt";//mze
+    private String fileName = "Assets/StoredData.txt";
     private static final long serialVersionUID = 1234567890L;
 
     public GameView(int x) throws FileNotFoundException {
-        myQues = new ArrayList<String>();
-        myCorrectAns = new ArrayList<String>();
-
         if(x == 3){
-            myGameLevel = x;
-            myMaze[5][1] = 4;
-            myMaze[5][3] = 4;
-            myMaze[3][8] = 4;
-            myMaze[7][11] = 4;
-            myMaze[8][8] = 4;
-            myMaze[2][4] = 1;
-
+            myMaze = new int[][]{
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
+                    {1, 0, 1, 0, 1, 0, 0, 4, 1, 1, 1, 0, 1},
+                    {1, 0, 4, 0, 1, 1, 0, 0, 0, 0, 4, 0, 1},
+                    {1, 4, 1, 4, 0, 0, 4, 0, 1, 1, 1, 0, 1},
+                    {1, 0, 1, 0, 1, 1, 1, 0, 4, 0, 0, 4, 1},
+                    {1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1},
+                    {1, 0, 1, 4, 1, 1, 1, 4, 1, 4, 0, 4, 1},
+                    {1, 4, 0, 0, 0, 4, 0, 0, 0, 0, 1, 6, 1},
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+            };
             this.setTitle("Welcome to Trivia Maze for Expert");
-        }
-        if(x == 2){
-            myGameLevel = x;
-            myMaze[5][1] = 4;
-            myMaze[5][3] = 4;
-            myMaze[3][8] = 4;
-            //myMaze[7][11] = 4;
-            myMaze[8][8] = 4;
-            myMaze[2][4] = 1;
 
+        }if(x == 2){
+
+
+            myMaze = new int[][]{
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
+                    {1, 0, 1, 0, 0, 0, 0, 4, 1, 1, 1, 0, 1},
+                    {1, 0, 4, 0, 1, 1, 0, 0, 0, 0, 4, 0, 1},
+                    {1, 4, 1, 4, 0, 0, 4, 0, 1, 1, 1, 0, 1},
+                    {1, 0, 1, 0, 1, 1, 1, 0, 4, 0, 0, 4, 1},
+                    {1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1},
+                    {1, 0, 1, 4, 1, 1, 1, 4, 1, 4, 0, 0, 1},
+                    {1, 4, 0, 0, 0, 4, 0, 0, 0, 0, 1, 6, 1},
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+            };
             this.setTitle("Welcome to Trivia Maze for Medium");
         }
         if(x == 1){
+            myMaze = new int[][]{
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {1, 5, 1, 0, 4, 0, 0, 0, 0, 0, 4, 0, 1},
+                    {1, 0, 1, 0, 0, 0, 0, 4, 1, 1, 1, 0, 1},
+                    {1, 0, 4, 0, 1, 1, 0, 0, 0, 0, 4, 0, 1},
+                    {1, 0, 1, 0, 0, 0, 4, 0, 1, 1, 1, 0, 1},
+                    {1, 0, 1, 0, 1, 1, 1, 0, 4, 0, 0, 4, 1},
+                    {1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1},
+                    {1, 0, 1, 4, 1, 1, 1, 4, 1, 4, 0, 0, 1}, // 10x13
+                    {1, 4, 0, 0, 0, 4, 0, 0, 0, 0, 1, 6, 1}, // at position 11,8
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+            };
             this.setTitle("Welcome to Trivia Maze for Beginner");
         }
 
@@ -98,15 +100,6 @@ public class GameView extends JFrame implements Serializable {
                         out.writeObject(myMaze);
                         out.writeObject(myCurrentX);
                         out.writeObject(myCurrentY);
-                        //out.writeObject(myGameLevel);
-                        String st = printQues();
-                        char ch[] = st.toCharArray();
-                        for (int i = 0; i < st.length(); i++) {
-
-                            // we will write the string by writing each
-                            // character one by one to file
-                            out.writeObject(ch[i]);
-                        }
 
                         out.close();
                         file.close();
@@ -115,22 +108,16 @@ public class GameView extends JFrame implements Serializable {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-
                 }
             }
         });
 
     }
 
-    public GameView(int[][] mySavedMaze, int mySavedX, int mySavedY) {
+    public GameView(int[][] mySavedMaze, int mySavedX, int mySavedY) throws FileNotFoundException {
         this.myMaze = mySavedMaze;
         this.myCurrentX = mySavedX;
         this.myCurrentY = mySavedY;
-        myQues = new ArrayList<String>();
-        myCorrectAns = new ArrayList<String>();
-
-
-
         prepareGUI();
         myViewMC = new RoomMCView();
         myViewSA = new RoomSAView();
@@ -138,11 +125,10 @@ public class GameView extends JFrame implements Serializable {
     }
 
     private void prepareGUI() {
-
-        this.setSize(900, 800);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //this.setDefaultCloseOperation();
         this.setVisible(true);
 
     }
@@ -154,7 +140,6 @@ public class GameView extends JFrame implements Serializable {
 
         //draw the maze
         int check = 0;
-
         for (int row = 0; row < myMaze.length; row++) {
             for (int col = 0; col < myMaze[0].length; col++) {
                 Color color;
@@ -178,7 +163,6 @@ public class GameView extends JFrame implements Serializable {
                         color = Color.WHITE;
                 }
 
-
                 g.setColor(color);
                 g.fillRect(myRectSize * col, myRectSize * row, myRectSize, myRectSize);
                 g.setColor(Color.BLACK);
@@ -198,7 +182,6 @@ public class GameView extends JFrame implements Serializable {
     protected void processKeyEvent(KeyEvent ke) {
 
         boolean reDraw = false;
-        //System.out.println(this.isActive());
         if (ke.getID() != KeyEvent.KEY_PRESSED) {
             return;
         }
@@ -296,34 +279,6 @@ public class GameView extends JFrame implements Serializable {
         }
     }
 
-    public void displayQuestion() {
-        Room.randomIDCategory();
-        myId = Room.getLastID();
-        myCate = Room.getLastCategory();
-        String tempQues = "";
-        String tempCorrect = "";
-
-        if (myCate.equals("MC")) {
-            myViewMC = new RoomMCView(myCate, myId);
-            myViewMC.roomShow();
-            tempQues = myViewMC.displayQuestion(myCate, myId);
-            tempCorrect = myViewMC.displayAnswer(myCate, myId);
-
-        } else if (myCate.equals("TF")) {
-            myViewTF = new RoomTFView(myCate, myId);
-            myViewTF.roomShow();
-            tempQues = myViewTF.displayQuestion(myCate, myId);
-            tempCorrect = myViewTF.displayAnswer(myCate, myId);
-        } else {
-            myViewSA = new RoomSAView(myCate, myId);
-            myViewSA.roomShow();
-            tempQues = myViewSA.displayQuestion(myCate, myId);
-            tempCorrect = myViewSA.displayAnswer(myCate, myId);
-        }
-        myQues.add(tempQues);
-        myCorrectAns.add(tempCorrect);
-    }
-
     private void actionGameOver() {
 
         try {
@@ -392,9 +347,6 @@ public class GameView extends JFrame implements Serializable {
             }
         }
 
-       /* System.out.println("MAZE: ");
-        print(MAZE);*/
-
         while(!done) {
             done = true;
             for (row = 0; row < temp.length; row++) {
@@ -423,73 +375,47 @@ public class GameView extends JFrame implements Serializable {
         col = 1;
         do {
             nDir = 0;
-            if (row < temp.length - 1 && canGo(temp[row + 1][col])) {
+            if (row < temp.length - 1 && canGo(temp[row + 1][col])) { // down
                 row++;
                 nDir = 1;
             }
-            else if (col < temp[0].length - 1 && canGo(temp[row][col + 1])) {
+            else if (col < temp[0].length - 1 && canGo(temp[row][col + 1])) { // right
                 col++;
                 nDir = 1;
             }
-            else if (row > 0 && canGo(temp[row - 1][col])) {
+            else if (row > 0 && canGo(temp[row - 1][col])) { // up
                 row--;
                 nDir = 1;
             }
-            else if (col > 0 && canGo(temp[row][col - 1])) {
+            else if (col > 0 && canGo(temp[row][col - 1])) { // left
                 col--;
                 nDir = 1;
             }
 
             if(temp[row][col] == E_DEST)
                 break;
-            else if(nDir == 1)
-                temp[row][col] = E_WALL;
+            else if(nDir == 1) // still 1 way
+                temp[row][col] = E_WALL; // fill wall
         } while (nDir != 0);
-
-        /*System.out.println("temp: ");
-        print(temp);*/
 
         return temp[row][col] == E_DEST;
     }
 
-    public void print(int[][] values) {
-        for(int row = 0; row < values.length; row++) {
-            for(int col = 0; col < values[0].length; col++) {
-                System.out.print(values[row][col] + " ");
-            }
-            System.out.println();
+
+    public void displayQuestion() {
+        Room.randomIDCategory();
+        myId = Room.getLastID(); // every random, item will insert last so get last
+        myCate = Room.getLastCategory();
+
+        if (myCate.equals("MC")) {
+            myViewMC = new RoomMCView(myCate, myId);
+            myViewMC.roomShow();
+        } else if (myCate.equals("TF")) {
+            myViewTF = new RoomTFView(myCate, myId);
+            myViewTF.roomShow();
+        } else {
+            myViewSA = new RoomSAView(myCate, myId);
+            myViewSA.roomShow();
         }
     }
-
-    public String printQues() {
-        String temp = "";
-        for (int i = 0; i < myQues.size(); i++) {
-
-            if (i == (myQues.size() - 1)) {
-                System.out.print(temp + myQues.get(myQues.size() - 1));
-            } else {
-                System.out.print(temp + myQues.get(i) + ", ");
-            }
-        }
-        temp = "";
-        System.out.println(temp);
-        return temp;
-    }
-
-    public String printCorrect() {
-        String temp = "";
-        for (int i = 0; i < myCorrectAns.size(); i++) {
-
-            if (i == (myCorrectAns.size() - 1)) {
-                System.out.print(temp + myCorrectAns.get(myCorrectAns.size() - 1));
-            } else {
-                System.out.print(temp + myCorrectAns.get(i) + ", ");
-            }
-        }
-        temp = "";
-        System.out.println(temp);
-        return temp;
-    }
-
-
 }

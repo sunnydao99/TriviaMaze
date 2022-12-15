@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
+
 public class QATFExtraTest {
 
     private QATFExtra bankTFE;

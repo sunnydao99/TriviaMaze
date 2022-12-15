@@ -10,7 +10,7 @@ import java.sql.*;
  */
 
 /**
- * This class displays create Database, connect Database, and create four empty tables.
+ * This class  create Database, connect Database, and create four empty tables.
  * tableMC presents for Multiple Choice
  * tableTF presents for True/False
  * tableSA presents for Short Answer
@@ -89,7 +89,6 @@ public abstract class Inventory {
                 + ") ";
 
         try {
-            /* Connection myConnIven = DriverManager.getConnection(myFileName);*/
             Statement stmt = myConnIven.createStatement();
             stmt.execute(sql);
             System.out.println("created tableMC");

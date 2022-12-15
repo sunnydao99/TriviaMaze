@@ -5,13 +5,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * @author: An Nguyen
- * @version: 11/2/2022
+ * Room class is built to create random for ID and the category
+ * @author: An Nguyen, Satinder Singh
+ * @version: 11.02.22
  *
- */
-
-/**
- * Room class create random for ID and category
  */
 
 public class Room implements Serializable {
@@ -21,7 +18,7 @@ public class Room implements Serializable {
     private ArrayList<String> myRooms;
 
     /**
-     * Room(): constructor
+     * The default constructor
      */
     public Room() {
         myIdList = new ArrayList<Integer>();
@@ -32,8 +29,8 @@ public class Room implements Serializable {
     }
 
     /**
-     * randomID(): creates random ID, and return integer ID
-     * @return: int
+     * This method is built to create a random ID, and return it
+     * @return int An integer value of ID
      */
     public static int randomID() {
         Random rand = new Random();
@@ -45,8 +42,8 @@ public class Room implements Serializable {
     }
 
     /**
-     * randomCategory(): This method creates random category, and return category
-     * @return: String
+     * This method  is built to create a random category, and return it
+     * @return String A Category
      */
     public static String randomCategory() {
         Random rand = new Random();
@@ -63,7 +60,8 @@ public class Room implements Serializable {
     }
 
     /**
-     * randomIDCategory(): This method randoms both ID and category to display data for Rooms and then store ArrayList
+     * This method generates random ID and category to display data for Room
+     * and store the value in a ArrayList
      */
     public static void randomIDCategory() {
         int tempId;
@@ -85,27 +83,29 @@ public class Room implements Serializable {
     }
 
     /**
-     * getLastID(): return last ID after random
-     * @return: int
+     * This method is built to get the last ID  and return it
+     * after generate randomly
+     * @return int The last ID
      */
     public static int getLastID() {
         return myIdList.get(myIdList.size() - 1);
     }
 
     /**
-     * getLastCategory(): return last category after random
-     * @return: String
+     * This method is created to get and return last category
+     * after generate randomly
+     * @return String The last category
      */
     public static String getLastCategory() {
         return myCategoryList.get(myCategoryList.size() - 1);
     }
 
     /**
-     * checkIDCate(String, int): check ID and category,
-     * if they are correct return true, otherwise false
-     * @param cate: category
-     * @param id: Id
-     * @return: boolean
+     * This method is built to check the availability of ID and category,
+     * if they are correct and return true, otherwise return false
+     * @param cate The category
+     * @param id Id
+     * @return boolean The value of checking the ID and category
      */
     public static boolean checkIDCate(String cate, int id) {
         int myid;
